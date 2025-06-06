@@ -122,7 +122,7 @@ folder3:AddSwitch("Auto Buy Hoops", function(state)
             wait()
             local plr = game.Players.LocalPlayer
             for _, v in pairs(workspace.Hoops:GetDescendants()) do
-                if v.ClassName == "MeshPart" then
+                if v.ClassName == "MeshPart" and v:FindFirstChild("touchPart") then
                     v.touchPart.CFrame = plr.Character.HumanoidRootPart.CFrame
                 end
             end
@@ -257,7 +257,7 @@ folder6:AddButton(buttonTitle, function()
     unequipAllPets()
     for _, pet in pairs(game:GetService("Players").LocalPlayer.petsFolder.Unique:GetChildren()) do
         if pet.Name == petName then
-            game:GetService("ReplicatedStorage").rEvents.equipPetEvent:fireServer("equipPet", pet)
+            game:GetService("ReplicatedStorage").rEvents.equipPetEvent:FireServer("equipPet", pet)
         end
     end
 end)
@@ -378,35 +378,31 @@ folder8:AddButton("Unlock All Islands", function()
     end
 end)
 
-
 local Meditate = window:AddTab("Meditate")
-local Folder9 = Meditate:AddFolder("Meditate")
+local folder9 = Meditate:AddFolder("Meditate")
 
 folder9:AddSwitch("Auto Train All Zones", function(state)
   ATMW = state
   if ATMW then
     local player = game.Players.LocalPlayer
     local positions = {
-      CFrame.new(323.886536, 8830.5625, 86.6897125, 0.913021803, -1.71907928e-08, -0.407910764, 3.03308703e-08, 1, 2.57457131e-08, 0.407910764, -3.58786849e-08, 0.913021803)
-      CFrame.new(-149.893921, 12958.5273, 244.160095, 0.687048197, -1.95576577e-09, 0.726611853, -3.5282568e-08, 1, 3.60530734e-08, -0.726611853, -5.0406932e-08, 0.687048197)
-      CFrame.new(328.426178, 16872.0977, -10.9853659, -0.463079929, -9.71666623e-08, 0.886316538, -1.50905244e-08, 1, 1.01745307e-07, -0.886316538, 3.37412267e-08, -0.463079929)
+      CFrame.new(323.886536, 8830.5625, 86.6897125, 0.913021803, -1.71907928e-08, -0.407910764, 3.03308703e-08, 1, 2.57457131e-08, 0.407910764, -3.58786849e-08, 0.913021803),
+      CFrame.new(-149.893921, 12958.5273, 244.160095, 0.687048197, -1.95576577e-09, 0.726611853, -3.5282568e-08, 1, 3.60530734e-08, -0.726611853, -5.0406932e-08, 0.687048197),
+      CFrame.new(328.426178, 16872.0977, -10.9853659, -0.463079929, -9.71666623e-08, 0.886316538, -1.50905244e-08, 1, 1.01745307e-07, -0.886316538, 3.37412267e-08, -0.463079929),
       CFrame.new(320.739563, 30383.0996, -12.8224678, -0.664686263, -6.87606638e-09, 0.747122586, 1.51589763e-08, 1, 2.26897576e-08, -0.747122586, 2.6407184e-08, -0.664686263)
     }
-for _, cframe in ipairs(positions) do
-player.Character.HumanoidRootPart.CFrame = cframes
-task.wait(0.1)
-end
-  end)
-    
-folder9:AddSwitch("Mystical Mightnight Waters", function(state)
-    MMW = state
-    if MMW then
-    game.Players.LocalPlayer.HumanoidRootPart.CFrame = CFrame.new(323.886536, 8830.5625, 86.6897125, 0.913021803, -1.71907928e-08, -0.407910764, 3.03308703e-08, 1, 2.57457131e-08, 0.407910764, -3.58786849e-08, 0.913021803)
-    else
-    game.Players.LocalPlayer.HumanoidRootPart.CFrame = CFrame.new(-15.7757254, 63.514267, 31.1953373, -0.263172954, -8.51272048e-08, -0.964748681, 7.2572945e-08, 1, -1.08034811e-07, 0.964748681, -9.84464918e-08, -0.263172954)  
+    for _, cframe in ipairs(positions) do
+      player.Character.HumanoidRootPart.CFrame = cframe
+      task.wait(0.1)
     end
-end
+  end
 end)
 
-
-    
+folder9:AddSwitch("Mystical Midnight Waters", function(state)
+    MMW = state
+    if MMW then
+        game.Players.LocalPlayer.HumanoidRootPart.CFrame = CFrame.new(323.886536, 8830.5625, 86.6897125, 0.913021803, -1.71907928e-08, -0.407910764, 3.03308703e-08, 1, 2.57457131e-08, 0.407910764, -3.58786849e-08, 0.913021803)
+    else
+        game.Players.LocalPlayer.HumanoidRootPart.CFrame = CFrame.new(-15.7757254, 63.514267, 31.1953373, -0.263172954, -8.51272048e-08, -0.964748681, 7.2572945e-08, 1, -1.08034811e-07, 0.964748681, -9.84464918e-08, -0.263172954)
+    end
+end)
