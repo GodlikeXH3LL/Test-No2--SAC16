@@ -12,12 +12,13 @@ local folder1 = Main:AddFolder("Test")
 folder1:AddSwitch("Blazing Vortex Sell", function(state)
   blaze = state
   if blaze then
-if _G.sell then
-        while _G.sell do
-            wait()
-            game.workspace.sellAreaCircles["sellAreaCircle15"].circleInner.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-            wait()
-            game.workspace.sellAreaCircles["sellAreaCircle15"].circleInner.CFrame = game.Workspace.Part.CFrame
-        end
+    if _G.sell then
+      while _G.sell do
+        wait()
+        game.workspace.sellAreaCircles["sellAreaCircle16"].circleInner.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        wait()
+        game.workspace.sellAreaCircles["sellAreaCircle16"].circleInner.CFrame = game.Workspace.Part.CFrame
+      end
     end
+  end
 end)
