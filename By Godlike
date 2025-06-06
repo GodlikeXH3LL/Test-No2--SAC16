@@ -10,15 +10,23 @@ local Main = window:AddTab("Test")
 local folder1 = Main:AddFolder("Test")
 
 folder1:AddSwitch("Blazing Vortex Sell", function(state)
-  blaze = state
-  if blaze then
-    if _G.sell then
-      while _G.sell do
-        wait()
-        game.workspace.sellAreaCircles["sellAreaCircle16"].circleInner.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-        wait()
-        game.workspace.sellAreaCircles["sellAreaCircle16"].circleInner.CFrame = game.Workspace.Part.CFrame
-      end
+    bvs = state
+    if bvs then
+        if _G.sell then
+            wait()
+            game.workspace.sellAreaCircles["sellAreaCircle16"].circleInner.CFrame = CFrame.new(81.7429123, 91245.5547, 118.15657, -0.807397723, 3.36893491e-09, 0.590007544, 3.48130342e-08, 1, 4.19300221e-08, -0.590007544, 5.43941567e-08, -0.807397723)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.sellAreaCircles["sellAreaCircle16"].circleInner.CFrame
+            wait()
+            while bvs do
+                _G.swing = state
+                if _G.swing then
+                    while _G.swing do
+                        wait()
+                        local args = { [1] = "swingKatana" }
+                        game:GetService("Players").LocalPlayer.ninjaEvent:FireServer(unpack(args))
+                    end
+                end
+            end
+        end
     end
-  end
 end)
