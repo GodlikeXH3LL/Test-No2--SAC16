@@ -9,7 +9,6 @@ local window = library:AddWindow("Enchanted Hub | Ninja", {
 local Main = window:AddTab("Test")
 local folder1 = Main:AddFolder("Test")
 
-
 folder1:AddSwitch("Blazing Vortex Sell", function(state)
   bvs = state
   if bvs then
