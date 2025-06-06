@@ -11,7 +11,7 @@ local folder1 = Main:AddFolder("Test")
 
 
 folder1:AddSwitch("Blazing Vortex Sell", function(state)
-  bvs = sell
+  bvs = state
   if bvs then
 if _G.sell then
         while _G.sell do
