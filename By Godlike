@@ -5,7 +5,6 @@ local window = library:AddWindow("Enchanted Hub | Ninja", {
     min_size = Vector2.new(655, 650),
     can_resize = false,
 })
-
 local Main = window:AddTab("Main")
 local folder1 = Main:AddFolder("Main")
 
@@ -18,10 +17,24 @@ function BlazeSell()
 end
 
 function Respawn()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-15.1626701, 63.4702454, 32.2267685, -0.0698023885, 6.29343546e-08, -0.997560859, 1.82393887e-08, 1, 6.18119742e-08, 0.997560859, -1.38802756e-08, -0.0698023885)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(
+        -15.1626701, 
+        63.4702454, 
+        32.2267685, 
+        -0.0698023885, 
+        6.29343546e-08, 
+        -0.997560859, 
+        1.82393887e-08, 
+        1, 
+        6.18119742e-08, 
+        0.997560859, 
+        -1.38802756e-08, 
+        -0.0698023885
+    )
 end
 
 while true do
     BlazeSell()
+    wait(3)
     Respawn()
 end
