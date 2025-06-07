@@ -380,7 +380,7 @@ end)
 
 
 local Meditate = window:AddTab("Meditate")
-local Folder9 = Meditate:AddFolder("Meditate")
+local Folder9 = Meditate:AddFolder("Training zone")
 
 folder9:AddSwitch("Auto Train All Zones", function(state)
   ATMW = state
