@@ -8,12 +8,9 @@ local window = library:AddWindow("Enchanted Hub | Ninja", {
 local Main = window:AddTab("Main")
 local folder1 = Main:AddFolder("Main")
 
-folder1:AddButton("Blaze Sell", function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(82.5908966, 91245.5547, 120.142555)
-end)
-
-local BlazeSelling = false
-
+folder1:AddSwitch("Blaze Sell", function(state)
+blazesell = state
+if blazesell then
 function BlazeSell()
     if BlazeSelling then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(82.5908966, 91245.5547, 120.142555)
@@ -42,3 +39,5 @@ while true do
     wait(3)
     Respawn()
 end
+end)
+
