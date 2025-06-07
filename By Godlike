@@ -12,8 +12,12 @@ folder1:AddButton("Blaze Sell", function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(82.5908966, 91245.5547, 120.142555)
 end)
 
+local BlazeSell = false
+
 function BlazeSell()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(82.5908966, 91245.5547, 120.142555)
+    if BlazeSell then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(82.5908966, 91245.5547, 120.142555)
+    end
 end
 
 function Respawn()
