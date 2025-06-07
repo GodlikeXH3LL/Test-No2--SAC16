@@ -9,11 +9,10 @@ local Main = window:AddTab("Main")
 local folder1 = Main:AddFolder("Main")
 
 folder1:AddSwitch("Blaze Sell", function(Value)
-blazesell = state
+blazesell = value
 if blazesell then
-    local BlazeSelling = false
-    
-    function BlazeSell()
+
+function BlazeSell()
         if not BlazeSelling then
             BlazeSelling = true
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(82.5908966, 91245.5547, 120.142555)
@@ -44,5 +43,9 @@ if blazesell then
         wait(3)
         Respawn()
     end
+end
+
+if blazesell then
+task.cancel(blazesell)
 end
 end)
