@@ -11,33 +11,38 @@ local folder1 = Main:AddFolder("Main")
 folder1:AddSwitch("Blaze Sell", function(state)
 blazesell = state
 if blazesell then
-function BlazeSell()
-    if BlazeSelling then
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(82.5908966, 91245.5547, 120.142555)
+    local BlazeSelling = false
+    
+    function BlazeSell()
+        if not BlazeSelling then
+            BlazeSelling = true
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(82.5908966, 91245.5547, 120.142555)
+            wait(3)
+            BlazeSelling = false
+        end
+    end
+
+    function Respawn()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(
+            -15.1626701, 
+            63.4702454, 
+            32.2267685, 
+            -0.0698023885, 
+            6.29343546e-08, 
+            -0.997560859, 
+            1.82393887e-08, 
+            1, 
+            6.18119742e-08, 
+            0.997560859, 
+            -1.38802756e-08, 
+            -0.0698023885
+        )
+    end
+
+    while blazesell do
+        BlazeSell()
+        wait(3)
+        Respawn()
     end
 end
-
-function Respawn()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(
-        -15.1626701, 
-        63.4702454, 
-        32.2267685, 
-        -0.0698023885, 
-        6.29343546e-08, 
-        -0.997560859, 
-        1.82393887e-08, 
-        1, 
-        6.18119742e-08, 
-        0.997560859, 
-        -1.38802756e-08, 
-        -0.0698023885
-    )
-end
-
-while true do
-    BlazeSell()
-    wait(3)
-    Respawn()
-end
 end)
-
