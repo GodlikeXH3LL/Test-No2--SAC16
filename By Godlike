@@ -12,10 +12,10 @@ folder1:AddButton("Blaze Sell", function()
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(82.5908966, 91245.5547, 120.142555)
 end)
 
-local BlazeSell = false
+local BlazeSelling = false
 
 function BlazeSell()
-    if BlazeSell then
+    if BlazeSelling then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(82.5908966, 91245.5547, 120.142555)
     end
 end
