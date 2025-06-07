@@ -44,8 +44,4 @@ function BlazeSell()
         Respawn()
     end
 end
-
-if blazesell then
-task.cancel(blazesell)
-end
 end)
