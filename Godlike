@@ -1072,12 +1072,9 @@ local Toggle = Tabs.Rebirth:CreateToggle("FrameToggle", {
 
 local isRunning = false
 
-
 local a = game:GetService("ReplicatedStorage")
 local b = game:GetService("Players")
 local c = b.LocalPlayer
-
-local isRunning = false  -- Variable to control the automation
 
 local d = function(e)
     local f = c.petsFolder
@@ -1133,11 +1130,16 @@ local function startRebirthAutomation()
             w = math.floor(w * (1 - (x * .1)))
         end
 
+        -- Unequip everything first
         d()
         task.wait(.1)
+
+        -- Equip both Swift Samurai AND Darkstar Hunter for grinding
         k("Swift Samurai")
+        task.wait(.1)  -- Small delay to ensure the first equip registers
         k("Darkstar Hunter")
 
+        -- Grind strength until target is reached
         while isRunning and c.leaderstats.Strength.Value < w do
             for y = 1, 12 do
                 c.muscleEvent:FireServer("rep")
@@ -1145,28 +1147,35 @@ local function startRebirthAutomation()
             task.wait()
         end
 
+        -- Unequip everything again before rebirth pet
         d()
         task.wait(.1)
+
+        -- Equip Tribal Overlord for the rebirth
         k("Tribal Overlord")
 
+        -- Interact with Jungle Bar Lift
         local z = o("Jungle Bar Lift")
         if z and z:FindFirstChild("interactSeat") then
             c.Character.HumanoidRootPart.CFrame = z.interactSeat.CFrame * CFrame.new(0, 3, 0)
             repeat
                 task.wait(.1)
                 t()
-            until c.Character.Humanoid.Sit
+            until c.Character.Humanoid.Sitting  -- Note: .Sit → .Sitting (correct property)
         end
 
+        -- Perform rebirth
         local A = c.leaderstats.Rebirths.Value
         repeat
             a.rEvents.rebirthRemote:InvokeServer("rebirthRequest")
             task.wait(.1)
         until c.leaderstats.Rebirths.Value > A
 
-        task.wait()
+        task.wait(1)  -- Small pause after rebirth before next cycle
     end
 end
+
+-- To start/stop the automation, you would toggle isRunning = true/false elsewhere in your UI/script
 
 -- Create the toggle for starting/stopping the automation
 local MainToggle = Tabs.Rebirth:CreateToggle("UltimateFarm", {
