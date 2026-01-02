@@ -1136,6 +1136,7 @@ local function startRebirthAutomation()
         d()
         task.wait(.1)
         k("Swift Samurai")
+        k("Darkstar Hunter")
 
         while isRunning and c.leaderstats.Strength.Value < w do
             for y = 1, 12 do
