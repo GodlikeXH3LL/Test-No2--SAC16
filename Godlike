@@ -1076,6 +1076,8 @@ local a = game:GetService("ReplicatedStorage")
 local b = game:GetService("Players")
 local c = b.LocalPlayer
 
+local isRunning = false  -- Variable to control the automation
+
 local d = function(e)
     local f = c.petsFolder
     for g, h in pairs(f:GetChildren()) do
@@ -1088,12 +1090,12 @@ local d = function(e)
     task.wait(.1)
 end
 
-local k = function(l)
-    d()
-    task.wait(.1)
-    for m, n in pairs(c.petsFolder.Unique:GetChildren()) do
-        if n.Name == l then
-            a.rEvents.equipPetEvent:FireServer("equipPet", n)
+local equipMultiple = function(petsTable)
+    for _, petName in pairs(petsTable) do
+        for m, n in pairs(c.petsFolder.Unique:GetChildren()) do
+            if n.Name == petName then
+                a.rEvents.equipPetEvent:FireServer("equipPet", n)
+            end
         end
     end
 end
@@ -1130,16 +1132,12 @@ local function startRebirthAutomation()
             w = math.floor(w * (1 - (x * .1)))
         end
 
-        -- Unequip everything first
-        d()
+        d()  -- Unequip all pets
         task.wait(.1)
+        
+        -- Equip both Swift Samurai and Darkstar Hunter simultaneously for the grinding phase
+        equipMultiple({"Swift Samurai", "Darkstar Hunter"})
 
-        -- Equip both Swift Samurai AND Darkstar Hunter for grinding
-        k("Swift Samurai")
-        task.wait(.1)  -- Small delay to ensure the first equip registers
-        k("Darkstar Hunter")
-
-        -- Grind strength until target is reached
         while isRunning and c.leaderstats.Strength.Value < w do
             for y = 1, 12 do
                 c.muscleEvent:FireServer("rep")
@@ -1147,35 +1145,28 @@ local function startRebirthAutomation()
             task.wait()
         end
 
-        -- Unequip everything again before rebirth pet
-        d()
+        d()  -- Unequip all again
         task.wait(.1)
+        k("Tribal Overlord")  -- Assuming k is still defined elsewhere or replace with equipMultiple({"Tribal Overlord"}) if needed
 
-        -- Equip Tribal Overlord for the rebirth
-        k("Tribal Overlord")
-
-        -- Interact with Jungle Bar Lift
         local z = o("Jungle Bar Lift")
         if z and z:FindFirstChild("interactSeat") then
             c.Character.HumanoidRootPart.CFrame = z.interactSeat.CFrame * CFrame.new(0, 3, 0)
             repeat
                 task.wait(.1)
                 t()
-            until c.Character.Humanoid.Sitting  -- Note: .Sit → .Sitting (correct property)
+            until c.Character.Humanoid.Sit
         end
 
-        -- Perform rebirth
         local A = c.leaderstats.Rebirths.Value
         repeat
             a.rEvents.rebirthRemote:InvokeServer("rebirthRequest")
             task.wait(.1)
         until c.leaderstats.Rebirths.Value > A
 
-        task.wait(1)  -- Small pause after rebirth before next cycle
+        task.wait()
     end
 end
-
--- To start/stop the automation, you would toggle isRunning = true/false elsewhere in your UI/script
 
 -- Create the toggle for starting/stopping the automation
 local MainToggle = Tabs.Rebirth:CreateToggle("UltimateFarm", {
