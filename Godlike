@@ -1,719 +1,262 @@
--- Discord Webhook URL
-local webhookUrl = "https://discord.com/api/webhooks/1359418893290045470/tSE9caMSSlP6XbYwYKoQ5TRJCW2yDSjCYxqbEVj-8l84p4y3ts-yhbuZ7_jeOSEBEDM_"
+local MacLib = loadstring(game:HttpGet("https://github.com/biggaboy212/Maclib/releases/latest/download/maclib.txt"))()
 
--- Get Player Info
-local player = game:GetService("Players").LocalPlayer
-local username = player.Name
-local leaderstats = player:FindFirstChild("leaderstats")
+local Window = MacLib:Window({
+	Title = "Godlike",
+	Subtitle = "From Godlike",
+	Size = UDim2.fromOffset(868, 650),
+	DragStyle = 1,
+	DisabledWindowControls = {},
+	ShowUserInfo = true,
+	Keybind = Enum.KeyCode.RightControl,
+	AcrylicBlur = true,
+})
 
--- Get Stats
-local stats = {
-    username = username,
-    strength = leaderstats and leaderstats:FindFirstChild("Strength") and leaderstats.Strength.Value or "N/A",
-    durability = player:FindFirstChild("Durability") and player.Durability.Value or "N/A", -- Assuming Durability is a direct child of the player
-    agility = player:FindFirstChild("Agility") and player.Agility.Value or "N/A", -- Assuming Agility is a direct child of the player
-    rebirths = leaderstats and leaderstats:FindFirstChild("Rebirths") and leaderstats.Rebirths.Value or "N/A",
-    gems = player:FindFirstChild("Gems") and player.Gems.Value or "Too Weak to sense" -- Assuming Gems is a direct child of the player
+local globalSettings = {
+	UIBlurToggle = Window:GlobalSetting({
+		Name = "UI Blur",
+		Default = Window:GetAcrylicBlurState(),
+		Callback = function(bool)
+			Window:SetAcrylicBlurState(bool)
+			Window:Notify({
+				Title = Window.Settings.Title,
+				Description = (bool and "Enabled" or "Disabled") .. " UI Blur",
+				Lifetime = 5
+			})
+		end,
+	}),
+	NotificationToggler = Window:GlobalSetting({
+		Name = "Notifications",
+		Default = Window:GetNotificationsState(),
+		Callback = function(bool)
+			Window:SetNotificationsState(bool)
+			Window:Notify({
+				Title = Window.Settings.Title,
+				Description = (bool and "Enabled" or "Disabled") .. " Notifications",
+				Lifetime = 5
+			})
+		end,
+	}),
+	ShowUserInfo = Window:GlobalSetting({
+		Name = "Show User Info",
+		Default = Window:GetUserInfoState(),
+		Callback = function(bool)
+			Window:SetUserInfoState(bool)
+			Window:Notify({
+				Title = Window.Settings.Title,
+				Description = (bool and "Showing" or "Redacted") .. " User Info",
+				Lifetime = 5
+			})
+		end,
+	})
 }
 
--- Create Embed Data for Discord Webhook
-local data = {
-    ["embeds"] = {{
-        ["title"] = "Player Stats",
-        ["color"] = tonumber(0x00ff00), -- Green color
-        ["fields"] = {
-            {["name"] = "Username", ["value"] = stats.username, ["inline"] = true},
-            {["name"] = "Strength", ["value"] = tostring(stats.strength), ["inline"] = true},
-            {["name"] = "Durability", ["value"] = tostring(stats.durability), ["inline"] = true},
-            {["name"] = "Agility", ["value"] = tostring(stats.agility), ["inline"] = true},
-            {["name"] = "Rebirths", ["value"] = tostring(stats.rebirths), ["inline"] = true},
-            {["name"] = "Gems", ["value"] = tostring(stats.gems), ["inline"] = true}
-        }
-    }}
+local tabGroups = {
+	TabGroup1 = Window:TabGroup()
 }
 
--- Convert to JSON
-local HttpService = game:GetService("HttpService")
-local body = HttpService:JSONEncode(data)
-local headers = {["Content-Type"] = "application/json"}
-
--- Send Request (Handles different exploit methods)
-local function sendRequest(url, jsonBody)
-    if request then
-        request({Url = url, Method = "POST", Headers = headers, Body = jsonBody})
-    elseif http_request then
-        http_request({Url = url, Method = "POST", Headers = headers, Body = jsonBody})
-    elseif syn and syn.request then
-        syn.request({Url = url, Method = "POST", Headers = headers, Body = jsonBody})
-    else
-        warn("No valid request method found.")
-    end
-end
-
-sendRequest(webhookUrl, body)
-
--- Load Dependencies
-local Library = loadstring(game:HttpGet("https://github.com/ActualMasterOogway/Fluent-Renewed/releases/latest/download/Fluent.luau"))()
-local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/ActualMasterOogway/Fluent-Renewed/master/Addons/SaveManager.luau"))()
-local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/ActualMasterOogway/Fluent-Renewed/master/Addons/InterfaceManager.luau"))()
-
--- Main Window
-local Window = Library:CreateWindow{
-    Title = "MoonHub",
-    SubTitle = "By Godlike",
-    TabWidth = 125,
-    Size = UDim2.fromOffset(972, 820),
-    Resize = true,
-    MinSize = Vector2.new(470, 380),
-    Acrylic = true,
-    Theme = "Light",
-    MinimizeKey = Enum.KeyCode.RightControl
+local tabs = {
+	Main = tabGroups.TabGroup1:Tab({ Name = "Demo", Image = "rbxassetid://18821914323" }),
+	Settings = tabGroups.TabGroup1:Tab({ Name = "Settings", Image = "rbxassetid://10734950309" })
 }
 
--- Tabs Definition
-local Tabs = {
-    Main = Window:AddTab({ Title = "Main", Icon = "0" }),
-    AutoWeights = Window:AddTab({ Title = "Auto Weights", Icon = "0" }),
-    AutoRebirth = Window:AddTab({ Title = "Auto Rebirth", Icon = "0" }),
-    AutoKill = Window:AddTab({ Title = "Auto Kill", Icon = "0" }),
-    AutoRock = Window:AddTab({ Title = "Auto Rock", Icon = "0" }),
-    FastGlitch = Window:AddTab({ Title = "Fast Glitch", Icon = "0" }),
-    OPTools = Window:AddTab({ Title = "OP FUNCTIONS🔥", Icon = "0" }),
-    Misc = Window:AddTab({ Title = "Misc", Icon = "0" })
+local sections = {
+	MainSection1 = tabs.Main:Section({ Side = "Left" }),
 }
 
----------------------
--- Main Controls Tab
----------------------
-local MainSection = Tabs.Main:CreateSection("Basic Controls")
-local selectedSize = 2
-local selectedSpeed = 125
-
--- Size Changer Input
-MainSection:AddInput("SizeChanger", {
-    Title = "Size Changer",
-    Description = "Enter Size",
-    Default = "2",
-    Placeholder = "Type here...",
-    Numeric = true,
-    Finished = true,
-    Callback = function(val)
-        selectedSize = tonumber(val) or 2
-        if _G.AutoSize then
-            game.ReplicatedStorage.rEvents.changeSpeedSizeRemote:InvokeServer("changeSize", selectedSize)
-        end
-    end
+sections.MainSection1:Header({
+	Name = "Header #1"
 })
 
--- Auto Size Toggle
-local autoSizeToggle = MainSection:CreateToggle("AutoSize", {
-    Title = "Auto Set Size",
-    Description = "Auto apply chosen size",
-    Default = false,
-    Callback = function(enabled)
-        _G.AutoSize = enabled
-        if enabled then
-            task.spawn(function()
-                while _G.AutoSize do
-                    game.ReplicatedStorage.rEvents.changeSpeedSizeRemote:InvokeServer("changeSize", selectedSize)
-                    task.wait(0.1)
-                end
-            end)
-        end
-    end
+sections.MainSection1:Button({
+	Name = "Button",
+	Callback = function()
+		Window:Dialog({
+			Title = Window.Settings.Title,
+			Description = "Lorem ipsum odor amet, consectetuer adipiscing elit. Eros vestibulum aliquet mattis, ex platea nunc.",
+			Buttons = {
+				{
+					Name = "Confirm",
+					Callback = function()
+						print("Confirmed!")
+					end,
+				},
+				{
+					Name = "Cancel"
+				}
+			}
+		})
+	end,
 })
 
--- Speed Changer Input
-MainSection:AddInput("SpeedChanger", {
-    Title = "Speed Changer",
-    Description = "Enter Speed",
-    Default = "125",
-    Placeholder = "Enter Speed",
-    Numeric = true,
-    Finished = true,
-    Callback = function(val)
-        selectedSpeed = tonumber(val) or 125
-        if _G.AutoSpeed then
-            local humanoid = player.Character and player.Character:FindFirstChild("Humanoid")
-            if humanoid then
-                humanoid.WalkSpeed = selectedSpeed
-            end
-        end
-    end
+sections.MainSection1:Input({
+	Name = "Input",
+	Placeholder = "Input",
+	AcceptedCharacters = "All",
+	Callback = function(input)
+		Window:Notify({
+			Title = Window.Settings.Title,
+			Description = "Successfully set input to " .. input
+		})
+	end,
+	onChanged = function(input)
+		print("Input is now " .. input)
+	end,
+}, "Input")
+
+sections.MainSection1:Slider({
+	Name = "Slider",
+	Default = 50,
+	Minimum = 0,
+	Maximum = 100,
+	DisplayMethod = "Percent",
+	Precision = 0,
+	Callback = function(Value)
+		print("Changed to ".. Value)
+	end
+}, "Slider")
+
+sections.MainSection1:Toggle({
+	Name = "Toggle",
+	Default = false,
+	Callback = function(value)
+		Window:Notify({
+			Title = Window.Settings.Title,
+			Description = (value and "Enabled " or "Disabled ") .. "Toggle"
+		})
+	end,
+}, "Toggle")
+
+sections.MainSection1:Keybind({
+	Name = "Keybind",
+	Blacklist = false,
+	Callback = function(binded)
+		Window:Notify({
+			Title = "Demo Window",
+			Description = "Pressed keybind - "..tostring(binded.Name),
+			Lifetime = 3
+		})
+	end,
+	onBinded = function(bind)
+		Window:Notify({
+			Title = "Demo Window",
+			Description = "Successfully Binded Keybind to - "..tostring(bind.Name),
+			Lifetime = 3
+		})
+	end,
+}, "Keybind")
+
+sections.MainSection1:Colorpicker({
+	Name = "Colorpicker",
+	Default = Color3.fromRGB(0, 255, 255),
+	Callback = function(color)
+		print("Color: ", color)
+	end,
+}, "Colorpicker")
+
+local alphaColorPicker = sections.MainSection1:Colorpicker({
+	Name = "Transparency Colorpicker",
+	Default = Color3.fromRGB(255,0,0),
+	Alpha = 0,
+	Callback = function(color, alpha)
+		print("Color: ", color, " Alpha: ", alpha)
+	end,
+}, "TransparencyColorpicker")
+
+local rainbowActive
+local rainbowConnection
+local hue = 0
+
+sections.MainSection1:Toggle({
+	Name = "Rainbow",
+	Default = false,
+	Callback = function(value)
+		rainbowActive = value
+
+		if rainbowActive then
+			rainbowConnection = game:GetService("RunService").RenderStepped:Connect(function(deltaTime)
+				hue = (hue + deltaTime * 0.1) % 1
+				alphaColorPicker:SetColor(Color3.fromHSV(hue, 1, 1))
+			end)
+		elseif rainbowConnection then
+			rainbowConnection:Disconnect()
+			rainbowConnection = nil
+		end
+	end,
+}, "RainbowToggle")
+
+local optionTable = {
+	"Apple",
+	"Banana",
+	"Orange",
+	"Grapes",
+	"Pineapple",
+	"Mango",
+	"Strawberry",
+	"Blueberry",
+	"Watermelon",
+	"Peach"
+}
+
+local Dropdown = sections.MainSection1:Dropdown({
+	Name = "Dropdown",
+	Multi = false,
+	Required = true,
+	Options = optionTable,
+	Default = 1,
+	Callback = function(Value)
+		print("Dropdown changed: ".. Value)
+	end,
+}, "Dropdown")
+
+local MultiDropdown = sections.MainSection1:Dropdown({
+	Name = "Multi Dropdown",
+	Search = true,
+	Multi = true,
+	Required = false,
+	Options = optionTable,
+	Default = {"Apple", "Orange"},
+	Callback = function(Value)
+		local Values = {}
+		for Value, State in next, Value do
+			table.insert(Values, Value)
+		end
+		print("Mutlidropdown changed:", table.concat(Values, ", "))
+	end,
+}, "MultiDropdown")
+
+sections.MainSection1:Button({
+	Name = "Update Selection",
+	Callback = function()
+		Dropdown:UpdateSelection("Grapes")
+		MultiDropdown:UpdateSelection({"Banana", "Pineapple"})
+	end,
 })
 
--- Auto Speed Toggle
-local autoSpeedToggle = MainSection:CreateToggle("AutoSpeed", {
-    Title = "Auto Set Speed",
-    Description = "Auto apply chosen speed",
-    Default = false,
-    Callback = function(enabled)
-        _G.AutoSpeed = enabled
-        if enabled then
-            task.spawn(function()
-                while _G.AutoSpeed do
-                    local char = player.Character
-                    if char and char:FindFirstChild("Humanoid") then
-                        char.Humanoid.WalkSpeed = selectedSpeed
-                    end
-                    task.wait(0.1)
-                end
-            end)
-        end
-    end
+sections.MainSection1:Divider()
+
+sections.MainSection1:Header({
+	Text = "Header #2"
 })
 
--- Free Auto Lift Pass Button
-MainSection:AddButton({
-    Title = "FREE AUTO LIFT PASS",
-    Description = "Makes the Auto Lift Pass free",
-    Callback = function()
-        local gpFolder = game.ReplicatedStorage:FindFirstChild("gamepassIds")
-        if gpFolder and player:FindFirstChild("ownedGamepasses") then
-            for _, gp in pairs(gpFolder:GetChildren()) do
-                local val = Instance.new("IntValue")
-                val.Name = gp.Name
-                val.Value = gp.Value
-                val.Parent = player.ownedGamepasses
-            end
-        end
-    end
+sections.MainSection1:Paragraph({
+	Header = "Paragraph",
+	Body = "Paragraph body. Lorem ipsum odor amet, consectetuer adipiscing elit. Morbi tempus netus aliquet per velit est gravida."
 })
 
--- Destroy Ad Portal Button
-MainSection:AddButton({
-    Title = "Destroy Ad Portal",
-    Description = "Self explanatory💀🙏",
-    Callback = function()
-        local portal = workspace:FindFirstChild("RobloxForwardPortals")
-        if portal then portal:Destroy() end
-    end
+sections.MainSection1:Label({
+	Text = "Label. Lorem ipsum odor amet, consectetuer adipiscing elit."
 })
 
------------------------
--- Auto Weights Tab
------------------------
-local autoWeightToggle = Tabs.AutoWeights:CreateToggle("Auto Weights", {
-    Title = "Auto Weight",
-    Description = "Automatically lift dumbbell",
-    Default = false,
-    Callback = function(val)
-        _G.AutoWeight = val
-        local plr = player
-        local tool = plr.Backpack:FindFirstChild("Weight")
-        if val and tool then
-            plr.Character.Humanoid:EquipTool(tool)
-        elseif not val and plr.Character and plr.Character:FindFirstChild("Weight") then
-            plr.Character.Weight.Parent = plr.Backpack
-        end
-        if val then
-            task.spawn(function()
-                while _G.AutoWeight do
-                    plr.muscleEvent:FireServer("rep")
-                    task.wait(0.01)
-                end
-            end)
-        end
-    end
+sections.MainSection1:SubLabel({
+	Text = "Sub-Label. Lorem ipsum odor amet, consectetuer adipiscing elit."
 })
 
--- Universal Exercise Toggle Function
-local function createExerciseToggle(tab, title, toolName)
-    tab:CreateToggle(title, {
-        Title = title,
-        Description = "Auto use tool: " .. toolName,
-        Callback = function(val)
-            _G["Auto" .. toolName] = val
-            local plr = player
-            local tool = plr.Backpack:FindFirstChild(toolName)
-            if val and tool then
-                plr.Character.Humanoid:EquipTool(tool)
-            elseif not val and plr.Character and plr.Character:FindFirstChild(toolName) then
-                plr.Character[toolName].Parent = plr.Backpack
-            end
-            if val then
-                task.spawn(function()
-                    while _G["Auto" .. toolName] do
-                        plr.muscleEvent:FireServer("rep")
-                        task.wait(0.01)
-                    end
-                end)
-            end
-        end
-    })
-end
+MacLib:SetFolder("Maclib")
+tabs.Settings:InsertConfigSection("Left")
 
-createExerciseToggle(Tabs.AutoWeights, "Auto Pushups", "Pushups")
-createExerciseToggle(Tabs.AutoWeights, "Auto Situps", "Situps")
-createExerciseToggle(Tabs.AutoWeights, "Auto Handstands", "Handstands")
-
--------------------------
--- Auto Rebirth Tab
--------------------------
-local rebirthTarget = 1
-Tabs.AutoRebirth:CreateInput("RebirthAmount", {
-    Title = "Rebirth Amount",
-    Default = "1",
-    Numeric = true,
-    Callback = function(val)
-        rebirthTarget = tonumber(val) or 1
-    end
-})
-
-local autoRebirthTargetToggle = Tabs.AutoRebirth:CreateToggle("AutoRebirth", {
-    Title = "Auto Rebirth (Target)",
-    Default = false,
-    Callback = function(enabled)
-        if enabled then
-            task.spawn(function()
-                while enabled do
-                    local stats = player:FindFirstChild("leaderstats")
-                    if stats and stats:FindFirstChild("Rebirths") and stats.Rebirths.Value >= rebirthTarget then break end
-                    game.ReplicatedStorage.rEvents.rebirthRemote:InvokeServer("rebirthRequest")
-                    task.wait(0.2)
-                end
-            end)
-        end
-    end
-})
-
-local infiniteRebirthLoop
-local togglerebirthinf = Tabs.AutoRebirth:CreateToggle("AutoRebirthInf", {
-    Title = "Auto Rebirth Infinitely",
-    Description = "Auto Rebirth Non stop",
-    Callback = function(value)
-        if value then
-            infiniteRebirthLoop = task.spawn(function()
-                while value do -- Use the 'value' variable directly
-                    game:GetService("ReplicatedStorage").rEvents.rebirthRemote:InvokeServer("rebirthRequest")
-                    task.wait(0.1)
-                end
-            end)
-        else
-            if infiniteRebirthLoop then
-                task.cancel(infiniteRebirthLoop)
-                infiniteRebirthLoop = nil
-            end
-        end
-    end
-})
-
-local togglehideallframes = Tabs.AutoRebirth:CreateToggle("HideAllFrames", {
-    Title = "Hide All Frames",
-    Description = "This hides every screen popup. dramatically reducing lag",
-    Callback = function(value)
-        local rSto = game:GetService("ReplicatedStorage")
-        for _, obj in pairs(rSto:GetChildren()) do
-            -- Check if the object is a GuiObject and its name ends with "Frame"
-            if obj:IsA("GuiObject") and obj.Name:match("Frame$") then
-                obj.Visible = not value -- Toggle visibility based on the toggle value
-            end
-        end
-    end
-})
-
-local autoSizeLoop
-local toggleautosize2 = Tabs.AutoRebirth:CreateToggle("AutoSize2", {
-    Title = "Loop Size 2",
-    Description = "Auto Sizes u to 2 when u rebirth",
-    Callback = function(value)
-        if value then
-            autoSizeLoop = task.spawn(function()
-                while value do -- Use the 'value' variable directly
-                    game:GetService("ReplicatedStorage").rEvents.changeSpeedSizeRemote:InvokeServer("changeSize", 2)
-                    task.wait(0.1)
-                end
-            end)
-        else
-            if autoSizeLoop then
-                task.cancel(autoSizeLoop)
-                autoSizeLoop = nil
-            end
-        end
-    end
-})
-
-local togglelockposition = Tabs.AutoRebirth:CreateToggle("LockPosition", {
-    Title = "Lock Position",
-    Description = "This Locks u in place. Also sets your spawn point",
-    Callback = function(value)
-        local currentPos = player.Character and player.Character:FindFirstChild("HumanoidRootPart") and player.Character.HumanoidRootPart.CFrame
-        if not currentPos then
-            warn("Could not get player position.")
-            return
-        end
-
-        if value then
-            getgenv().posLock = game:GetService("RunService").Heartbeat:Connect(function()
-                if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-                    player.Character.HumanoidRootPart.CFrame = currentPos
-                end
-            end)
-        else
-            -- Unlock Position
-            if getgenv().posLock then
-                getgenv().posLock:Disconnect()
-                getgenv().posLock = nil
-            end
-        end
-    end
-})
-
-------------------------
--- Auto Kill Tab
-------------------------
-local Players = game:GetService("Players")
-local function getCharacter()
-    return Players.LocalPlayer.Character or Players.LocalPlayer.CharacterAdded:Wait()
-end
-
-local function killTarget(target)
-    local char = getCharacter()
-    if char and target.Character then
-        local root = target.Character:FindFirstChild("HumanoidRootPart")
-        local leftHand = char:FindFirstChild("LeftHand")
-        local rightHand = char:FindFirstChild("RightHand")
-        if root and (leftHand or rightHand) then
-            if leftHand then
-                firetouchinterest(root, leftHand, 0)
-                firetouchinterest(root, leftHand, 1)
-            end
-            if rightHand then
-                 firetouchinterest(root, rightHand, 0)
-                 firetouchinterest(root, rightHand, 1)
-            end
-        end
-    end
-end
-
-local startKillToggle = Tabs.AutoKill:AddToggle("StartKill", {
-    Title = "Start Killing",
-    Default = false,
-    Callback = function(enabled)
-        getgenv().killAll = enabled
-        if enabled then
-            task.spawn(function()
-                while getgenv().killAll do
-                    for _, p in pairs(Players:GetPlayers()) do
-                        if p ~= Players.LocalPlayer and p.Character and p.Character:FindFirstChild("Humanoid") then
-                            killTarget(p)
-                        end
-                    end
-                    task.wait(0.1)
-                end
-            end)
-        end
-    end
-})
-
-local PlayerDropdown = Tabs.AutoKill:CreateDropdown("PlayerList", {
-    Title = "Kill Target",
-    Values = {},
-    Callback = function(val)
-        getgenv().targetPlayer = val:match("(.+)%s|") or ""
-    end
-})
-
-local function refreshPlayerList()
-    local options = {}
-    for _, p in ipairs(Players:GetPlayers()) do
-        if p ~= Players.LocalPlayer then
-            table.insert(options, p.Name .. " | " .. p.DisplayName)
-        end
-    end
-    PlayerDropdown:SetValues(options)
-end
-
-Players.PlayerAdded:Connect(refreshPlayerList)
-Players.PlayerRemoving:Connect(refreshPlayerList)
-task.spawn(function()
-    while true do
-        refreshPlayerList()
-        task.wait(1)
-    end
+Window.onUnloaded(function()
+	print("Unloaded!")
 end)
 
-Tabs.AutoKill:CreateToggle("Fast Kill", {
-    Title = "Fast Kill",
-    Callback = function(enabled)
-        local function setAttackTime(val)
-            for _, location in pairs({player.Backpack, player.Character}) do
-                local punch = location and location:FindFirstChild("Punch")
-                if punch and punch:FindFirstChild("attackTime") then
-                    punch.attackTime.Value = val
-                end
-            end
-        end
-        setAttackTime(enabled and 0 or 0.35)
-    end
-})
-
-local autoPunchToggle = Tabs.AutoKill:CreateToggle("Auto Punch", {
-    Title = "Auto Punch",
-    Callback = function(enabled)
-        _G.fastHit = enabled
-        if enabled then
-            task.spawn(function()
-                while _G.fastHit do
-                    local plr = Players.LocalPlayer
-                    local tool = plr.Backpack:FindFirstChild("Punch")
-                    if tool then tool.Parent = plr.Character end
-                    plr.muscleEvent:FireServer("punch", "rightHand")
-                    plr.muscleEvent:FireServer("punch", "leftHand")
-                    local punchTool = plr.Character and plr.Character:FindFirstChild("Punch")
-                    if punchTool then punchTool:Activate() end
-                    task.wait()
-                end
-            end)
-        end
-    end
-})
-
-local fastPunchToggle = Tabs.AutoKill:CreateToggle("Fast Punch", {
-    Title = "FAST PUNCH",
-    Description = "Speedy feature",
-    Callback = function(Value)
-        _G.fastHitActive = Value
-
-        if Value then
-            local function equipAndModifyPunch()
-                while _G.fastHitActive do
-                    local player = Players.LocalPlayer
-                    local punch = player.Backpack:FindFirstChild("Punch")
-                    if punch then
-                        punch.Parent = player.Character
-                        if punch:FindFirstChild("attackTime") then
-                            punch.attackTime.Value = 0
-                        end
-                    end
-                    task.wait(0)
-                end
-            end
-
-            local function rapidPunch()
-                while _G.fastHitActive do
-                    local player = Players.LocalPlayer
-                    player.muscleEvent:FireServer("punch", "rightHand")
-                    player.muscleEvent:FireServer("punch", "leftHand")
-                    local character = player.Character
-                    if character then
-                        local punchTool = character:FindFirstChild("Punch")
-                        if punchTool then
-                            punchTool:Activate()
-                        end
-                    end
-                    task.wait(0)
-                end
-            end
-
-            coroutine.wrap(equipAndModifyPunch)()
-            coroutine.wrap(rapidPunch)()
-        else
-            local character = Players.LocalPlayer.Character
-            if character then
-                local equipped = character:FindFirstChild("Punch")
-                if equipped then
-                    equipped.Parent = Players.LocalPlayer.Backpack
-                end
-            end
-            print("Auto Punch Off")
-        end
-    end
-})
-
--------------------------
--- Auto Rock Tab
--------------------------
-local function createRockToggle(tab, title, durability)
-    tab:CreateToggle(title, {
-        Title = title,
-        Callback = function(enabled)
-            getgenv().autoFarm = enabled
-            if enabled then
-                task.spawn(function()
-                    while getgenv().autoFarm do
-                        local player = Players.LocalPlayer
-                        if player:FindFirstChild("Durability") and player.Durability.Value >= durability then
-                            for _, desc in pairs(workspace.machinesFolder:GetDescendants()) do
-                                if desc.Name == "neededDurability" and desc.Value == durability then
-                                    local rock = desc.Parent:FindFirstChild("Rock")
-                                    if rock and player.Character and player.Character:FindFirstChild("LeftHand") and player.Character:FindFirstChild("RightHand") then
-                                        for _, hand in pairs({player.Character.LeftHand, player.Character.RightHand}) do
-                                            firetouchinterest(rock, hand, 0)
-                                            firetouchinterest(rock, hand, 1)
-                                        end
-                                    end
-                                end
-                            end
-                        end
-                        task.wait(0.1)
-                    end
-                end)
-            end
-        end
-    })
-end
-
-createRockToggle(Tabs.AutoRock, "Auto Tiny Rock", 0)
-createRockToggle(Tabs.AutoRock, "Auto Frost Rock", 150000)
-createRockToggle(Tabs.AutoRock, "Auto Mystic Rock", 400000)
-createRockToggle(Tabs.AutoRock, "Auto Eternal Rock", 750000)
-createRockToggle(Tabs.AutoRock, "Auto Legends Rock", 1000000)
-createRockToggle(Tabs.AutoRock, "Auto Muscle King Rock", 5000000)
-createRockToggle(Tabs.AutoRock, "Auto Jungle Rock", 10000000)
-
--- Helper: Glitch Rock Toggler
-local function createFastGlitch(tab, title, rockName, requiredDurability)
-    tab:CreateToggle(title, {
-        Title = title,
-        Description = "Fast glitches on " .. rockName,
-        Callback = function(enabled)
-            getgenv().autoFarm = enabled
-            if enabled then
-                task.spawn(function()
-                    while getgenv().autoFarm do
-                        task.wait()
-                        local player = Players.LocalPlayer
-                        if player:FindFirstChild("Durability") and player.Durability.Value >= requiredDurability then
-                            for _, v in pairs(workspace.machinesFolder:GetDescendants()) do
-                                if v.Name == "neededDurability" and v.Value == requiredDurability then
-                                    local char = player.Character
-                                    local lh, rh = char:FindFirstChild("LeftHand"), char:FindFirstChild("RightHand")
-                                    local rock = v.Parent:FindFirstChild("Rock")
-                                    if rock and lh and rh then
-                                        for _, hand in ipairs({lh, rh}) do
-                                            firetouchinterest(rock, hand, 0)
-                                            firetouchinterest(rock, hand, 1)
-                                        end
-                                    end
-                                end
-                            end
-                        end
-                    end
-                end)
-            end
-        end
-    })
-end
-
--- Fast Glitch Toggles
-createFastGlitch(Tabs.FastGlitch, "Fast Glitch Tiny Rock", "Tiny Island Rock", 0)
-createFastGlitch(Tabs.FastGlitch, "Fast Glitch Frost Rock", "Frost Gym Rock", 150000)
-createFastGlitch(Tabs.FastGlitch, "Fast Glitch Mystic Rock", "Mythical Gym Rock", 400000)
-createFastGlitch(Tabs.FastGlitch, "Fast Glitch Eternal Rock", "Eternal Gym Rock", 750000)
-createFastGlitch(Tabs.FastGlitch, "Fast Glitch Legends Rock", "Legends gym Rock", 1000000)
-createFastGlitch(Tabs.FastGlitch, "Fast Glitch Muscle King", "Muscle King Rock", 5000000)
-createFastGlitch(Tabs.FastGlitch, "Fast Glitch Jungle Rock", "Jungle Rock", 10000000)
-
--- OP Tools Tab
-local togglesfastrebirth = Tabs.OPTools:CreateToggle("FastRebirth", {
-    Title = "Fast Rebirth🚀",
-    Description = "FAST REBIRTH",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/0o0o0o0o0o0o0o0o0o0o0o0o/0o0o0o0o/refs/heads/main/Kk"))()
-    end
-})
-
-local togglefastgrind = Tabs.OPTools:CreateToggle("FastGrind", {
-    Title = "FAST GRIND🔥",
-    Description = "RAPID FEATURE",
-    Callback = function(Value)
-        local isGrinding = Value
-        if not Value then
-            return
-        end
-
-        for i = 1, 12 do
-            task.spawn(function()
-                while isGrinding do
-                    game:GetService("Players").LocalPlayer.muscleEvent:FireServer("rep")
-                    task.wait(0.083)
-                end
-            end)
-        end
-    end
-})
-
-Tabs.Misc:AddButton({
-    Title = "Anti AFK",
-    Description = "You won't get kicked for being idle",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/evxncodes/mainroblox/main/anti-afk", true))()
-    end
-})
-
--- Need to define a 'toggles' table or similar structure to hold toggle states
-local toggles = {}
-
-local toggleautobrawlgrind = Tabs.Misc:CreateToggle("AutobrawlGrind", {
-    Title = "Auto Brawl GRIND",
-    Description = "Auto brawl for leaderboard",
-    Callback = function(Value)
-        toggles.autoJoinToggleBrawl = Value
-        if Value then
-            task.spawn(function()
-                while toggles.autoJoinToggleBrawl do
-                    game:GetService("ReplicatedStorage").rEvents.brawlEvent:FireServer("joinBrawl")
-                    task.wait(2)
-                end
-            end)
-        end
-    end
-})
-
-local toggleautobrawlgod = Tabs.Misc:CreateToggle("AutoBrawlGod", {
-    Title = "Auto Brawl GOD",
-    Description = "Be invincible",
-    Callback = function(Value)
-        toggles.autoJoinToggleBrawlGOD = Value
-        if Value then
-            task.spawn(function()
-                while toggles.autoJoinToggleBrawlGOD do
-                    game:GetService("ReplicatedStorage").rEvents.brawlEvent:FireServer("joinBrawl")
-                    task.wait(0.5)
-                end
-            end)
-        end
-    end
-})
-
-Tabs.Misc:AddButton({
-    Title = "Infinite Yield",
-    Description = "Loads Infinite Yield",
-    Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/DarkNetworks/Infinite-Yield/main/latest.lua'))()
-    end
-})
-
-local toggleautospinwheel = Tabs.Misc:CreateToggle("AutoSpinWheel", {
-    Title = "Auto Spin Wheel",
-    Description = "Auto Spin Wheel",
-    Callback = function(Value)
-        toggles.spinwheel = Value
-        if Value then
-            task.spawn(function()
-                while toggles.spinwheel do
-                    game:GetService("ReplicatedStorage").rEvents.openFortuneWheelRemote:InvokeServer("openFortuneWheel", game:GetService("ReplicatedStorage").fortuneWheelChances["Fortune Wheel"])
-                    task.wait(1)
-                end
-            end)
-        end
-    end
-})
-
-local toggleclaimrewards = Tabs.Misc:CreateToggle("ClaimFreeRewards", {
-    Title = "Claim Time Rewards",
-    Description = "Claims All time rewards",
-    Callback = function(Value)
-        if Value then
-            task.spawn(function()
-                while Value do -- Use the 'Value' variable directly
-                    for i = 1, 8 do
-                        game:GetService("ReplicatedStorage").rEvents.freeGiftClaimRemote:InvokeServer("claimGift", i)
-                    end
-                    task.wait(1)
-                end
-            end)
-        end
-    end
-})
+tabs.Main:Select()
+MacLib:LoadAutoLoadConfig()
