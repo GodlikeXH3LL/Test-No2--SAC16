@@ -38,24 +38,14 @@ local Godlikeshop = window:AddTab("Godlikes Shop")
 Godlikeshop:Show()
 
 local fastrebirthSwitch = rebirths:AddSwitch("Fast Rebirth Adaption", function(state)
-	if state then
-local player = game.Players.LocalPlayer
-    local punch = player.Backpack:FindFirstChild("Punch")
-    local character = game.Workspace:FindFirstChild(player.Name)
-    local punch1 = character and character:FindFirstChild("Punch")
+	local player = game.Players.LocalPlayer
+	local punch = player.Backpack:FindFirstChild("Punch")
+	local character = game.Workspace:FindFirstChild(player.Name)
+	local punch1 = character and character:FindFirstChild("Punch")
 
-    if state then
-        if punch and punch:FindFirstChild("attackTime") then
-            punch.attackTime.Value = 0
-        elseif punch1 and punch1:FindFirstChild("attackTime") then
-            punch1.attackTime.Value = 0
-        end
-    else
-        if punch and punch:FindFirstChild("attackTime") then
-            punch.attackTime.Value = 0.35
-        elseif punch1 and punch1:FindFirstChild("attackTime") then
-            punch1.attackTime.Value = 0.35
-        end
-    end
-		
-	end)
+	if punch and punch:FindFirstChild("attackTime") then
+		punch.attackTime.Value = state and 0 or 0.35
+	elseif punch1 and punch1:FindFirstChild("attackTime") then
+		punch1.attackTime.Value = state and 0 or 0.35
+	end
+end)
