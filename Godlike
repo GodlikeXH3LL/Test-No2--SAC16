@@ -1,182 +1,4120 @@
+local _ = ((table and 13591960); -- 13591960 or 10508441)
 local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
 local LocalPlayer = Players.LocalPlayer
-local TeleportService = game:GetService("TeleportService")
-local HttpService = game:GetService("HttpService")
- 
--- Excluded display names
-local excludedNames = {
-    ["U3RT_SOVIETxKILLA"] = false,
-    ["U3RT_KILLAxSOVIET"] = false,
-}
- 
--- Server hop function to find 18 or 19-player servers
-local placeId = game.PlaceId
- 
-local function find18Or19PlayerServer()
-    local cursor = nil
-    repeat
-        local url = "https://games.roblox.com/v1/games/"..placeId.."/servers/Public?sortOrder=Desc&limit=100"
-        if cursor then
-            url = url.."&cursor="..cursor
-        end
- 
-        local success, response = pcall(function()
-            return HttpService:JSONDecode(game:HttpGet(url))
+local EcholiteHub = Instance.new("ScreenGui")
+EcholiteHub.Name = "EcholiteHub"
+EcholiteHub.ResetOnSpawn = false
+EcholiteHub.Parent = game:GetService("CoreGui")
+local MainFrame = Instance.new("Frame")
+MainFrame.Name = "MainFrame"
+local UDim2_New = UDim2.new
+MainFrame.Size = UDim2_New(0, 520, 0, 400)
+MainFrame.Position = UDim2_New(0.5, -250, 0.5, -200)
+local Color3_FromRGB = Color3.fromRGB
+MainFrame.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+MainFrame.BorderSizePixel = 0
+MainFrame.Active = true
+MainFrame.BackgroundTransparency = 0
+MainFrame.Draggable = true
+MainFrame.Visible = true
+MainFrame.Parent = EcholiteHub
+for i, v in ipairs(Players:GetPlayers()) do
+    if not i then -- didnt run, expr id 1, has an else.
+    else
+        local _ = ("7susofkingthe" == v.Name)
+        -- false, eq id 1
+    end
+    local _ = ("cocogocaps43" == v.Name)
+    -- false, eq id 2
+end
+local Connection
+Connection = Players.PlayerAdded:Connect(function(Player, p2_0, p3_0, p4_0) -- args: Player_2
+    local _ = ("7susofkingthe" == Player.Name)
+    -- false, eq id 3
+    local _ = ("cocogocaps43" == Player.Name)
+    -- false, eq id 4
+end)
+local UICorner = Instance.new("UICorner")
+local UDim_New = UDim.new
+UICorner.CornerRadius = UDim_New(0, 15)
+UICorner.Parent = MainFrame
+local UIStroke = Instance.new("UIStroke")
+UIStroke.Color = Color3_FromRGB(0, 255, 255)
+UIStroke.Thickness = 3
+UIStroke.Parent = MainFrame
+local TopBar = Instance.new("Frame")
+TopBar.Name = "TopBar"
+TopBar.Size = UDim2_New(1, 0, 0, 45)
+TopBar.BackgroundTransparency = 1
+TopBar.ZIndex = 20
+TopBar.Parent = MainFrame
+local TextLabel = Instance.new("TextLabel")
+TextLabel.Text = "  Echolite Hub | Happy New Year's | Version 2.0.0"
+TextLabel.Size = UDim2_New(0.6, 0, 1, 0)
+TextLabel.BackgroundTransparency = 1
+TextLabel.TextColor3 = Color3_FromRGB(255, 255, 255)
+local Enum_TextXAlignment = Enum.TextXAlignment
+TextLabel.TextXAlignment = Enum_TextXAlignment.Left
+local Enum_Font = Enum.Font
+TextLabel.Font = Enum_Font.GothamBold
+TextLabel.TextSize = 14
+TextLabel.ZIndex = 21
+TextLabel.Parent = TopBar
+local TopDivider = Instance.new("Frame")
+TopDivider.Name = "TopDivider"
+TopDivider.Size = UDim2_New(1, 0, 0, 2)
+TopDivider.Position = UDim2_New(0, 0, 1, 0)
+TopDivider.BackgroundColor3 = Color3_FromRGB(0, 255, 255)
+TopDivider.BorderSizePixel = 0
+TopDivider.ZIndex = 25
+TopDivider.Parent = TopBar
+local ButtonControl = Instance.new("Frame")
+ButtonControl.Name = "ButtonControl"
+ButtonControl.Size = UDim2_New(0, 80, 0, 28)
+ButtonControl.Position = UDim2_New(1, -90, 0, 8)
+ButtonControl.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+ButtonControl.ZIndex = 21
+ButtonControl.Parent = TopBar
+local UICorner_2 = Instance.new("UICorner")
+UICorner_2.CornerRadius = UDim_New(0, 6)
+UICorner_2.Parent = ButtonControl
+local UIStroke_2 = Instance.new("UIStroke")
+UIStroke_2.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_2.Thickness = 2
+UIStroke_2.Parent = ButtonControl
+local VerticalDivider = Instance.new("Frame")
+VerticalDivider.Name = "VerticalDivider"
+VerticalDivider.Size = UDim2_New(0, 2, 1, 0)
+VerticalDivider.Position = UDim2_New(0.5, -1, 0, 0)
+VerticalDivider.BackgroundColor3 = Color3_FromRGB(0, 255, 255)
+VerticalDivider.BorderSizePixel = 0
+VerticalDivider.ZIndex = 22
+VerticalDivider.Parent = ButtonControl
+local Minimize = Instance.new("TextButton")
+Minimize.Name = "Minimize"
+Minimize.Size = UDim2_New(0.5, 0, 1, 0)
+Minimize.BackgroundTransparency = 1
+Minimize.Text = "-"
+Minimize.TextColor3 = Color3_FromRGB(0, 255, 255)
+Minimize.TextSize = 20
+Minimize.Font = Enum_Font.GothamBold
+Minimize.ZIndex = 23
+Minimize.Parent = ButtonControl
+local Close = Instance.new("TextButton")
+Close.Name = "Close"
+Close.Size = UDim2_New(0.5, 0, 1, 0)
+Close.Position = UDim2_New(0.5, 0, 0, 0)
+Close.BackgroundTransparency = 1
+Close.Text = "x"
+Close.TextColor3 = Color3_FromRGB(255, 0, 0)
+Close.TextSize = 20
+Close.Font = Enum_Font.GothamBold
+Close.ZIndex = 23
+Close.Parent = ButtonControl
+local MainVerticalDivider = Instance.new("Frame")
+MainVerticalDivider.Name = "MainVerticalDivider"
+MainVerticalDivider.Size = UDim2_New(0, 2, 1, -47)
+MainVerticalDivider.Position = UDim2_New(0, 130, 0, 47)
+MainVerticalDivider.BackgroundColor3 = Color3_FromRGB(0, 255, 255)
+MainVerticalDivider.BorderSizePixel = 0
+MainVerticalDivider.ZIndex = 10
+MainVerticalDivider.Parent = MainFrame
+local Sidebar = Instance.new("ScrollingFrame")
+Sidebar.Name = "Sidebar"
+Sidebar.Size = UDim2_New(0, 130, 1, -55)
+Sidebar.Position = UDim2_New(0, 0, 0, 47)
+Sidebar.BackgroundTransparency = 1
+Sidebar.ScrollBarThickness = 2
+Sidebar.ScrollBarImageColor3 = Color3_FromRGB(0, 255, 255)
+local Enum_AutomaticSize = Enum.AutomaticSize
+Sidebar.AutomaticCanvasSize = Enum_AutomaticSize.Y
+Sidebar.ZIndex = 2
+Sidebar.BorderSizePixel = 0
+Sidebar.ClipsDescendants = true
+Sidebar.Parent = MainFrame
+local Sidebar = Instance.new("ScrollingFrame")
+Sidebar.Name = "Sidebar"
+Sidebar.Size = UDim2_New(0, 130, 1, -55)
+Sidebar.Position = UDim2_New(0, 0, 0, 47)
+Sidebar.BackgroundTransparency = 1
+Sidebar.ScrollBarThickness = 2
+Sidebar.ScrollBarImageColor3 = Color3_FromRGB(0, 255, 255)
+Sidebar.AutomaticCanvasSize = Enum_AutomaticSize.Y
+Sidebar.ZIndex = 2
+Sidebar.BorderSizePixel = 0
+Sidebar.ClipsDescendants = true
+Sidebar.Parent = MainFrame
+local UserProfile = Instance.new("Frame")
+UserProfile.Name = "UserProfile"
+UserProfile.Size = UDim2_New(0, 130, 0, 50)
+UserProfile.Position = UDim2_New(0, 0, 1, -50)
+UserProfile.BackgroundColor3 = Color3_FromRGB(10, 10, 10)
+UserProfile.BorderSizePixel = 0
+UserProfile.ZIndex = 15
+UserProfile.Visible = true
+UserProfile.Parent = MainFrame
+local UICorner_3 = Instance.new("UICorner")
+UICorner_3.CornerRadius = UDim_New(0, 15)
+UICorner_3.Parent = UserProfile
+local Frame_8 = Instance.new("Frame")
+Frame_8.Size = UDim2_New(1, 0, 0, 2)
+Frame_8.Position = UDim2_New(0, 0, 0, 0)
+Frame_8.BackgroundColor3 = Color3_FromRGB(0, 255, 255)
+Frame_8.BorderSizePixel = 0
+Frame_8.Visible = true
+Frame_8.ZIndex = 16
+Frame_8.Parent = UserProfile
+local UserPFP = Instance.new("ImageLabel")
+UserPFP.Name = "UserPFP"
+UserPFP.Size = UDim2_New(0, 32, 0, 32)
+UserPFP.Position = UDim2_New(0, 10, 0.5, 0)
+local Vector2_New = Vector2.new
+UserPFP.AnchorPoint = Vector2_New(0, 0.5)
+UserPFP.BackgroundTransparency = 1
+local Enum_ThumbnailType = Enum.ThumbnailType
+local Enum_ThumbnailSize = Enum.ThumbnailSize
+UserPFP.Image = Players:GetUserThumbnailAsync(LocalPlayer.UserId, Enum_ThumbnailType.HeadShot, Enum_ThumbnailSize.Size100x100)
+UserPFP.ZIndex = 17
+UserPFP.Visible = true
+UserPFP.Parent = UserProfile
+local UIStroke_3 = Instance.new("UIStroke")
+UIStroke_3.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_3.Thickness = 2
+local Enum_ApplyStrokeMode = Enum.ApplyStrokeMode
+UIStroke_3.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_3.Parent = UserPFP
+local UICorner_4 = Instance.new("UICorner")
+UICorner_4.CornerRadius = UDim_New(1, 0)
+UICorner_4.Parent = UserPFP
+local UserName = Instance.new("TextLabel")
+UserName.Name = "UserName"
+UserName.Size = UDim2_New(1, -52, 1, 0)
+UserName.Position = UDim2_New(0, 48, 0, 0)
+UserName.BackgroundTransparency = 1
+UserName.Text = LocalPlayer.Name
+UserName.TextWrapped = true
+UserName.TextColor3 = Color3_FromRGB(255, 255, 255)
+UserName.TextSize = 12
+UserName.Font = Enum_Font.GothamBold
+UserName.TextXAlignment = Enum_TextXAlignment.Left
+UserName.ClipsDescendants = true
+UserName.ZIndex = 17
+UserName.Parent = UserProfile
+local UIListLayout = Instance.new("UIListLayout")
+UIListLayout.Padding = UDim_New(0, 0)
+local Enum_SortOrder = Enum.SortOrder
+UIListLayout.SortOrder = Enum_SortOrder.LayoutOrder
+UIListLayout.Parent = Sidebar
+local Pages = Instance.new("Frame")
+Pages.Name = "Pages"
+Pages.Size = UDim2_New(1, -135, 1, -55)
+Pages.Position = UDim2_New(0, 135, 0, 50)
+Pages.BackgroundTransparency = 1
+Pages.ClipsDescendants = true
+Pages.Parent = MainFrame
+local Information_TabContainer = Instance.new("Frame")
+Information_TabContainer.Name = "Information_TabContainer"
+Information_TabContainer.Size = UDim2_New(1, 0, 0, 40)
+Information_TabContainer.BackgroundTransparency = 1
+Information_TabContainer.LayoutOrder = 1
+Information_TabContainer.Parent = Sidebar
+local TextButton_3 = Instance.new("TextButton")
+TextButton_3.Size = UDim2_New(1, 0, 1, 0)
+TextButton_3.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+TextButton_3.TextColor3 = Color3_FromRGB(0, 255, 255)
+TextButton_3.Text = "  Information"
+TextButton_3.TextXAlignment = Enum_TextXAlignment.Left
+TextButton_3.Font = Enum_Font.GothamMedium
+TextButton_3.TextSize = 13
+TextButton_3.BorderSizePixel = 0
+TextButton_3.ZIndex = 3
+TextButton_3.Parent = Information_TabContainer
+local TabDivider = Instance.new("Frame")
+TabDivider.Name = "TabDivider"
+TabDivider.Size = UDim2_New(1, 0, 0, 1)
+TabDivider.Position = UDim2_New(0, 0, 1, -1)
+TabDivider.BackgroundColor3 = Color3_FromRGB(0, 255, 255)
+TabDivider.BorderSizePixel = 0
+TabDivider.ZIndex = 5
+TabDivider.Parent = Information_TabContainer
+local Information_Page = Instance.new("ScrollingFrame")
+Information_Page.Name = "Information_Page"
+Information_Page.Size = UDim2_New(1, 0, 1, 0)
+Information_Page.BackgroundTransparency = 1
+Information_Page.Visible = false
+Information_Page.ScrollBarThickness = 2
+Information_Page.ScrollBarImageColor3 = Color3_FromRGB(0, 255, 255)
+Information_Page.Parent = Pages
+local Connection_2
+Connection_2 = TextButton_3.MouseButton1Down:Connect(function(X, Y_3, p3_0, p4_0) -- args: X_2, Y_4
+    Complaints_Page.Visible = false
+    TextButton_13.TextColor3 = Color3_FromRGB(0, 255, 255)
+    DM_s_Page.Visible = false
+    TextButton_11.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Chat_Page.Visible = false
+    TextButton_9.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Find_Games_Page.Visible = false
+    TextButton_12.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Player_Page.Visible = false
+    TextButton_6.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Updates_Page.Visible = false
+    TextButton_5.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Scripts_Page.Visible = false
+    TextButton_8.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Fe_Admin_Gui_s_Page.Visible = false
+    TextButton_7.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Trolling_Page.Visible = false
+    TextButton_10.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Information_Page.Visible = false
+    TextButton_3.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Credits_Page.Visible = false
+    TextButton_4.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Information_Page.Visible = true
+    TextButton_3.TextColor3 = Color3_FromRGB(255, 255, 255)
+end)
+local Connection_3
+Connection_3 = TextButton_3.MouseEnter:Connect(function(X_3, Y_5, p3_0, p4_0, p5_0) -- args: X_4, Y_6
+end)
+local Connection_4
+Connection_4 = TextButton_3.MouseLeave:Connect(function(X_5, Y_7, p3_0) -- args: X_6, Y_8
+end)
+Information_Page.Visible = true
+TextButton_3.TextColor3 = Color3_FromRGB(0, 255, 255)
+local Credits_TabContainer = Instance.new("Frame")
+Credits_TabContainer.Name = "Credits_TabContainer"
+Credits_TabContainer.Size = UDim2_New(1, 0, 0, 40)
+Credits_TabContainer.BackgroundTransparency = 1
+Credits_TabContainer.LayoutOrder = 2
+Credits_TabContainer.Parent = Sidebar
+local TextButton_4 = Instance.new("TextButton")
+TextButton_4.Size = UDim2_New(1, 0, 1, 0)
+TextButton_4.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+TextButton_4.TextColor3 = Color3_FromRGB(0, 255, 255)
+TextButton_4.Text = "  Credits"
+TextButton_4.TextXAlignment = Enum_TextXAlignment.Left
+TextButton_4.Font = Enum_Font.GothamMedium
+TextButton_4.TextSize = 13
+TextButton_4.BorderSizePixel = 0
+TextButton_4.ZIndex = 3
+TextButton_4.Parent = Credits_TabContainer
+local TabDivider = Instance.new("Frame")
+TabDivider.Name = "TabDivider"
+TabDivider.Size = UDim2_New(1, 0, 0, 1)
+TabDivider.Position = UDim2_New(0, 0, 1, -1)
+TabDivider.BackgroundColor3 = Color3_FromRGB(0, 255, 255)
+TabDivider.BorderSizePixel = 0
+TabDivider.ZIndex = 5
+TabDivider.Parent = Credits_TabContainer
+local Credits_Page = Instance.new("ScrollingFrame")
+Credits_Page.Name = "Credits_Page"
+Credits_Page.Size = UDim2_New(1, 0, 1, 0)
+Credits_Page.BackgroundTransparency = 1
+Credits_Page.Visible = false
+Credits_Page.ScrollBarThickness = 2
+Credits_Page.ScrollBarImageColor3 = Color3_FromRGB(0, 255, 255)
+Credits_Page.Parent = Pages
+local Connection_5
+Connection_5 = TextButton_4.MouseButton1Down:Connect(function(X_7, Y_9, p3_0, p4_0) -- args: X_8, Y_10
+    Complaints_Page.Visible = false
+    TextButton_13.TextColor3 = Color3_FromRGB(0, 255, 255)
+    DM_s_Page.Visible = false
+    TextButton_11.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Chat_Page.Visible = false
+    TextButton_9.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Find_Games_Page.Visible = false
+    TextButton_12.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Player_Page.Visible = false
+    TextButton_6.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Updates_Page.Visible = false
+    TextButton_5.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Scripts_Page.Visible = false
+    TextButton_8.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Fe_Admin_Gui_s_Page.Visible = false
+    TextButton_7.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Trolling_Page.Visible = false
+    TextButton_10.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Information_Page.Visible = false
+    TextButton_3.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Credits_Page.Visible = false
+    TextButton_4.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Credits_Page.Visible = true
+    TextButton_4.TextColor3 = Color3_FromRGB(255, 255, 255)
+end)
+local Connection_6
+Connection_6 = TextButton_4.MouseEnter:Connect(function(X_9, Y_11, p3_0, p4_0, p5_0) -- args: X_10, Y_12
+end)
+local Connection_7
+Connection_7 = TextButton_4.MouseLeave:Connect(function(X_11, Y_13, p3_0) -- args: X_12, Y_14
+end)
+local Updates_TabContainer = Instance.new("Frame")
+Updates_TabContainer.Name = "Updates_TabContainer"
+Updates_TabContainer.Size = UDim2_New(1, 0, 0, 40)
+Updates_TabContainer.BackgroundTransparency = 1
+Updates_TabContainer.LayoutOrder = 3
+Updates_TabContainer.Parent = Sidebar
+local TextButton_5 = Instance.new("TextButton")
+TextButton_5.Size = UDim2_New(1, 0, 1, 0)
+TextButton_5.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+TextButton_5.TextColor3 = Color3_FromRGB(0, 255, 255)
+TextButton_5.Text = "  Updates"
+TextButton_5.TextXAlignment = Enum_TextXAlignment.Left
+TextButton_5.Font = Enum_Font.GothamMedium
+TextButton_5.TextSize = 13
+TextButton_5.BorderSizePixel = 0
+TextButton_5.ZIndex = 3
+TextButton_5.Parent = Updates_TabContainer
+local TabDivider = Instance.new("Frame")
+TabDivider.Name = "TabDivider"
+TabDivider.Size = UDim2_New(1, 0, 0, 1)
+TabDivider.Position = UDim2_New(0, 0, 1, -1)
+TabDivider.BackgroundColor3 = Color3_FromRGB(0, 255, 255)
+TabDivider.BorderSizePixel = 0
+TabDivider.ZIndex = 5
+TabDivider.Parent = Updates_TabContainer
+local Updates_Page = Instance.new("ScrollingFrame")
+Updates_Page.Name = "Updates_Page"
+Updates_Page.Size = UDim2_New(1, 0, 1, 0)
+Updates_Page.BackgroundTransparency = 1
+Updates_Page.Visible = false
+Updates_Page.ScrollBarThickness = 2
+Updates_Page.ScrollBarImageColor3 = Color3_FromRGB(0, 255, 255)
+Updates_Page.Parent = Pages
+local Connection_8
+Connection_8 = TextButton_5.MouseButton1Down:Connect(function(X_13, Y_15, p3_0, p4_0) -- args: X_14, Y_16
+    Complaints_Page.Visible = false
+    TextButton_13.TextColor3 = Color3_FromRGB(0, 255, 255)
+    DM_s_Page.Visible = false
+    TextButton_11.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Chat_Page.Visible = false
+    TextButton_9.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Find_Games_Page.Visible = false
+    TextButton_12.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Player_Page.Visible = false
+    TextButton_6.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Updates_Page.Visible = false
+    TextButton_5.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Scripts_Page.Visible = false
+    TextButton_8.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Fe_Admin_Gui_s_Page.Visible = false
+    TextButton_7.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Trolling_Page.Visible = false
+    TextButton_10.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Information_Page.Visible = false
+    TextButton_3.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Credits_Page.Visible = false
+    TextButton_4.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Updates_Page.Visible = true
+    TextButton_5.TextColor3 = Color3_FromRGB(255, 255, 255)
+end)
+local Connection_9
+Connection_9 = TextButton_5.MouseEnter:Connect(function(X_15, Y_17, p3_0, p4_0, p5_0) -- args: X_16, Y_18
+end)
+local Connection_10
+Connection_10 = TextButton_5.MouseLeave:Connect(function(X_17, Y_19, p3_0) -- args: X_18, Y_20
+end)
+local Player_TabContainer = Instance.new("Frame")
+Player_TabContainer.Name = "Player_TabContainer"
+Player_TabContainer.Size = UDim2_New(1, 0, 0, 40)
+Player_TabContainer.BackgroundTransparency = 1
+Player_TabContainer.LayoutOrder = 4
+Player_TabContainer.Parent = Sidebar
+local TextButton_6 = Instance.new("TextButton")
+TextButton_6.Size = UDim2_New(1, 0, 1, 0)
+TextButton_6.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+TextButton_6.TextColor3 = Color3_FromRGB(0, 255, 255)
+TextButton_6.Text = "  Player"
+TextButton_6.TextXAlignment = Enum_TextXAlignment.Left
+TextButton_6.Font = Enum_Font.GothamMedium
+TextButton_6.TextSize = 13
+TextButton_6.BorderSizePixel = 0
+TextButton_6.ZIndex = 3
+TextButton_6.Parent = Player_TabContainer
+local TabDivider = Instance.new("Frame")
+TabDivider.Name = "TabDivider"
+TabDivider.Size = UDim2_New(1, 0, 0, 1)
+TabDivider.Position = UDim2_New(0, 0, 1, -1)
+TabDivider.BackgroundColor3 = Color3_FromRGB(0, 255, 255)
+TabDivider.BorderSizePixel = 0
+TabDivider.ZIndex = 5
+TabDivider.Parent = Player_TabContainer
+local Player_Page = Instance.new("ScrollingFrame")
+Player_Page.Name = "Player_Page"
+Player_Page.Size = UDim2_New(1, 0, 1, 0)
+Player_Page.BackgroundTransparency = 1
+Player_Page.Visible = false
+Player_Page.ScrollBarThickness = 2
+Player_Page.ScrollBarImageColor3 = Color3_FromRGB(0, 255, 255)
+Player_Page.Parent = Pages
+local Connection_11
+Connection_11 = TextButton_6.MouseButton1Down:Connect(function(X_19, Y_21, p3_0, p4_0) -- args: X_20, Y_22
+    Complaints_Page.Visible = false
+    TextButton_13.TextColor3 = Color3_FromRGB(0, 255, 255)
+    DM_s_Page.Visible = false
+    TextButton_11.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Chat_Page.Visible = false
+    TextButton_9.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Find_Games_Page.Visible = false
+    TextButton_12.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Player_Page.Visible = false
+    TextButton_6.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Updates_Page.Visible = false
+    TextButton_5.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Scripts_Page.Visible = false
+    TextButton_8.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Fe_Admin_Gui_s_Page.Visible = false
+    TextButton_7.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Trolling_Page.Visible = false
+    TextButton_10.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Information_Page.Visible = false
+    TextButton_3.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Credits_Page.Visible = false
+    TextButton_4.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Player_Page.Visible = true
+    TextButton_6.TextColor3 = Color3_FromRGB(255, 255, 255)
+end)
+local Connection_12
+Connection_12 = TextButton_6.MouseEnter:Connect(function(X_21, Y_23, p3_0, p4_0, p5_0) -- args: X_22, Y_24
+end)
+local Connection_13
+Connection_13 = TextButton_6.MouseLeave:Connect(function(X_23, Y_25, p3_0) -- args: X_24, Y_26
+end)
+local Fe_Admin_Gui_s_TabContainer = Instance.new("Frame")
+Fe_Admin_Gui_s_TabContainer.Name = "Fe/Admin Gui's_TabContainer"
+Fe_Admin_Gui_s_TabContainer.Size = UDim2_New(1, 0, 0, 40)
+Fe_Admin_Gui_s_TabContainer.BackgroundTransparency = 1
+Fe_Admin_Gui_s_TabContainer.LayoutOrder = 5
+Fe_Admin_Gui_s_TabContainer.Parent = Sidebar
+local TextButton_7 = Instance.new("TextButton")
+TextButton_7.Size = UDim2_New(1, 0, 1, 0)
+TextButton_7.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+TextButton_7.TextColor3 = Color3_FromRGB(0, 255, 255)
+TextButton_7.Text = "  Fe/Admin Gui's"
+TextButton_7.TextXAlignment = Enum_TextXAlignment.Left
+TextButton_7.Font = Enum_Font.GothamMedium
+TextButton_7.TextSize = 13
+TextButton_7.BorderSizePixel = 0
+TextButton_7.ZIndex = 3
+TextButton_7.Parent = Fe_Admin_Gui_s_TabContainer
+local TabDivider = Instance.new("Frame")
+TabDivider.Name = "TabDivider"
+TabDivider.Size = UDim2_New(1, 0, 0, 1)
+TabDivider.Position = UDim2_New(0, 0, 1, -1)
+TabDivider.BackgroundColor3 = Color3_FromRGB(0, 255, 255)
+TabDivider.BorderSizePixel = 0
+TabDivider.ZIndex = 5
+TabDivider.Parent = Fe_Admin_Gui_s_TabContainer
+local Fe_Admin_Gui_s_Page = Instance.new("ScrollingFrame")
+Fe_Admin_Gui_s_Page.Name = "Fe/Admin Gui's_Page"
+Fe_Admin_Gui_s_Page.Size = UDim2_New(1, 0, 1, 0)
+Fe_Admin_Gui_s_Page.BackgroundTransparency = 1
+Fe_Admin_Gui_s_Page.Visible = false
+Fe_Admin_Gui_s_Page.ScrollBarThickness = 2
+Fe_Admin_Gui_s_Page.ScrollBarImageColor3 = Color3_FromRGB(0, 255, 255)
+Fe_Admin_Gui_s_Page.Parent = Pages
+local Connection_14
+Connection_14 = TextButton_7.MouseButton1Down:Connect(function(X_25, Y_27, p3_0, p4_0) -- args: X_26, Y_28
+    Complaints_Page.Visible = false
+    TextButton_13.TextColor3 = Color3_FromRGB(0, 255, 255)
+    DM_s_Page.Visible = false
+    TextButton_11.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Chat_Page.Visible = false
+    TextButton_9.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Find_Games_Page.Visible = false
+    TextButton_12.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Player_Page.Visible = false
+    TextButton_6.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Updates_Page.Visible = false
+    TextButton_5.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Scripts_Page.Visible = false
+    TextButton_8.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Fe_Admin_Gui_s_Page.Visible = false
+    TextButton_7.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Trolling_Page.Visible = false
+    TextButton_10.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Information_Page.Visible = false
+    TextButton_3.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Credits_Page.Visible = false
+    TextButton_4.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Fe_Admin_Gui_s_Page.Visible = true
+    TextButton_7.TextColor3 = Color3_FromRGB(255, 255, 255)
+end)
+local Connection_15
+Connection_15 = TextButton_7.MouseEnter:Connect(function(X_27, Y_29, p3_0, p4_0, p5_0) -- args: X_28, Y_30
+end)
+local Connection_16
+Connection_16 = TextButton_7.MouseLeave:Connect(function(X_29, Y_31, p3_0) -- args: X_30, Y_32
+end)
+local Scripts_TabContainer = Instance.new("Frame")
+Scripts_TabContainer.Name = "Scripts_TabContainer"
+Scripts_TabContainer.Size = UDim2_New(1, 0, 0, 40)
+Scripts_TabContainer.BackgroundTransparency = 1
+Scripts_TabContainer.LayoutOrder = 6
+Scripts_TabContainer.Parent = Sidebar
+local TextButton_8 = Instance.new("TextButton")
+TextButton_8.Size = UDim2_New(1, 0, 1, 0)
+TextButton_8.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+TextButton_8.TextColor3 = Color3_FromRGB(0, 255, 255)
+TextButton_8.Text = "  Scripts"
+TextButton_8.TextXAlignment = Enum_TextXAlignment.Left
+TextButton_8.Font = Enum_Font.GothamMedium
+TextButton_8.TextSize = 13
+TextButton_8.BorderSizePixel = 0
+TextButton_8.ZIndex = 3
+TextButton_8.Parent = Scripts_TabContainer
+local TabDivider = Instance.new("Frame")
+TabDivider.Name = "TabDivider"
+TabDivider.Size = UDim2_New(1, 0, 0, 1)
+TabDivider.Position = UDim2_New(0, 0, 1, -1)
+TabDivider.BackgroundColor3 = Color3_FromRGB(0, 255, 255)
+TabDivider.BorderSizePixel = 0
+TabDivider.ZIndex = 5
+TabDivider.Parent = Scripts_TabContainer
+local Scripts_Page = Instance.new("ScrollingFrame")
+Scripts_Page.Name = "Scripts_Page"
+Scripts_Page.Size = UDim2_New(1, 0, 1, 0)
+Scripts_Page.BackgroundTransparency = 1
+Scripts_Page.Visible = false
+Scripts_Page.ScrollBarThickness = 2
+Scripts_Page.ScrollBarImageColor3 = Color3_FromRGB(0, 255, 255)
+Scripts_Page.Parent = Pages
+local Connection_17
+Connection_17 = TextButton_8.MouseButton1Down:Connect(function(X_31, Y_33, p3_0, p4_0) -- args: X_32, Y_34
+    Complaints_Page.Visible = false
+    TextButton_13.TextColor3 = Color3_FromRGB(0, 255, 255)
+    DM_s_Page.Visible = false
+    TextButton_11.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Chat_Page.Visible = false
+    TextButton_9.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Find_Games_Page.Visible = false
+    TextButton_12.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Player_Page.Visible = false
+    TextButton_6.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Updates_Page.Visible = false
+    TextButton_5.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Scripts_Page.Visible = false
+    TextButton_8.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Fe_Admin_Gui_s_Page.Visible = false
+    TextButton_7.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Trolling_Page.Visible = false
+    TextButton_10.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Information_Page.Visible = false
+    TextButton_3.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Credits_Page.Visible = false
+    TextButton_4.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Scripts_Page.Visible = true
+    TextButton_8.TextColor3 = Color3_FromRGB(255, 255, 255)
+end)
+local Connection_18
+Connection_18 = TextButton_8.MouseEnter:Connect(function(X_33, Y_35, p3_0, p4_0, p5_0) -- args: X_34, Y_36
+end)
+local Connection_19
+Connection_19 = TextButton_8.MouseLeave:Connect(function(X_35, Y_37, p3_0) -- args: X_36, Y_38
+end)
+local Chat_TabContainer = Instance.new("Frame")
+Chat_TabContainer.Name = "Chat_TabContainer"
+Chat_TabContainer.Size = UDim2_New(1, 0, 0, 40)
+Chat_TabContainer.BackgroundTransparency = 1
+Chat_TabContainer.LayoutOrder = 7
+Chat_TabContainer.Parent = Sidebar
+local TextButton_9 = Instance.new("TextButton")
+TextButton_9.Size = UDim2_New(1, 0, 1, 0)
+TextButton_9.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+TextButton_9.TextColor3 = Color3_FromRGB(0, 255, 255)
+TextButton_9.Text = "  Chat"
+TextButton_9.TextXAlignment = Enum_TextXAlignment.Left
+TextButton_9.Font = Enum_Font.GothamMedium
+TextButton_9.TextSize = 13
+TextButton_9.BorderSizePixel = 0
+TextButton_9.ZIndex = 3
+TextButton_9.Parent = Chat_TabContainer
+local TabDivider = Instance.new("Frame")
+TabDivider.Name = "TabDivider"
+TabDivider.Size = UDim2_New(1, 0, 0, 1)
+TabDivider.Position = UDim2_New(0, 0, 1, -1)
+TabDivider.BackgroundColor3 = Color3_FromRGB(0, 255, 255)
+TabDivider.BorderSizePixel = 0
+TabDivider.ZIndex = 5
+TabDivider.Parent = Chat_TabContainer
+local Chat_Page = Instance.new("ScrollingFrame")
+Chat_Page.Name = "Chat_Page"
+Chat_Page.Size = UDim2_New(1, 0, 1, 0)
+Chat_Page.BackgroundTransparency = 1
+Chat_Page.Visible = false
+Chat_Page.ScrollBarThickness = 2
+Chat_Page.ScrollBarImageColor3 = Color3_FromRGB(0, 255, 255)
+Chat_Page.Parent = Pages
+local Connection_20
+Connection_20 = TextButton_9.MouseButton1Down:Connect(function(X_37, Y_39, p3_0, p4_0) -- args: X_38, Y_40
+    Complaints_Page.Visible = false
+    TextButton_13.TextColor3 = Color3_FromRGB(0, 255, 255)
+    DM_s_Page.Visible = false
+    TextButton_11.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Chat_Page.Visible = false
+    TextButton_9.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Find_Games_Page.Visible = false
+    TextButton_12.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Player_Page.Visible = false
+    TextButton_6.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Updates_Page.Visible = false
+    TextButton_5.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Scripts_Page.Visible = false
+    TextButton_8.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Fe_Admin_Gui_s_Page.Visible = false
+    TextButton_7.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Trolling_Page.Visible = false
+    TextButton_10.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Information_Page.Visible = false
+    TextButton_3.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Credits_Page.Visible = false
+    TextButton_4.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Chat_Page.Visible = true
+    TextButton_9.TextColor3 = Color3_FromRGB(255, 255, 255)
+end)
+local Connection_21
+Connection_21 = TextButton_9.MouseEnter:Connect(function(X_39, Y_41, p3_0, p4_0, p5_0) -- args: X_40, Y_42
+end)
+local Connection_22
+Connection_22 = TextButton_9.MouseLeave:Connect(function(X_41, Y_43, p3_0) -- args: X_42, Y_44
+end)
+local Trolling_TabContainer = Instance.new("Frame")
+Trolling_TabContainer.Name = "Trolling_TabContainer"
+Trolling_TabContainer.Size = UDim2_New(1, 0, 0, 40)
+Trolling_TabContainer.BackgroundTransparency = 1
+Trolling_TabContainer.LayoutOrder = 8
+Trolling_TabContainer.Parent = Sidebar
+local TextButton_10 = Instance.new("TextButton")
+TextButton_10.Size = UDim2_New(1, 0, 1, 0)
+TextButton_10.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+TextButton_10.TextColor3 = Color3_FromRGB(0, 255, 255)
+TextButton_10.Text = "  Trolling"
+TextButton_10.TextXAlignment = Enum_TextXAlignment.Left
+TextButton_10.Font = Enum_Font.GothamMedium
+TextButton_10.TextSize = 13
+TextButton_10.BorderSizePixel = 0
+TextButton_10.ZIndex = 3
+TextButton_10.Parent = Trolling_TabContainer
+local TabDivider = Instance.new("Frame")
+TabDivider.Name = "TabDivider"
+TabDivider.Size = UDim2_New(1, 0, 0, 1)
+TabDivider.Position = UDim2_New(0, 0, 1, -1)
+TabDivider.BackgroundColor3 = Color3_FromRGB(0, 255, 255)
+TabDivider.BorderSizePixel = 0
+TabDivider.ZIndex = 5
+TabDivider.Parent = Trolling_TabContainer
+local Trolling_Page = Instance.new("ScrollingFrame")
+Trolling_Page.Name = "Trolling_Page"
+Trolling_Page.Size = UDim2_New(1, 0, 1, 0)
+Trolling_Page.BackgroundTransparency = 1
+Trolling_Page.Visible = false
+Trolling_Page.ScrollBarThickness = 2
+Trolling_Page.ScrollBarImageColor3 = Color3_FromRGB(0, 255, 255)
+Trolling_Page.Parent = Pages
+local Connection_23
+Connection_23 = TextButton_10.MouseButton1Down:Connect(function(X_43, Y_45, p3_0, p4_0) -- args: X_44, Y_46
+    Complaints_Page.Visible = false
+    TextButton_13.TextColor3 = Color3_FromRGB(0, 255, 255)
+    DM_s_Page.Visible = false
+    TextButton_11.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Chat_Page.Visible = false
+    TextButton_9.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Find_Games_Page.Visible = false
+    TextButton_12.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Player_Page.Visible = false
+    TextButton_6.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Updates_Page.Visible = false
+    TextButton_5.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Scripts_Page.Visible = false
+    TextButton_8.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Fe_Admin_Gui_s_Page.Visible = false
+    TextButton_7.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Trolling_Page.Visible = false
+    TextButton_10.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Information_Page.Visible = false
+    TextButton_3.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Credits_Page.Visible = false
+    TextButton_4.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Trolling_Page.Visible = true
+    TextButton_10.TextColor3 = Color3_FromRGB(255, 255, 255)
+end)
+local Connection_24
+Connection_24 = TextButton_10.MouseEnter:Connect(function(X_45, Y_47, p3_0, p4_0, p5_0) -- args: X_46, Y_48
+end)
+local Connection_25
+Connection_25 = TextButton_10.MouseLeave:Connect(function(X_47, Y_49, p3_0) -- args: X_48, Y_50
+end)
+local DM_s_TabContainer = Instance.new("Frame")
+DM_s_TabContainer.Name = "DM's_TabContainer"
+DM_s_TabContainer.Size = UDim2_New(1, 0, 0, 40)
+DM_s_TabContainer.BackgroundTransparency = 1
+DM_s_TabContainer.LayoutOrder = 9
+DM_s_TabContainer.Parent = Sidebar
+local TextButton_11 = Instance.new("TextButton")
+TextButton_11.Size = UDim2_New(1, 0, 1, 0)
+TextButton_11.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+TextButton_11.TextColor3 = Color3_FromRGB(0, 255, 255)
+TextButton_11.Text = "  DM's"
+TextButton_11.TextXAlignment = Enum_TextXAlignment.Left
+TextButton_11.Font = Enum_Font.GothamMedium
+TextButton_11.TextSize = 13
+TextButton_11.BorderSizePixel = 0
+TextButton_11.ZIndex = 3
+TextButton_11.Parent = DM_s_TabContainer
+local TabDivider = Instance.new("Frame")
+TabDivider.Name = "TabDivider"
+TabDivider.Size = UDim2_New(1, 0, 0, 1)
+TabDivider.Position = UDim2_New(0, 0, 1, -1)
+TabDivider.BackgroundColor3 = Color3_FromRGB(0, 255, 255)
+TabDivider.BorderSizePixel = 0
+TabDivider.ZIndex = 5
+TabDivider.Parent = DM_s_TabContainer
+local DM_s_Page = Instance.new("ScrollingFrame")
+DM_s_Page.Name = "DM's_Page"
+DM_s_Page.Size = UDim2_New(1, 0, 1, 0)
+DM_s_Page.BackgroundTransparency = 1
+DM_s_Page.Visible = false
+DM_s_Page.ScrollBarThickness = 2
+DM_s_Page.ScrollBarImageColor3 = Color3_FromRGB(0, 255, 255)
+DM_s_Page.Parent = Pages
+local Connection_26
+Connection_26 = TextButton_11.MouseButton1Down:Connect(function(X_49, Y_51, p3_0, p4_0) -- args: X_50, Y_52
+    Complaints_Page.Visible = false
+    TextButton_13.TextColor3 = Color3_FromRGB(0, 255, 255)
+    DM_s_Page.Visible = false
+    TextButton_11.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Chat_Page.Visible = false
+    TextButton_9.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Find_Games_Page.Visible = false
+    TextButton_12.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Player_Page.Visible = false
+    TextButton_6.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Updates_Page.Visible = false
+    TextButton_5.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Scripts_Page.Visible = false
+    TextButton_8.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Fe_Admin_Gui_s_Page.Visible = false
+    TextButton_7.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Trolling_Page.Visible = false
+    TextButton_10.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Information_Page.Visible = false
+    TextButton_3.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Credits_Page.Visible = false
+    TextButton_4.TextColor3 = Color3_FromRGB(0, 255, 255)
+    DM_s_Page.Visible = true
+    TextButton_11.TextColor3 = Color3_FromRGB(255, 255, 255)
+end)
+local Connection_27
+Connection_27 = TextButton_11.MouseEnter:Connect(function(X_51, Y_53, p3_0, p4_0, p5_0) -- args: X_52, Y_54
+end)
+local Connection_28
+Connection_28 = TextButton_11.MouseLeave:Connect(function(X_53, Y_55, p3_0) -- args: X_54, Y_56
+end)
+local Find_Games_TabContainer = Instance.new("Frame")
+Find_Games_TabContainer.Name = "Find Games_TabContainer"
+Find_Games_TabContainer.Size = UDim2_New(1, 0, 0, 40)
+Find_Games_TabContainer.BackgroundTransparency = 1
+Find_Games_TabContainer.LayoutOrder = 10
+Find_Games_TabContainer.Parent = Sidebar
+local TextButton_12 = Instance.new("TextButton")
+TextButton_12.Size = UDim2_New(1, 0, 1, 0)
+TextButton_12.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+TextButton_12.TextColor3 = Color3_FromRGB(0, 255, 255)
+TextButton_12.Text = "  Find Games"
+TextButton_12.TextXAlignment = Enum_TextXAlignment.Left
+TextButton_12.Font = Enum_Font.GothamMedium
+TextButton_12.TextSize = 13
+TextButton_12.BorderSizePixel = 0
+TextButton_12.ZIndex = 3
+TextButton_12.Parent = Find_Games_TabContainer
+local TabDivider = Instance.new("Frame")
+TabDivider.Name = "TabDivider"
+TabDivider.Size = UDim2_New(1, 0, 0, 1)
+TabDivider.Position = UDim2_New(0, 0, 1, -1)
+TabDivider.BackgroundColor3 = Color3_FromRGB(0, 255, 255)
+TabDivider.BorderSizePixel = 0
+TabDivider.ZIndex = 5
+TabDivider.Parent = Find_Games_TabContainer
+local Find_Games_Page = Instance.new("ScrollingFrame")
+Find_Games_Page.Name = "Find Games_Page"
+Find_Games_Page.Size = UDim2_New(1, 0, 1, 0)
+Find_Games_Page.BackgroundTransparency = 1
+Find_Games_Page.Visible = false
+Find_Games_Page.ScrollBarThickness = 2
+Find_Games_Page.ScrollBarImageColor3 = Color3_FromRGB(0, 255, 255)
+Find_Games_Page.Parent = Pages
+local Connection_29
+Connection_29 = TextButton_12.MouseButton1Down:Connect(function(X_55, Y_57, p3_0, p4_0) -- args: X_56, Y_58
+    Complaints_Page.Visible = false
+    TextButton_13.TextColor3 = Color3_FromRGB(0, 255, 255)
+    DM_s_Page.Visible = false
+    TextButton_11.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Chat_Page.Visible = false
+    TextButton_9.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Find_Games_Page.Visible = false
+    TextButton_12.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Player_Page.Visible = false
+    TextButton_6.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Updates_Page.Visible = false
+    TextButton_5.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Scripts_Page.Visible = false
+    TextButton_8.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Fe_Admin_Gui_s_Page.Visible = false
+    TextButton_7.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Trolling_Page.Visible = false
+    TextButton_10.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Information_Page.Visible = false
+    TextButton_3.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Credits_Page.Visible = false
+    TextButton_4.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Find_Games_Page.Visible = true
+    TextButton_12.TextColor3 = Color3_FromRGB(255, 255, 255)
+end)
+local Connection_30
+Connection_30 = TextButton_12.MouseEnter:Connect(function(X_57, Y_59, p3_0, p4_0, p5_0) -- args: X_58, Y_60
+end)
+local Connection_31
+Connection_31 = TextButton_12.MouseLeave:Connect(function(X_59, Y_61, p3_0) -- args: X_60, Y_62
+end)
+local Complaints_TabContainer = Instance.new("Frame")
+Complaints_TabContainer.Name = "Complaints_TabContainer"
+Complaints_TabContainer.Size = UDim2_New(1, 0, 0, 40)
+Complaints_TabContainer.BackgroundTransparency = 1
+Complaints_TabContainer.LayoutOrder = 11
+Complaints_TabContainer.Parent = Sidebar
+local TextButton_13 = Instance.new("TextButton")
+TextButton_13.Size = UDim2_New(1, 0, 1, 0)
+TextButton_13.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+TextButton_13.TextColor3 = Color3_FromRGB(0, 255, 255)
+TextButton_13.Text = "  Complaints"
+TextButton_13.TextXAlignment = Enum_TextXAlignment.Left
+TextButton_13.Font = Enum_Font.GothamMedium
+TextButton_13.TextSize = 13
+TextButton_13.BorderSizePixel = 0
+TextButton_13.ZIndex = 3
+TextButton_13.Parent = Complaints_TabContainer
+local Complaints_Page = Instance.new("ScrollingFrame")
+Complaints_Page.Name = "Complaints_Page"
+Complaints_Page.Size = UDim2_New(1, 0, 1, 0)
+Complaints_Page.BackgroundTransparency = 1
+Complaints_Page.Visible = false
+Complaints_Page.ScrollBarThickness = 2
+Complaints_Page.ScrollBarImageColor3 = Color3_FromRGB(0, 255, 255)
+Complaints_Page.Parent = Pages
+local Connection_32
+Connection_32 = TextButton_13.MouseButton1Down:Connect(function(X_61, Y_63, p3_0, p4_0) -- args: X_62, Y_64
+    Complaints_Page.Visible = false
+    TextButton_13.TextColor3 = Color3_FromRGB(0, 255, 255)
+    DM_s_Page.Visible = false
+    TextButton_11.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Chat_Page.Visible = false
+    TextButton_9.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Find_Games_Page.Visible = false
+    TextButton_12.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Player_Page.Visible = false
+    TextButton_6.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Updates_Page.Visible = false
+    TextButton_5.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Scripts_Page.Visible = false
+    TextButton_8.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Fe_Admin_Gui_s_Page.Visible = false
+    TextButton_7.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Trolling_Page.Visible = false
+    TextButton_10.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Information_Page.Visible = false
+    TextButton_3.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Credits_Page.Visible = false
+    TextButton_4.TextColor3 = Color3_FromRGB(0, 255, 255)
+    Complaints_Page.Visible = true
+    TextButton_13.TextColor3 = Color3_FromRGB(255, 255, 255)
+end)
+local Connection_33
+Connection_33 = TextButton_13.MouseEnter:Connect(function(X_63, Y_65, p3_0, p4_0, p5_0) -- args: X_64, Y_66
+end)
+local Connection_34
+Connection_34 = TextButton_13.MouseLeave:Connect(function(X_65, Y_67, p3_0) -- args: X_66, Y_68
+end)
+local Connection_35
+Connection_35 = TopBar.InputBegan:Connect(function(Input, p2_0, p3_0) -- args: Input_2
+    local Enum_UserInputType = Enum.UserInputType
+    local _ = (Input.UserInputType == Enum_UserInputType.MouseButton1)
+    -- false, eq id 5
+end)
+local Connection_36
+Connection_36 = UserInputService.InputChanged:Connect(function(Input_3, GameProcessedEvent, p3_0, p4_0, p5_0, p6_0) -- args: Input_4, GameProcessedEvent_2
+end)
+local Connection_37
+Connection_37 = UserInputService.InputEnded:Connect(function(Input_5, GameProcessedEvent_3, p3_0, p4_0, p5_0, p6_0) -- args: Input_6, GameProcessedEvent_4
+    local _ = (Input_5.UserInputType == Enum_UserInputType.MouseButton1)
+    -- false, eq id 6
+end)
+local Connection_38
+Connection_38 = Minimize.MouseButton1Down:Connect(function(X_67, Y_69) -- args: X_68, Y_70
+    TopDivider.Visible = false
+    UserPFP.Visible = false
+    Frame_8.Visible = false
+    UserProfile.Visible = false
+    MainFrame:TweenSize(UDim2_New(0, 500, 0, 47), "Out", "Quad", 0.3, true)
+    Minimize.Text = "+"
+end)
+local Connection_39
+Connection_39 = Close.MouseButton1Click:Connect(function()
+    local TweenService = game:GetService("TweenService")
+    local TweenInfo = Env.TweenInfo
+    local str = TweenService:Create(MainFrame, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+        BackgroundTransparency = 1,
+        Size = UDim2_New(0, 0, 0, 0),
+    })
+    UIStroke.Enabled = false
+    str:Play()
+    local Completed = str.Completed
+    Completed:Connect(function(p1_0)
+        EcholiteHub:Destroy()
+    end)
+end)
+local _ = not Information_Page:FindFirstChildOfClass("UIListLayout")
+-- false
+local Welcome = Instance.new("TextLabel")
+Welcome.Name = "Welcome"
+Welcome.Size = UDim2_New(0.95, 0, 0, 38)
+Welcome.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Welcome.TextColor3 = Color3_FromRGB(0, 255, 255)
+Welcome.Text = "  Welcome to Echolite Hub The Condo Destroyer!"
+Welcome.TextXAlignment = Enum_TextXAlignment.Left
+Welcome.Font = Enum_Font.GothamBold
+Welcome.TextSize = 14
+Welcome.Parent = Information_Page
+local UICorner_5 = Instance.new("UICorner")
+UICorner_5.CornerRadius = UDim_New(0, 6)
+UICorner_5.Parent = Welcome
+local UIStroke_4 = Instance.new("UIStroke")
+UIStroke_4.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_4.Thickness = 2
+UIStroke_4.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_4.Parent = Welcome
+local UpdateVersion = Instance.new("TextLabel")
+UpdateVersion.Name = "UpdateVersion"
+UpdateVersion.Size = UDim2_New(0.95, 0, 0, 38)
+UpdateVersion.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+UpdateVersion.TextColor3 = Color3_FromRGB(0, 255, 255)
+UpdateVersion.Text = "  Echolite Version | Normal Version 2.0.0"
+UpdateVersion.TextXAlignment = Enum_TextXAlignment.Left
+UpdateVersion.Font = Enum_Font.GothamBold
+UpdateVersion.TextSize = 14
+UpdateVersion.Parent = Information_Page
+local UICorner_6 = Instance.new("UICorner")
+UICorner_6.CornerRadius = UDim_New(0, 6)
+UICorner_6.Parent = UpdateVersion
+local UIStroke_5 = Instance.new("UIStroke")
+UIStroke_5.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_5.Thickness = 2
+UIStroke_5.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_5.Parent = UpdateVersion
+local Discord = Instance.new("TextLabel")
+Discord.Name = "Discord"
+Discord.Size = UDim2_New(0.95, 0, 0, 38)
+Discord.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Discord.TextColor3 = Color3_FromRGB(0, 255, 255)
+Discord.Text = "  Discord"
+Discord.TextXAlignment = Enum_TextXAlignment.Left
+Discord.Font = Enum_Font.GothamBold
+Discord.TextSize = 14
+Discord.Parent = Information_Page
+local UICorner_7 = Instance.new("UICorner")
+UICorner_7.CornerRadius = UDim_New(0, 6)
+UICorner_7.Parent = Discord
+local UIStroke_6 = Instance.new("UIStroke")
+UIStroke_6.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_6.Thickness = 2
+UIStroke_6.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_6.Parent = Discord
+local DiscordLink = Instance.new("TextButton")
+DiscordLink.Name = "DiscordLink"
+DiscordLink.AnchorPoint = Vector2_New(1, 0.5)
+DiscordLink.Position = UDim2_New(1, -5, 0.5, 0)
+DiscordLink.Size = UDim2_New(0.55, 0, 0, 28)
+DiscordLink.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+DiscordLink.TextColor3 = Color3_FromRGB(0, 255, 255)
+DiscordLink.Text = "https://discord.gg/MVEB7jCm"
+DiscordLink.Font = Enum_Font.GothamBold
+DiscordLink.TextSize = 14
+DiscordLink.Parent = Discord
+local UICorner_8 = Instance.new("UICorner")
+UICorner_8.CornerRadius = UDim_New(0, 6)
+UICorner_8.Parent = DiscordLink
+local UIStroke_7 = Instance.new("UIStroke")
+UIStroke_7.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_7.Thickness = 2
+UIStroke_7.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_7.Parent = DiscordLink
+local Connection_40
+Connection_40 = DiscordLink.MouseButton1Down:Connect(function(X_69, Y_71) -- args: X_70, Y_72
+    local setclipboard = Env.setclipboard
+    if setclipboard then -- ran, expr id 2, has an else.
+        setclipboard("https://discord.gg/MVEB7jCm")
+    end
+end)
+local UICorner_9 = Instance.new("UICorner")
+UICorner_9.CornerRadius = UDim_New(0, 6)
+UICorner_9.Parent = nil
+local UIStroke_8 = Instance.new("UIStroke")
+UIStroke_8.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_8.Thickness = 2
+UIStroke_8.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_8.Parent = nil
+local Discord = Instance.new("TextLabel")
+Discord.Name = "Discord"
+Discord.Size = UDim2_New(0.95, 0, 0, 38)
+Discord.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Discord.TextColor3 = Color3_FromRGB(0, 255, 255)
+Discord.Text = "Made by YepImSirPwnsAlot \n Feel free to join our discord server!\n You can use this in almost any game."
+Discord.Font = Enum_Font.GothamBold
+Discord.BorderSizePixel = 0
+Discord.TextSize = 14
+Discord.Parent = Information_Page
+local _ = not Credits_Page:FindFirstChildOfClass("UIListLayout")
+-- false
+local fwefwfwfwfwfeww = Instance.new("TextLabel")
+fwefwfwfwfwfeww.Name = "fwefwfwfwfwfeww"
+fwefwfwfwfwfeww.Size = UDim2_New(0.95, 0, 0, 43)
+fwefwfwfwfwfeww.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+fwefwfwfwfwfeww.TextColor3 = Color3_FromRGB(0, 255, 255)
+fwefwfwfwfwfeww.Text = "Thanks for all of the people using \n this script, and MASSIVE HUGE Shout out to MastersMZ \n for testing the GUI \n and thanks for using Echolite Hub V2 means a lot \n to me :)"
+fwefwfwfwfwfeww.BorderSizePixel = 0
+fwefwfwfwfwfeww.Font = Enum_Font.GothamBold
+fwefwfwfwfwfeww.TextSize = 14
+fwefwfwfwfwfeww.Parent = Credits_Page
+-- false
+local _ = (not Updates_Page:FindFirstChildOfClass("UIListLayout") and 16645387)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Updates_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+local Color3_New = Color3.new
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "  Join the Discord bro"
+local UICorner_10 = Instance.new("UICorner")
+UICorner_10.CornerRadius = UDim_New(0, 6)
+UICorner_10.Parent = Btn1
+local UIStroke_9 = Instance.new("UIStroke")
+UIStroke_9.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_9.Thickness = 2
+UIStroke_9.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_9.Parent = Btn1
+TextButton_15.TextXAlignment = Enum_TextXAlignment.Left
+local UICorner_11 = Instance.new("UICorner")
+UICorner_11.Parent = Btn1
+UICorner_11.CornerRadius = UDim_New(0, 6)
+local UIStroke_10 = Instance.new("UIStroke")
+UIStroke_10.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_10.Thickness = 2
+UIStroke_10.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_10.Parent = Btn1
+local DiscordLink = Instance.new("TextButton")
+DiscordLink.Name = "DiscordLink"
+DiscordLink.AnchorPoint = Vector2_New(1, 0.5)
+DiscordLink.Position = UDim2_New(1, -5, 0.5, 0)
+DiscordLink.Size = UDim2_New(0.55, 0, 0, 28)
+DiscordLink.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+DiscordLink.TextColor3 = Color3_FromRGB(0, 255, 255)
+DiscordLink.Text = "https://discord.gg/uj9SMQb5"
+DiscordLink.Font = Enum_Font.GothamBold
+DiscordLink.TextSize = 14
+DiscordLink.Parent = Btn1
+local UICorner_12 = Instance.new("UICorner")
+UICorner_12.Parent = DiscordLink
+UICorner_12.CornerRadius = UDim_New(0, 6)
+local UIStroke_11 = Instance.new("UIStroke")
+UIStroke_11.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_11.Thickness = 2
+UIStroke_11.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_11.Parent = DiscordLink
+local Connection_41
+Connection_41 = DiscordLink.MouseButton1Down:connect(function(X_71, Y_73, p3_0) -- args: X_72, Y_74
+    setclipboard("https://discord.gg/MVEB7jCm")
+end)
+local fwefwfwfwfwfeww = Instance.new("TextLabel")
+fwefwfwfwfwfeww.Name = "fwefwfwfwfwfeww"
+fwefwfwfwfwfeww.Size = UDim2_New(0.95, 0, 0, 85)
+fwefwfwfwfwfeww.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+fwefwfwfwfwfeww.TextColor3 = Color3_FromRGB(0, 255, 255)
+fwefwfwfwfwfeww.Text = "I fixed a few bugs, added 4 more tabs. \n And added more buttons to some pre-existing tabs. \n the part where it shows \n your display \n name now shows \n your actual username and i \n added a cyan ring around the pfp picture."
+fwefwfwfwfwfeww.BorderSizePixel = 0
+fwefwfwfwfwfeww.Font = Enum_Font.GothamBold
+fwefwfwfwfwfeww.TextSize = 14
+fwefwfwfwfwfeww.Parent = Updates_Page
+-- false
+local _ = (not Player_Page:FindFirstChildOfClass("UIListLayout") and 12281452)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Player_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Players Info"
+local UICorner_13 = Instance.new("UICorner")
+UICorner_13.CornerRadius = UDim_New(0, 6)
+UICorner_13.Parent = Btn1
+local UIStroke_12 = Instance.new("UIStroke")
+UIStroke_12.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_12.Thickness = 2
+UIStroke_12.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_12.Parent = Btn1
+local UICorner_14 = Instance.new("UICorner")
+UICorner_14.Parent = Btn1
+UICorner_14.CornerRadius = UDim_New(0, 6)
+local Connection_42
+Connection_42 = Btn1.MouseButton1Down:Connect(function(X_73, Y_75, p3_0) -- args: X_74, Y_76
+    game:GetService("Players")
+    game:GetService("UserInputService")
+    game:GetService("TweenService")
+    local PlayerGui = LocalPlayer.PlayerGui
+    local DraggablePlayerList = PlayerGui:FindFirstChild("DraggablePlayerList")
+    if not DraggablePlayerList then -- didnt run, expr id 3, has an else.
+    else
+        DraggablePlayerList:Destroy()
+    end
+    local DraggablePlayerList = Instance.new("ScreenGui")
+    DraggablePlayerList.Name = "DraggablePlayerList"
+    DraggablePlayerList.ResetOnSpawn = false
+    DraggablePlayerList.Parent = LocalPlayer:WaitForChild("PlayerGui")
+    local MainFrame = Instance.new("Frame")
+    MainFrame.Name = "MainFrame"
+    MainFrame.Size = UDim2_New(0, 400, 0, 400)
+    MainFrame.Position = UDim2_New(0.5, -200, 0.5, -200)
+    MainFrame.BackgroundColor3 = Color3_FromRGB(15, 15, 15)
+    MainFrame.BorderSizePixel = 0
+    MainFrame.Active = true
+    MainFrame.ClipsDescendants = true
+    MainFrame.Parent = DraggablePlayerList
+    local UICorner_114 = Instance.new("UICorner")
+    UICorner_114.CornerRadius = UDim_New(0, 15)
+    UICorner_114.Parent = MainFrame
+    local UIStroke_64 = Instance.new("UIStroke")
+    UIStroke_64.Color = Color3_FromRGB(0, 255, 255)
+    UIStroke_64.Thickness = 3
+    UIStroke_64.Parent = MainFrame
+    local TopBar = Instance.new("Frame")
+    TopBar.Name = "TopBar"
+    TopBar.Size = UDim2_New(1, 0, 0, 40)
+    TopBar.BackgroundColor3 = Color3_FromRGB(25, 25, 25)
+    TopBar.BorderSizePixel = 0
+    TopBar.Parent = MainFrame
+    local UICorner_115 = Instance.new("UICorner")
+    UICorner_115.CornerRadius = UDim_New(0, 15)
+    UICorner_115.Parent = TopBar
+    local TextLabel_11 = Instance.new("TextLabel")
+    TextLabel_11.Size = UDim2_New(1, -100, 1, 0)
+    TextLabel_11.Position = UDim2_New(0, 15, 0, 0)
+    TextLabel_11.BackgroundTransparency = 1
+    TextLabel_11.Text = "PLAYER TRACKER"
+    TextLabel_11.TextColor3 = Color3_FromRGB(0, 255, 255)
+    TextLabel_11.Font = Enum_Font.GothamBold
+    TextLabel_11.TextSize = 14
+    TextLabel_11.TextXAlignment = Enum_TextXAlignment.Left
+    TextLabel_11.Parent = TopBar
+    local TextButton_67 = Instance.new("TextButton")
+    TextButton_67.Size = UDim2_New(0, 30, 0, 30)
+    TextButton_67.Position = UDim2_New(1, -35, 0.5, 0)
+    TextButton_67.AnchorPoint = Vector2_New(0, 0.5)
+    TextButton_67.BackgroundColor3 = Color3_FromRGB(150, 0, 0)
+    TextButton_67.Text = "x"
+    TextButton_67.TextColor3 = Color3_New(1, 1, 1)
+    TextButton_67.Font = Enum_Font.GothamBold
+    TextButton_67.Parent = TopBar
+    local UICorner_116 = Instance.new("UICorner")
+    UICorner_116.Parent = TextButton_67
+    UICorner_116.CornerRadius = UDim_New(0, 6)
+    local TextButton_68 = Instance.new("TextButton")
+    TextButton_68.Size = UDim2_New(0, 30, 0, 30)
+    TextButton_68.Position = UDim2_New(1, -70, 0.5, 0)
+    TextButton_68.AnchorPoint = Vector2_New(0, 0.5)
+    TextButton_68.BackgroundColor3 = Color3_FromRGB(50, 50, 50)
+    TextButton_68.Text = "-"
+    TextButton_68.TextColor3 = Color3_New(1, 1, 1)
+    TextButton_68.Font = Enum_Font.GothamBold
+    TextButton_68.Parent = TopBar
+    local UICorner_117 = Instance.new("UICorner")
+    UICorner_117.Parent = TextButton_68
+    UICorner_117.CornerRadius = UDim_New(0, 6)
+    local ScrollingFrame_14 = Instance.new("ScrollingFrame")
+    ScrollingFrame_14.Size = UDim2_New(1, -20, 1, -60)
+    ScrollingFrame_14.Position = UDim2_New(0, 10, 0, 50)
+    ScrollingFrame_14.BackgroundTransparency = 1
+    ScrollingFrame_14.ScrollBarThickness = 6
+    ScrollingFrame_14.ScrollBarImageColor3 = Color3_FromRGB(0, 255, 255)
+    ScrollingFrame_14.AutomaticCanvasSize = Enum_AutomaticSize.Y
+    ScrollingFrame_14.Parent = MainFrame
+    local UIListLayout_13 = Instance.new("UIListLayout")
+    UIListLayout_13.Parent = ScrollingFrame_14
+    UIListLayout_13.Padding = UDim_New(0, 10)
+    UIListLayout_13.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    local Connection_93
+    Connection_93 = TopBar.InputBegan:Connect(function(Input_7, p2_0, p3_0, p4_0, p5_0, p6_0) -- args: Input_8
+        local _ = (Input_7.UserInputType == Enum_UserInputType.MouseButton1)
+        -- false, eq id 8
+        local _ = (Input_7.UserInputType == Enum_UserInputType.Touch)
+        -- false, eq id 9
+    end)
+    local Connection_94
+    Connection_94 = UserInputService.InputChanged:connect(function(Input_9, GameProcessedEvent_5, p3_0, p4_0, p5_0) -- args: Input_10, GameProcessedEvent_6
+    end)
+    local Connection_95
+    Connection_95 = TextButton_68.MouseButton1Click:Connect(function(p1_0, p2_0, p3_0)
+        local str_27 = TweenService:Create(MainFrame, TweenInfo.new(0.3), {
+            Size = UDim2_New(0, 400, 0, 40),
+        })
+        str_27:Play()
+        TextButton_68.Text = "+"
+    end)
+    local Connection_96
+    Connection_96 = TextButton_67.MouseButton1Click:Connect(function(p1_0)
+        DraggablePlayerList:Destroy()
+    end)
+    local Connection_97
+    Connection_97 = Players.PlayerAdded:connect(function(Player_3, p2_0, p3_0, p4_0) -- args: Player_4
+        local Player_3_Name_ = Instance.new("Frame")
+        Player_3_Name_.Name = Player_3.Name
+        Player_3_Name_.Size = UDim2_New(0.95, 0, 0, 70)
+        Player_3_Name_.BackgroundColor3 = Color3_FromRGB(30, 30, 30)
+        Player_3_Name_.Parent = ScrollingFrame_14
+        local UICorner_121 = Instance.new("UICorner")
+        UICorner_121.Parent = Player_3_Name_
+        UICorner_121.CornerRadius = UDim_New(0, 10)
+        local ImageLabel_3 = Instance.new("ImageLabel")
+        ImageLabel_3.Size = UDim2_New(0, 50, 0, 50)
+        ImageLabel_3.Position = UDim2_New(0, 10, 0.5, 0)
+        ImageLabel_3.AnchorPoint = Vector2_New(0, 0.5)
+        ImageLabel_3.BackgroundTransparency = 1
+        ImageLabel_3.Image = Players:GetUserThumbnailAsync(Player_3.UserId, Enum_ThumbnailType.HeadShot, Enum_ThumbnailSize.Size100x100)
+        ImageLabel_3.Parent = Player_3_Name_
+        local UICorner_122 = Instance.new("UICorner")
+        UICorner_122.Parent = ImageLabel_3
+        UICorner_122.CornerRadius = UDim_New(1, 0)
+        local TextLabel_13 = Instance.new("TextLabel")
+        TextLabel_13.Size = UDim2_New(1, -70, 1, -10)
+        TextLabel_13.Position = UDim2_New(0, 70, 0, 5)
+        TextLabel_13.BackgroundTransparency = 1
+        TextLabel_13.TextColor3 = Color3_New(1, 1, 1)
+        TextLabel_13.Text = Player_3.DisplayName .. "\nJoined: " .. os.date("%x", os.time() - Player_3.AccountAge * 86400)
+        TextLabel_13.Font = Enum_Font.Gotham
+        TextLabel_13.TextSize = 11
+        TextLabel_13.TextXAlignment = Enum_TextXAlignment.Left
+        TextLabel_13.Parent = Player_3_Name_
+        local _ = task.spawn(function(p1_0, p2_0)
+            local var773 = os.clock();
+            local var774 = (Player_3_Name_ and 14308526); -- 14308526
+            local var775 = (var774 or 13372547);
+            local Parent_37 = Player_3_Name_.Parent;
+            local var776 = os.clock();
+            local var777 = var776 - var773;
+            -- 0.000890
+            local DisplayName_39 = Player_3.DisplayName;
+            local var778 = os.time();
+            local AccountAge_39 = Player_3.AccountAge;
+            local var779 = AccountAge_39 * 86400;
+            local var780 = var778 - var779;
+            local var781 = os.date("%x", var780);
+            local var782 = var781 .. "\nSession: 0s";
+            local var783 = "\nJoined: " .. var782;
+            local var784 = DisplayName_39 .. var783;
+            TextLabel_13.Text = var784;
+            local Waited_For_61 = task.wait(1);
+            local var785 = (Player_3_Name_ and 14308526); -- 14308526
+            local var786 = (var785 or 13372547);
+            local Parent_38 = Player_3_Name_.Parent;
+            local var787 = os.clock();
+            local var788 = var787 - var773;
+            -- 1.004199
+            local DisplayName_40 = Player_3.DisplayName;
+            local var789 = os.time();
+            local AccountAge_40 = Player_3.AccountAge;
+            local var790 = AccountAge_40 * 86400;
+            local var791 = var789 - var790;
+            local var792 = os.date("%x", var791);
+            local var793 = var792 .. "\nSession: 1s";
+            local var794 = "\nJoined: " .. var793;
+            local var795 = DisplayName_40 .. var794;
+            TextLabel_13.Text = var795;
+            local Waited_For_62 = task.wait(1);
+            local var796 = (Player_3_Name_ and 14308526); -- 14308526
+            local var797 = (var796 or 13372547);
+            local Parent_39 = Player_3_Name_.Parent;
+            local var798 = os.clock();
+            local var799 = var798 - var773;
+            -- 2.007652
+            local DisplayName_41 = Player_3.DisplayName;
+            local var800 = os.time();
+            local AccountAge_41 = Player_3.AccountAge;
+            local var801 = AccountAge_41 * 86400;
+            local var802 = var800 - var801;
+            local var803 = os.date("%x", var802);
+            local var804 = var803 .. "\nSession: 2s";
+            local var805 = "\nJoined: " .. var804;
+            local var806 = DisplayName_41 .. var805;
+            TextLabel_13.Text = var806;
+            local Waited_For_63 = task.wait(1);
+            local var807 = (Player_3_Name_ and 14308526); -- 14308526
+            local var808 = (var807 or 13372547);
+            local Parent_40 = Player_3_Name_.Parent;
+            local var809 = os.clock();
+            local var810 = var809 - var773;
+            -- 3.010448
+            local DisplayName_42 = Player_3.DisplayName;
+            local var811 = os.time();
+            local AccountAge_42 = Player_3.AccountAge;
+            local var812 = AccountAge_42 * 86400;
+            local var813 = var811 - var812;
+            local var814 = os.date("%x", var813);
+            local var815 = var814 .. "\nSession: 3s";
+            local var816 = "\nJoined: " .. var815;
+            local var817 = DisplayName_42 .. var816;
+            TextLabel_13.Text = var817;
+            local Waited_For_64 = task.wait(1);
+            local var818 = (Player_3_Name_ and 14308526); -- 14308526
+            local var819 = (var818 or 13372547);
+            local Parent_41 = Player_3_Name_.Parent;
+            local var820 = os.clock();
+            local var821 = var820 - var773;
+            -- 4.013540
+            local DisplayName_43 = Player_3.DisplayName;
+            local var822 = os.time();
+            local AccountAge_43 = Player_3.AccountAge;
+            local var823 = AccountAge_43 * 86400;
+            local var824 = var822 - var823;
+            local var825 = os.date("%x", var824);
+            local var826 = var825 .. "\nSession: 4s";
+            local var827 = "\nJoined: " .. var826;
+            local var828 = DisplayName_43 .. var827;
+            TextLabel_13.Text = var828;
+            local Waited_For_65 = task.wait(1);
+            local var829 = (Player_3_Name_ and 14308526); -- 14308526
+            local var830 = (var829 or 13372547);
+            local Parent_42 = Player_3_Name_.Parent;
+            local var831 = os.clock();
+            local var832 = var831 - var773;
+            -- 5.016045
+            local DisplayName_44 = Player_3.DisplayName;
+            local var833 = os.time();
+            local AccountAge_44 = Player_3.AccountAge;
+            local var834 = AccountAge_44 * 86400;
+            local var835 = var833 - var834;
+            local var836 = os.date("%x", var835);
+            local var837 = var836 .. "\nSession: 5s";
+            local var838 = "\nJoined: " .. var837;
+            local var839 = DisplayName_44 .. var838;
+            TextLabel_13.Text = var839;
+            local Waited_For_66 = task.wait(1);
+            local var840 = (Player_3_Name_ and 14308526); -- 14308526
+            local var841 = (var840 or 13372547);
+            local Parent_43 = Player_3_Name_.Parent;
+            local var842 = os.clock();
+            local var843 = var842 - var773;
+            -- 6.018592
+            local DisplayName_45 = Player_3.DisplayName;
+            local var844 = os.time();
+            local AccountAge_45 = Player_3.AccountAge;
+            local var845 = AccountAge_45 * 86400;
+            local var846 = var844 - var845;
+            local var847 = os.date("%x", var846);
+            local var848 = var847 .. "\nSession: 6s";
+            local var849 = "\nJoined: " .. var848;
+            local var850 = DisplayName_45 .. var849;
+            TextLabel_13.Text = var850;
+            local Waited_For_67 = task.wait(1);
+            local var851 = (Player_3_Name_ and 14308526); -- 14308526
+            local var852 = (var851 or 13372547);
+            local Parent_44 = Player_3_Name_.Parent;
+            local var853 = os.clock();
+            local var854 = var853 - var773;
+            -- 7.020832
+            local DisplayName_46 = Player_3.DisplayName;
+            local var855 = os.time();
+            local AccountAge_46 = Player_3.AccountAge;
+            local var856 = AccountAge_46 * 86400;
+            local var857 = var855 - var856;
+            local var858 = os.date("%x", var857);
+            local var859 = var858 .. "\nSession: 7s";
+            local var860 = "\nJoined: " .. var859;
+            local var861 = DisplayName_46 .. var860;
+            TextLabel_13.Text = var861;
+            local Waited_For_68 = task.wait(1);
+            local var862 = (Player_3_Name_ and 14308526); -- 14308526
+            local var863 = (var862 or 13372547);
+            local Parent_45 = Player_3_Name_.Parent;
+            local var864 = os.clock();
+            local var865 = var864 - var773;
+            -- 8.023040
+            local DisplayName_47 = Player_3.DisplayName;
+            local var866 = os.time();
+            local AccountAge_47 = Player_3.AccountAge;
+            local var867 = AccountAge_47 * 86400;
+            local var868 = var866 - var867;
+            local var869 = os.date("%x", var868);
+            local var870 = var869 .. "\nSession: 8s";
+            local var871 = "\nJoined: " .. var870;
+            local var872 = DisplayName_47 .. var871;
+            TextLabel_13.Text = var872;
+            local Waited_For_69 = task.wait(1);
+            local var873 = (Player_3_Name_ and 14308526); -- 14308526
+            local var874 = (var873 or 13372547);
+            local Parent_46 = Player_3_Name_.Parent;
+            local var875 = os.clock();
+            local var876 = var875 - var773;
+            -- 9.025867
+            local DisplayName_48 = Player_3.DisplayName;
+            local var877 = os.time();
+            local AccountAge_48 = Player_3.AccountAge;
+            local var878 = AccountAge_48 * 86400;
+            local var879 = var877 - var878;
+            local var880 = os.date("%x", var879);
+            local var881 = var880 .. "\nSession: 9s";
+            local var882 = "\nJoined: " .. var881;
+            local var883 = DisplayName_48 .. var882;
+            TextLabel_13.Text = var883;
+            local Waited_For_70 = task.wait(1);
+            local var884 = (Player_3_Name_ and 14308526); -- 14308526
+            local var885 = (var884 or 13372547);
+            local Parent_47 = Player_3_Name_.Parent;
+            local var886 = os.clock();
+            local var887 = var886 - var773;
+            -- 10.028761
+            local DisplayName_49 = Player_3.DisplayName;
+            local var888 = os.time();
+            local AccountAge_49 = Player_3.AccountAge;
+            local var889 = AccountAge_49 * 86400;
+            local var890 = var888 - var889;
+            local var891 = os.date("%x", var890);
+            local var892 = var891 .. "\nSession: 10s";
+            local var893 = "\nJoined: " .. var892;
+            local var894 = DisplayName_49 .. var893;
+            TextLabel_13.Text = var894;
+            local Waited_For_71 = task.wait(1);
+            local var895 = (Player_3_Name_ and 14308526); -- 14308526
+            local var896 = (var895 or 13372547);
+            local Parent_48 = Player_3_Name_.Parent;
+            local var897 = os.clock();
+            local var898 = var897 - var773;
+            -- 11.031830
+            local DisplayName_50 = Player_3.DisplayName;
+            local var899 = os.time();
+            local AccountAge_50 = Player_3.AccountAge;
+            local var900 = AccountAge_50 * 86400;
+            local var901 = var899 - var900;
+            local var902 = os.date("%x", var901);
+            local var903 = var902 .. "\nSession: 11s";
+            local var904 = "\nJoined: " .. var903;
+            local var905 = DisplayName_50 .. var904;
+            TextLabel_13.Text = var905;
+            local Waited_For_72 = task.wait(1);
+            local var906 = (Player_3_Name_ and 14308526); -- 14308526
+            local var907 = (var906 or 13372547);
+            local Parent_49 = Player_3_Name_.Parent;
+            local var908 = os.clock();
+            local var909 = var908 - var773;
+            -- 12.034644
+            local DisplayName_51 = Player_3.DisplayName;
+            local var910 = os.time();
+            local AccountAge_51 = Player_3.AccountAge;
+            local var911 = AccountAge_51 * 86400;
+            local var912 = var910 - var911;
+            local var913 = os.date("%x", var912);
+            local var914 = var913 .. "\nSession: 12s";
+            local var915 = "\nJoined: " .. var914;
+            local var916 = DisplayName_51 .. var915;
+            TextLabel_13.Text = var916;
+            local Waited_For_73 = task.wait(1);
+            local var917 = (Player_3_Name_ and 14308526); -- 14308526
+            local var918 = (var917 or 13372547);
+            local Parent_50 = Player_3_Name_.Parent;
+            local var919 = os.clock();
+            local var920 = var919 - var773;
+            -- 13.037348
+            local DisplayName_52 = Player_3.DisplayName;
+            local var921 = os.time();
+            local AccountAge_52 = Player_3.AccountAge;
+            local var922 = AccountAge_52 * 86400;
+            local var923 = var921 - var922;
+            local var924 = os.date("%x", var923);
+            local var925 = var924 .. "\nSession: 13s";
+            local var926 = "\nJoined: " .. var925;
+            local var927 = DisplayName_52 .. var926;
+            TextLabel_13.Text = var927;
+            local Waited_For_74 = task.wait(1);
+            local var928 = (Player_3_Name_ and 14308526); -- 14308526
+            local var929 = (var928 or 13372547);
+            local Parent_51 = Player_3_Name_.Parent;
+            local var930 = os.clock();
+            local var931 = var930 - var773;
+            -- 14.040413
+            local DisplayName_53 = Player_3.DisplayName;
+            local var932 = os.time();
+            local AccountAge_53 = Player_3.AccountAge;
+            local var933 = AccountAge_53 * 86400;
+            local var934 = var932 - var933;
+            local var935 = os.date("%x", var934);
+            local var936 = var935 .. "\nSession: 14s";
+            local var937 = "\nJoined: " .. var936;
+            local var938 = DisplayName_53 .. var937;
+            TextLabel_13.Text = var938;
+            local Waited_For_75 = task.wait(1);
+            local var939 = (Player_3_Name_ and 14308526); -- 14308526
+            local var940 = (var939 or 13372547);
+            local Parent_52 = Player_3_Name_.Parent;
+            local var941 = os.clock();
+            local var942 = var941 - var773;
+            -- 15.043241
+            local DisplayName_54 = Player_3.DisplayName;
+            local var943 = os.time();
+            local AccountAge_54 = Player_3.AccountAge;
+            local var944 = AccountAge_54 * 86400;
+            local var945 = var943 - var944;
+            local var946 = os.date("%x", var945);
+            local var947 = var946 .. "\nSession: 15s";
+            local var948 = "\nJoined: " .. var947;
+            local var949 = DisplayName_54 .. var948;
+            TextLabel_13.Text = var949;
+            local Waited_For_76 = task.wait(1);
+            local var950 = (Player_3_Name_ and 14308526); -- 14308526
+            local var951 = (var950 or 13372547);
+            local Parent_53 = Player_3_Name_.Parent;
+            local var952 = os.clock();
+            local var953 = var952 - var773;
+            -- 16.047113
+            local DisplayName_55 = Player_3.DisplayName;
+            local var954 = os.time();
+            local AccountAge_55 = Player_3.AccountAge;
+            local var955 = AccountAge_55 * 86400;
+            local var956 = var954 - var955;
+            local var957 = os.date("%x", var956);
+            local var958 = var957 .. "\nSession: 16s";
+            local var959 = "\nJoined: " .. var958;
+            local var960 = DisplayName_55 .. var959;
+            TextLabel_13.Text = var960;
+            local Waited_For_77 = task.wait(1);
+            local var961 = (Player_3_Name_ and 14308526); -- 14308526
+            local var962 = (var961 or 13372547);
+            local Parent_54 = Player_3_Name_.Parent;
+            local var963 = os.clock();
+            local var964 = var963 - var773;
+            -- 17.051361
+            local DisplayName_56 = Player_3.DisplayName;
+            local var965 = os.time();
+            local AccountAge_56 = Player_3.AccountAge;
+            local var966 = AccountAge_56 * 86400;
+            local var967 = var965 - var966;
+            local var968 = os.date("%x", var967);
+            local var969 = var968 .. "\nSession: 17s";
+            local var970 = "\nJoined: " .. var969;
+            local var971 = DisplayName_56 .. var970;
+            TextLabel_13.Text = var971;
+            local Waited_For_78 = task.wait(1);
+            local var972 = (Player_3_Name_ and 14308526); -- 14308526
+            local var973 = (var972 or 13372547);
+            local Parent_55 = Player_3_Name_.Parent;
+            local var974 = os.clock();
+            local var975 = var974 - var773;
+            -- 18.053803
+            local DisplayName_57 = Player_3.DisplayName;
+            local var976 = os.time();
+            local AccountAge_57 = Player_3.AccountAge;
+            local var977 = AccountAge_57 * 86400;
+            local var978 = var976 - var977;
+            local var979 = os.date("%x", var978);
+            local var980 = var979 .. "\nSession: 18s";
+            local var981 = "\nJoined: " .. var980;
+            local var982 = DisplayName_57 .. var981;
+            TextLabel_13.Text = var982;
+            local Waited_For_79 = task.wait(1);
+            local var983 = (Player_3_Name_ and 14308526); -- 14308526
+            local var984 = (var983 or 13372547);
+            local Parent_56 = Player_3_Name_.Parent;
+            local var985 = os.clock();
+            local var986 = var985 - var773;
+            -- 19.056465
+            local DisplayName_58 = Player_3.DisplayName;
+            local var987 = os.time();
+            local AccountAge_58 = Player_3.AccountAge;
+            local var988 = AccountAge_58 * 86400;
+            local var989 = var987 - var988;
+            local var990 = os.date("%x", var989);
+            local var991 = var990 .. "\nSession: 19s";
+            local var992 = "\nJoined: " .. var991;
+            local var993 = DisplayName_58 .. var992;
+            TextLabel_13.Text = var993;
+            local Waited_For_80 = task.wait(1);
+            local var994 = (Player_3_Name_ and 14308526); -- 14308526
+            local var995 = (var994 or 13372547);
+            local Parent_57 = Player_3_Name_.Parent;
+            local var996 = os.clock();
+            local var997 = var996 - var773;
+            -- 20.059285
+            local DisplayName_59 = Player_3.DisplayName;
+            local var998 = os.time();
+            local AccountAge_59 = Player_3.AccountAge;
+            local var999 = AccountAge_59 * 86400;
+            local var1000 = var998 - var999;
+            local var1001 = os.date("%x", var1000);
+            local var1002 = var1001 .. "\nSession: 20s";
+            local var1003 = "\nJoined: " .. var1002;
+            local var1004 = DisplayName_59 .. var1003;
+            TextLabel_13.Text = var1004;
+            local Waited_For_81 = task.wait(1);
+            local var1005 = (Player_3_Name_ and 14308526); -- 14308526
+            local var1006 = (var1005 or 13372547);
+            local Parent_58 = Player_3_Name_.Parent;
+            local var1007 = os.clock();
+            local var1008 = var1007 - var773;
+            -- 21.061932
+            local DisplayName_60 = Player_3.DisplayName;
+            local var1009 = os.time();
+            local AccountAge_60 = Player_3.AccountAge;
+            local var1010 = AccountAge_60 * 86400;
+            local var1011 = var1009 - var1010;
+            local var1012 = os.date("%x", var1011);
+            local var1013 = var1012 .. "\nSession: 21s";
+            local var1014 = "\nJoined: " .. var1013;
+            local var1015 = DisplayName_60 .. var1014;
+            TextLabel_13.Text = var1015;
+            local Waited_For_82 = task.wait(1);
+            local var1016 = (Player_3_Name_ and 14308526); -- 14308526
+            local var1017 = (var1016 or 13372547);
+            local Parent_59 = Player_3_Name_.Parent;
+            local var1018 = os.clock();
+            local var1019 = var1018 - var773;
+            -- 22.064572
+            local DisplayName_61 = Player_3.DisplayName;
+            local var1020 = os.time();
+            local AccountAge_61 = Player_3.AccountAge;
+            local var1021 = AccountAge_61 * 86400;
+            local var1022 = var1020 - var1021;
+            local var1023 = os.date("%x", var1022);
+            local var1024 = var1023 .. "\nSession: 22s";
+            local var1025 = "\nJoined: " .. var1024;
+            local var1026 = DisplayName_61 .. var1025;
+            TextLabel_13.Text = var1026;
+            local Waited_For_83 = task.wait(1);
+            local var1027 = (Player_3_Name_ and 14308526); -- 14308526
+            local var1028 = (var1027 or 13372547);
+            local Parent_60 = Player_3_Name_.Parent;
+            local var1029 = os.clock();
+            local var1030 = var1029 - var773;
+            -- 23.066858
+            local DisplayName_62 = Player_3.DisplayName;
+            local var1031 = os.time();
+            local AccountAge_62 = Player_3.AccountAge;
+            local var1032 = AccountAge_62 * 86400;
+            local var1033 = var1031 - var1032;
+            local var1034 = os.date("%x", var1033);
+            local var1035 = var1034 .. "\nSession: 23s";
+            local var1036 = "\nJoined: " .. var1035;
+            local var1037 = DisplayName_62 .. var1036;
+            TextLabel_13.Text = var1037;
+            local Waited_For_84 = task.wait(1);
+            local var1038 = (Player_3_Name_ and 14308526); -- 14308526
+            local var1039 = (var1038 or 13372547);
+            local Parent_61 = Player_3_Name_.Parent;
+            local var1040 = os.clock();
+            local var1041 = var1040 - var773;
+            -- 24.068995
+            local DisplayName_63 = Player_3.DisplayName;
+            local var1042 = os.time();
+            local AccountAge_63 = Player_3.AccountAge;
+            local var1043 = AccountAge_63 * 86400;
+            local var1044 = var1042 - var1043;
+            local var1045 = os.date("%x", var1044);
+            local var1046 = var1045 .. "\nSession: 24s";
+            local var1047 = "\nJoined: " .. var1046;
+            local var1048 = DisplayName_63 .. var1047;
+            TextLabel_13.Text = var1048;
+            local Waited_For_85 = task.wait(1);
+            local var1049 = (Player_3_Name_ and 14308526); -- 14308526
+            local var1050 = (var1049 or 13372547);
+            local Parent_62 = Player_3_Name_.Parent;
+            local var1051 = os.clock();
+            local var1052 = var1051 - var773;
+            -- 25.071616
+            local DisplayName_64 = Player_3.DisplayName;
+            local var1053 = os.time();
+            local AccountAge_64 = Player_3.AccountAge;
+            local var1054 = AccountAge_64 * 86400;
+            local var1055 = var1053 - var1054;
+            local var1056 = os.date("%x", var1055);
+            local var1057 = var1056 .. "\nSession: 25s";
+            local var1058 = "\nJoined: " .. var1057;
+            local var1059 = DisplayName_64 .. var1058;
+            TextLabel_13.Text = var1059;
+            local Waited_For_86 = task.wait(1);
+            local var1060 = (Player_3_Name_ and 14308526); -- 14308526
+            local var1061 = (var1060 or 13372547);
+            local Parent_63 = Player_3_Name_.Parent;
+            local var1062 = os.clock();
+            local var1063 = var1062 - var773;
+            -- 26.074067
+            local DisplayName_65 = Player_3.DisplayName;
+            local var1064 = os.time();
+            local AccountAge_65 = Player_3.AccountAge;
+            local var1065 = AccountAge_65 * 86400;
+            local var1066 = var1064 - var1065;
+            local var1067 = os.date("%x", var1066);
+            local var1068 = var1067 .. "\nSession: 26s";
+            local var1069 = "\nJoined: " .. var1068;
+            local var1070 = DisplayName_65 .. var1069;
+            TextLabel_13.Text = var1070;
+            local Waited_For_87 = task.wait(1);
+            local var1071 = (Player_3_Name_ and 14308526); -- 14308526
+            local var1072 = (var1071 or 13372547);
+            local Parent_64 = Player_3_Name_.Parent;
+            local var1073 = os.clock();
+            local var1074 = var1073 - var773;
+            -- 27.076621
+            local DisplayName_66 = Player_3.DisplayName;
+            local var1075 = os.time();
+            local AccountAge_66 = Player_3.AccountAge;
+            local var1076 = AccountAge_66 * 86400;
+            local var1077 = var1075 - var1076;
+            local var1078 = os.date("%x", var1077);
+            local var1079 = var1078 .. "\nSession: 27s";
+            local var1080 = "\nJoined: " .. var1079;
+            local var1081 = DisplayName_66 .. var1080;
+            TextLabel_13.Text = var1081;
+            local Waited_For_88 = task.wait(1);
+            local var1082 = (Player_3_Name_ and 14308526); -- 14308526
+            local var1083 = (var1082 or 13372547);
+            local Parent_65 = Player_3_Name_.Parent;
+            local var1084 = os.clock();
+            local var1085 = var1084 - var773;
+            -- 28.079361
+            local DisplayName_67 = Player_3.DisplayName;
+            local var1086 = os.time();
+            local AccountAge_67 = Player_3.AccountAge;
+            local var1087 = AccountAge_67 * 86400;
+            local var1088 = var1086 - var1087;
+            local var1089 = os.date("%x", var1088);
+            local var1090 = var1089 .. "\nSession: 28s";
+            local var1091 = "\nJoined: " .. var1090;
+            local var1092 = DisplayName_67 .. var1091;
+            TextLabel_13.Text = var1092;
+            local Waited_For_89 = task.wait(1);
+            local var1093 = (Player_3_Name_ and 14308526); -- 14308526
+            local var1094 = (var1093 or 13372547);
+            local Parent_66 = Player_3_Name_.Parent;
+            local var1095 = os.clock();
+            local var1096 = var1095 - var773;
+            -- 29.082334
+            local DisplayName_68 = Player_3.DisplayName;
+            local var1097 = os.time();
+            local AccountAge_68 = Player_3.AccountAge;
+            local var1098 = AccountAge_68 * 86400;
+            local var1099 = var1097 - var1098;
+            local var1100 = os.date("%x", var1099);
+            local var1101 = var1100 .. "\nSession: 29s";
+            local var1102 = "\nJoined: " .. var1101;
+            local var1103 = DisplayName_68 .. var1102;
+            TextLabel_13.Text = var1103;
+            local Waited_For_90 = task.wait(1);
+            local var1104 = (Player_3_Name_ and 14308526); -- 14308526
+            local var1105 = (var1104 or 13372547);
+            local Parent_67 = Player_3_Name_.Parent;
+            local var1106 = os.clock();
+            local var1107 = var1106 - var773;
+            -- 30.084968
+            local DisplayName_69 = Player_3.DisplayName;
+            local var1108 = os.time();
+            local AccountAge_69 = Player_3.AccountAge;
+            local var1109 = AccountAge_69 * 86400;
+            local var1110 = var1108 - var1109;
+            local var1111 = os.date("%x", var1110);
+            local var1112 = var1111 .. "\nSession: 30s";
+            local var1113 = "\nJoined: " .. var1112;
+            local var1114 = DisplayName_69 .. var1113;
+            TextLabel_13.Text = var1114;
+            local Waited_For_91 = task.wait(1);
+            local var1115 = (Player_3_Name_ and 14308526); -- 14308526
+            local var1116 = (var1115 or 13372547);
+            local Parent_68 = Player_3_Name_.Parent;
+            local var1117 = os.clock();
+            local var1118 = var1117 - var773;
+            -- 31.087811
+            local DisplayName_70 = Player_3.DisplayName;
+            local var1119 = os.time();
+            local AccountAge_70 = Player_3.AccountAge;
+            local var1120 = AccountAge_70 * 86400;
+            local var1121 = var1119 - var1120;
+            local var1122 = os.date("%x", var1121);
+            local var1123 = var1122 .. "\nSession: 31s";
+            local var1124 = "\nJoined: " .. var1123;
+            local var1125 = DisplayName_70 .. var1124;
+            TextLabel_13.Text = var1125;
+            local Waited_For_92 = task.wait(1);
+            local var1126 = (Player_3_Name_ and 14308526); -- 14308526
+            local var1127 = (var1126 or 13372547);
+            local Parent_69 = Player_3_Name_.Parent;
+            local var1128 = os.clock();
+            local var1129 = var1128 - var773;
+            -- 32.090337
+            local DisplayName_71 = Player_3.DisplayName;
+            local var1130 = os.time();
+            local AccountAge_71 = Player_3.AccountAge;
+            local var1131 = AccountAge_71 * 86400;
+            local var1132 = var1130 - var1131;
+            local var1133 = os.date("%x", var1132);
+            local var1134 = var1133 .. "\nSession: 32s";
+            local var1135 = "\nJoined: " .. var1134;
+            local var1136 = DisplayName_71 .. var1135;
+            TextLabel_13.Text = var1136;
+            local Waited_For_93 = task.wait(1);
+            local var1137 = (Player_3_Name_ and 14308526); -- 14308526
+            local var1138 = (var1137 or 13372547);
+            local Parent_70 = Player_3_Name_.Parent;
+            local var1139 = os.clock();
+            local var1140 = var1139 - var773;
+            -- 33.092810
+            local DisplayName_72 = Player_3.DisplayName;
+            local var1141 = os.time();
+            local AccountAge_72 = Player_3.AccountAge;
+            local var1142 = AccountAge_72 * 86400;
+            local var1143 = var1141 - var1142;
+            local var1144 = os.date("%x", var1143);
+            local var1145 = var1144 .. "\nSession: 33s";
+            local var1146 = "\nJoined: " .. var1145;
+            local var1147 = DisplayName_72 .. var1146;
+            TextLabel_13.Text = var1147;
+            local Waited_For_94 = task.wait(1);
+            local var1148 = (Player_3_Name_ and 14308526); -- 14308526
+            local var1149 = (var1148 or 13372547);
+            local Parent_71 = Player_3_Name_.Parent;
+            local var1150 = os.clock();
+            local var1151 = var1150 - var773;
+            -- 34.096087
+            local DisplayName_73 = Player_3.DisplayName;
+            local var1152 = os.time();
+            local AccountAge_73 = Player_3.AccountAge;
+            local var1153 = AccountAge_73 * 86400;
+            local var1154 = var1152 - var1153;
+            local var1155 = os.date("%x", var1154);
+            local var1156 = var1155 .. "\nSession: 34s";
+            local var1157 = "\nJoined: " .. var1156;
+            local var1158 = DisplayName_73 .. var1157;
+            TextLabel_13.Text = var1158;
+            local Waited_For_95 = task.wait(1);
+            local var1159 = (Player_3_Name_ and 14308526); -- 14308526
+            local var1160 = (var1159 or 13372547);
+            local Parent_72 = Player_3_Name_.Parent;
+            local var1161 = os.clock();
+            local var1162 = var1161 - var773;
+            -- 35.098148
+            local DisplayName_74 = Player_3.DisplayName;
+            local var1163 = os.time();
+            local AccountAge_74 = Player_3.AccountAge;
+            local var1164 = AccountAge_74 * 86400;
+            local var1165 = var1163 - var1164;
+            local var1166 = os.date("%x", var1165);
+            error("[internal]:659: too many operations")
         end)
- 
-        if success and response and response.data then
-            for _, server in ipairs(response.data) do
-                if (server.playing == 18) and server.maxPlayers == 20 and server.id ~= game.JobId then
-                    -- Found a server with 18 or 19 players out of 20
-                    return server.id
-                end
-            end
-            cursor = response.nextPageCursor
+    end)
+    local Connection_98
+    Connection_98 = Players.PlayerRemoving:Connect(function(Player_5, p2_0, p3_0, p4_0) -- args: Player_6
+        local _ = (ScrollingFrame_14:FindFirstChild(Player_5.Name) and 15511832); -- 15511832
+        local Name_10 = Player_5.Name
+        local Name_10 = ScrollingFrame_14[Name_10]
+        Name_10:Destroy()
+    end)
+    for i_2, v_2 in pairs(Players:GetPlayers()) do
+        if not i_2 then -- didnt run, expr id 4, has an else.
         else
-            break
+            local v_2_Name_ = Instance.new("Frame")
         end
-    until not cursor
- 
-    return nil -- No server found
-end
- 
--- Function to hop to a server
-local function hopToServer()
-    local serverId = find18Or19PlayerServer()
-    if serverId then
-        TeleportService:TeleportToPlaceInstance(placeId, serverId, LocalPlayer)
-    else
-        warn("No 18 or 19-player servers found! Retrying in 5 seconds...")
-        task.delay(1, hopToServer) -- Retry after 5 seconds
-    end
-end
- 
--- Start hopping after 38 seconds
-task.delay(48, hopToServer)
- 
--- Died listener setup to hop server upon death
-local function setupDiedListener(character)
-    local hum = character:FindFirstChildOfClass("Humanoid")
-    if hum then
-        hum.Died:Connect(function()
-            hopToServer()
+        v_2_Name_.Name = v_2.Name
+        v_2_Name_.Size = UDim2_New(0.95, 0, 0, 70)
+        v_2_Name_.BackgroundColor3 = Color3_FromRGB(30, 30, 30)
+        v_2_Name_.Parent = ScrollingFrame_14
+        local UICorner_118 = Instance.new("UICorner")
+        UICorner_118.Parent = v_2_Name_
+        UICorner_118.CornerRadius = UDim_New(0, 10)
+        local ImageLabel_2 = Instance.new("ImageLabel")
+        ImageLabel_2.Size = UDim2_New(0, 50, 0, 50)
+        ImageLabel_2.Position = UDim2_New(0, 10, 0.5, 0)
+        ImageLabel_2.AnchorPoint = Vector2_New(0, 0.5)
+        ImageLabel_2.BackgroundTransparency = 1
+        ImageLabel_2.Image = Players:GetUserThumbnailAsync(v_2.UserId, Enum_ThumbnailType.HeadShot, Enum_ThumbnailSize.Size100x100)
+        ImageLabel_2.Parent = v_2_Name_
+        local UICorner_119 = Instance.new("UICorner")
+        UICorner_119.Parent = ImageLabel_2
+        UICorner_119.CornerRadius = UDim_New(1, 0)
+        local TextLabel_12 = Instance.new("TextLabel")
+        TextLabel_12.Size = UDim2_New(1, -70, 1, -10)
+        TextLabel_12.Position = UDim2_New(0, 70, 0, 5)
+        TextLabel_12.BackgroundTransparency = 1
+        TextLabel_12.TextColor3 = Color3_New(1, 1, 1)
+        local var195 = "\nJoined: " .. os.date("%x", os.time() - v_2.AccountAge * 86400)
+        local var196 = v_2.DisplayName .. var195
+        TextLabel_12.Text = var196
+        TextLabel_12.Font = Enum_Font.Gotham
+        TextLabel_12.TextSize = 11
+        TextLabel_12.TextXAlignment = Enum_TextXAlignment.Left
+        TextLabel_12.Parent = v_2_Name_
+        local _ = task.spawn(function(p1_0, p2_0)
+            local var363 = os.clock();
+            local var364 = (v_2_Name_ and 14308526); -- 14308526
+            local var365 = (var364 or 13372547);
+            local Parent = v_2_Name_.Parent;
+            if ScrollingFrame_14 then -- ran, expr id 17, has an else.
+                local var366 = os.clock();
+                local var367 = var366 - var363;
+                -- 0.003175
+            end
+            local DisplayName_3 = v_2.DisplayName;
+            local var368 = os.time();
+            local AccountAge_3 = v_2.AccountAge;
+            local var369 = AccountAge_3 * 86400;
+            local var370 = var368 - var369;
+            local var371 = os.date("%x", var370);
+            local var372 = var371 .. "\nSession: 0s";
+            local var373 = "\nJoined: " .. var372;
+            local var374 = DisplayName_3 .. var373;
+            TextLabel_12.Text = var374;
+            local Waited_For_26 = task.wait(1);
+            local var375 = (v_2_Name_ and 14308526); -- 14308526
+            local var376 = (var375 or 13372547);
+            local Parent_2 = v_2_Name_.Parent;
+            local var377 = os.clock();
+            local var378 = var377 - var363;
+            -- 1.030132
+            local DisplayName_4 = v_2.DisplayName;
+            local var379 = os.time();
+            local AccountAge_4 = v_2.AccountAge;
+            local var380 = AccountAge_4 * 86400;
+            local var381 = var379 - var380;
+            local var382 = os.date("%x", var381);
+            local var383 = var382 .. "\nSession: 1s";
+            local var384 = "\nJoined: " .. var383;
+            local var385 = DisplayName_4 .. var384;
+            TextLabel_12.Text = var385;
+            local Waited_For_27 = task.wait(1);
+            local var386 = (v_2_Name_ and 14308526); -- 14308526
+            local var387 = (var386 or 13372547);
+            local Parent_3 = v_2_Name_.Parent;
+            local var388 = os.clock();
+            local var389 = var388 - var363;
+            -- 2.032709
+            local DisplayName_5 = v_2.DisplayName;
+            local var390 = os.time();
+            local AccountAge_5 = v_2.AccountAge;
+            local var391 = AccountAge_5 * 86400;
+            local var392 = var390 - var391;
+            local var393 = os.date("%x", var392);
+            local var394 = var393 .. "\nSession: 2s";
+            local var395 = "\nJoined: " .. var394;
+            local var396 = DisplayName_5 .. var395;
+            TextLabel_12.Text = var396;
+            local Waited_For_28 = task.wait(1);
+            local var397 = (v_2_Name_ and 14308526); -- 14308526
+            local var398 = (var397 or 13372547);
+            local Parent_4 = v_2_Name_.Parent;
+            local var399 = os.clock();
+            local var400 = var399 - var363;
+            -- 3.035798
+            local DisplayName_6 = v_2.DisplayName;
+            local var401 = os.time();
+            local AccountAge_6 = v_2.AccountAge;
+            local var402 = AccountAge_6 * 86400;
+            local var403 = var401 - var402;
+            local var404 = os.date("%x", var403);
+            local var405 = var404 .. "\nSession: 3s";
+            local var406 = "\nJoined: " .. var405;
+            local var407 = DisplayName_6 .. var406;
+            TextLabel_12.Text = var407;
+            local Waited_For_29 = task.wait(1);
+            local var408 = (v_2_Name_ and 14308526); -- 14308526
+            local var409 = (var408 or 13372547);
+            local Parent_5 = v_2_Name_.Parent;
+            local var410 = os.clock();
+            local var411 = var410 - var363;
+            -- 4.039204
+            local DisplayName_7 = v_2.DisplayName;
+            local var412 = os.time();
+            local AccountAge_7 = v_2.AccountAge;
+            local var413 = AccountAge_7 * 86400;
+            local var414 = var412 - var413;
+            local var415 = os.date("%x", var414);
+            local var416 = var415 .. "\nSession: 4s";
+            local var417 = "\nJoined: " .. var416;
+            local var418 = DisplayName_7 .. var417;
+            TextLabel_12.Text = var418;
+            local Waited_For_30 = task.wait(1);
+            local var419 = (v_2_Name_ and 14308526); -- 14308526
+            local var420 = (var419 or 13372547);
+            local Parent_6 = v_2_Name_.Parent;
+            local var421 = os.clock();
+            local var422 = var421 - var363;
+            -- 5.042574
+            local DisplayName_8 = v_2.DisplayName;
+            local var423 = os.time();
+            local AccountAge_8 = v_2.AccountAge;
+            local var424 = AccountAge_8 * 86400;
+            local var425 = var423 - var424;
+            local var426 = os.date("%x", var425);
+            local var427 = var426 .. "\nSession: 5s";
+            local var428 = "\nJoined: " .. var427;
+            local var429 = DisplayName_8 .. var428;
+            TextLabel_12.Text = var429;
+            local Waited_For_31 = task.wait(1);
+            local var430 = (v_2_Name_ and 14308526); -- 14308526
+            local var431 = (var430 or 13372547);
+            local Parent_7 = v_2_Name_.Parent;
+            local var432 = os.clock();
+            local var433 = var432 - var363;
+            -- 6.045563
+            local DisplayName_9 = v_2.DisplayName;
+            local var434 = os.time();
+            local AccountAge_9 = v_2.AccountAge;
+            local var435 = AccountAge_9 * 86400;
+            local var436 = var434 - var435;
+            local var437 = os.date("%x", var436);
+            local var438 = var437 .. "\nSession: 6s";
+            local var439 = "\nJoined: " .. var438;
+            local var440 = DisplayName_9 .. var439;
+            TextLabel_12.Text = var440;
+            local Waited_For_32 = task.wait(1);
+            local var441 = (v_2_Name_ and 14308526); -- 14308526
+            local var442 = (var441 or 13372547);
+            local Parent_8 = v_2_Name_.Parent;
+            local var443 = os.clock();
+            local var444 = var443 - var363;
+            -- 7.048603
+            local DisplayName_10 = v_2.DisplayName;
+            local var445 = os.time();
+            local AccountAge_10 = v_2.AccountAge;
+            local var446 = AccountAge_10 * 86400;
+            local var447 = var445 - var446;
+            local var448 = os.date("%x", var447);
+            local var449 = var448 .. "\nSession: 7s";
+            local var450 = "\nJoined: " .. var449;
+            local var451 = DisplayName_10 .. var450;
+            TextLabel_12.Text = var451;
+            local Waited_For_33 = task.wait(1);
+            local var452 = (v_2_Name_ and 14308526); -- 14308526
+            local var453 = (var452 or 13372547);
+            local Parent_9 = v_2_Name_.Parent;
+            local var454 = os.clock();
+            local var455 = var454 - var363;
+            -- 8.051273
+            local DisplayName_11 = v_2.DisplayName;
+            local var456 = os.time();
+            local AccountAge_11 = v_2.AccountAge;
+            local var457 = AccountAge_11 * 86400;
+            local var458 = var456 - var457;
+            local var459 = os.date("%x", var458);
+            local var460 = var459 .. "\nSession: 8s";
+            local var461 = "\nJoined: " .. var460;
+            local var462 = DisplayName_11 .. var461;
+            TextLabel_12.Text = var462;
+            local Waited_For_34 = task.wait(1);
+            local var463 = (v_2_Name_ and 14308526); -- 14308526
+            local var464 = (var463 or 13372547);
+            local Parent_10 = v_2_Name_.Parent;
+            local var465 = os.clock();
+            local var466 = var465 - var363;
+            -- 9.055397
+            local DisplayName_12 = v_2.DisplayName;
+            local var467 = os.time();
+            local AccountAge_12 = v_2.AccountAge;
+            local var468 = AccountAge_12 * 86400;
+            local var469 = var467 - var468;
+            local var470 = os.date("%x", var469);
+            local var471 = var470 .. "\nSession: 9s";
+            local var472 = "\nJoined: " .. var471;
+            local var473 = DisplayName_12 .. var472;
+            TextLabel_12.Text = var473;
+            local Waited_For_35 = task.wait(1);
+            local var474 = (v_2_Name_ and 14308526); -- 14308526
+            local var475 = (var474 or 13372547);
+            local Parent_11 = v_2_Name_.Parent;
+            local var476 = os.clock();
+            local var477 = var476 - var363;
+            -- 10.058041
+            local DisplayName_13 = v_2.DisplayName;
+            local var478 = os.time();
+            local AccountAge_13 = v_2.AccountAge;
+            local var479 = AccountAge_13 * 86400;
+            local var480 = var478 - var479;
+            local var481 = os.date("%x", var480);
+            local var482 = var481 .. "\nSession: 10s";
+            local var483 = "\nJoined: " .. var482;
+            local var484 = DisplayName_13 .. var483;
+            TextLabel_12.Text = var484;
+            local Waited_For_36 = task.wait(1);
+            local var485 = (v_2_Name_ and 14308526); -- 14308526
+            local var486 = (var485 or 13372547);
+            local Parent_12 = v_2_Name_.Parent;
+            local var487 = os.clock();
+            local var488 = var487 - var363;
+            -- 11.061005
+            local DisplayName_14 = v_2.DisplayName;
+            local var489 = os.time();
+            local AccountAge_14 = v_2.AccountAge;
+            local var490 = AccountAge_14 * 86400;
+            local var491 = var489 - var490;
+            local var492 = os.date("%x", var491);
+            local var493 = var492 .. "\nSession: 11s";
+            local var494 = "\nJoined: " .. var493;
+            local var495 = DisplayName_14 .. var494;
+            TextLabel_12.Text = var495;
+            local Waited_For_37 = task.wait(1);
+            local var496 = (v_2_Name_ and 14308526); -- 14308526
+            local var497 = (var496 or 13372547);
+            local Parent_13 = v_2_Name_.Parent;
+            local var498 = os.clock();
+            local var499 = var498 - var363;
+            -- 12.063792
+            local DisplayName_15 = v_2.DisplayName;
+            local var500 = os.time();
+            local AccountAge_15 = v_2.AccountAge;
+            local var501 = AccountAge_15 * 86400;
+            local var502 = var500 - var501;
+            local var503 = os.date("%x", var502);
+            local var504 = var503 .. "\nSession: 12s";
+            local var505 = "\nJoined: " .. var504;
+            local var506 = DisplayName_15 .. var505;
+            TextLabel_12.Text = var506;
+            local Waited_For_38 = task.wait(1);
+            local var507 = (v_2_Name_ and 14308526); -- 14308526
+            local var508 = (var507 or 13372547);
+            local Parent_14 = v_2_Name_.Parent;
+            local var509 = os.clock();
+            local var510 = var509 - var363;
+            -- 13.066653
+            local DisplayName_16 = v_2.DisplayName;
+            local var511 = os.time();
+            local AccountAge_16 = v_2.AccountAge;
+            local var512 = AccountAge_16 * 86400;
+            local var513 = var511 - var512;
+            local var514 = os.date("%x", var513);
+            local var515 = var514 .. "\nSession: 13s";
+            local var516 = "\nJoined: " .. var515;
+            local var517 = DisplayName_16 .. var516;
+            TextLabel_12.Text = var517;
+            local Waited_For_39 = task.wait(1);
+            local var518 = (v_2_Name_ and 14308526); -- 14308526
+            local var519 = (var518 or 13372547);
+            local Parent_15 = v_2_Name_.Parent;
+            local var520 = os.clock();
+            local var521 = var520 - var363;
+            -- 14.069358
+            local DisplayName_17 = v_2.DisplayName;
+            local var522 = os.time();
+            local AccountAge_17 = v_2.AccountAge;
+            local var523 = AccountAge_17 * 86400;
+            local var524 = var522 - var523;
+            local var525 = os.date("%x", var524);
+            local var526 = var525 .. "\nSession: 14s";
+            local var527 = "\nJoined: " .. var526;
+            local var528 = DisplayName_17 .. var527;
+            TextLabel_12.Text = var528;
+            local Waited_For_40 = task.wait(1);
+            local var529 = (v_2_Name_ and 14308526); -- 14308526
+            local var530 = (var529 or 13372547);
+            local Parent_16 = v_2_Name_.Parent;
+            local var531 = os.clock();
+            local var532 = var531 - var363;
+            -- 15.071844
+            local DisplayName_18 = v_2.DisplayName;
+            local var533 = os.time();
+            local AccountAge_18 = v_2.AccountAge;
+            local var534 = AccountAge_18 * 86400;
+            local var535 = var533 - var534;
+            local var536 = os.date("%x", var535);
+            local var537 = var536 .. "\nSession: 15s";
+            local var538 = "\nJoined: " .. var537;
+            local var539 = DisplayName_18 .. var538;
+            TextLabel_12.Text = var539;
+            local Waited_For_41 = task.wait(1);
+            local var540 = (v_2_Name_ and 14308526); -- 14308526
+            local var541 = (var540 or 13372547);
+            local Parent_17 = v_2_Name_.Parent;
+            local var542 = os.clock();
+            local var543 = var542 - var363;
+            -- 16.074688
+            local DisplayName_19 = v_2.DisplayName;
+            local var544 = os.time();
+            local AccountAge_19 = v_2.AccountAge;
+            local var545 = AccountAge_19 * 86400;
+            local var546 = var544 - var545;
+            local var547 = os.date("%x", var546);
+            local var548 = var547 .. "\nSession: 16s";
+            local var549 = "\nJoined: " .. var548;
+            local var550 = DisplayName_19 .. var549;
+            TextLabel_12.Text = var550;
+            local Waited_For_42 = task.wait(1);
+            local var551 = (v_2_Name_ and 14308526); -- 14308526
+            local var552 = (var551 or 13372547);
+            local Parent_18 = v_2_Name_.Parent;
+            local var553 = os.clock();
+            local var554 = var553 - var363;
+            -- 17.077785
+            local DisplayName_20 = v_2.DisplayName;
+            local var555 = os.time();
+            local AccountAge_20 = v_2.AccountAge;
+            local var556 = AccountAge_20 * 86400;
+            local var557 = var555 - var556;
+            local var558 = os.date("%x", var557);
+            local var559 = var558 .. "\nSession: 17s";
+            local var560 = "\nJoined: " .. var559;
+            local var561 = DisplayName_20 .. var560;
+            TextLabel_12.Text = var561;
+            local Waited_For_43 = task.wait(1);
+            local var562 = (v_2_Name_ and 14308526); -- 14308526
+            local var563 = (var562 or 13372547);
+            local Parent_19 = v_2_Name_.Parent;
+            local var564 = os.clock();
+            local var565 = var564 - var363;
+            -- 18.080841
+            local DisplayName_21 = v_2.DisplayName;
+            local var566 = os.time();
+            local AccountAge_21 = v_2.AccountAge;
+            local var567 = AccountAge_21 * 86400;
+            local var568 = var566 - var567;
+            local var569 = os.date("%x", var568);
+            local var570 = var569 .. "\nSession: 18s";
+            local var571 = "\nJoined: " .. var570;
+            local var572 = DisplayName_21 .. var571;
+            TextLabel_12.Text = var572;
+            local Waited_For_44 = task.wait(1);
+            local var573 = (v_2_Name_ and 14308526); -- 14308526
+            local var574 = (var573 or 13372547);
+            local Parent_20 = v_2_Name_.Parent;
+            local var575 = os.clock();
+            local var576 = var575 - var363;
+            -- 19.083722
+            local DisplayName_22 = v_2.DisplayName;
+            local var577 = os.time();
+            local AccountAge_22 = v_2.AccountAge;
+            local var578 = AccountAge_22 * 86400;
+            local var579 = var577 - var578;
+            local var580 = os.date("%x", var579);
+            local var581 = var580 .. "\nSession: 19s";
+            local var582 = "\nJoined: " .. var581;
+            local var583 = DisplayName_22 .. var582;
+            TextLabel_12.Text = var583;
+            local Waited_For_45 = task.wait(1);
+            local var584 = (v_2_Name_ and 14308526); -- 14308526
+            local var585 = (var584 or 13372547);
+            local Parent_21 = v_2_Name_.Parent;
+            local var586 = os.clock();
+            local var587 = var586 - var363;
+            -- 20.086129
+            local DisplayName_23 = v_2.DisplayName;
+            local var588 = os.time();
+            local AccountAge_23 = v_2.AccountAge;
+            local var589 = AccountAge_23 * 86400;
+            local var590 = var588 - var589;
+            local var591 = os.date("%x", var590);
+            local var592 = var591 .. "\nSession: 20s";
+            local var593 = "\nJoined: " .. var592;
+            local var594 = DisplayName_23 .. var593;
+            TextLabel_12.Text = var594;
+            local Waited_For_46 = task.wait(1);
+            local var595 = (v_2_Name_ and 14308526); -- 14308526
+            local var596 = (var595 or 13372547);
+            local Parent_22 = v_2_Name_.Parent;
+            local var597 = os.clock();
+            local var598 = var597 - var363;
+            -- 21.088395
+            local DisplayName_24 = v_2.DisplayName;
+            local var599 = os.time();
+            local AccountAge_24 = v_2.AccountAge;
+            local var600 = AccountAge_24 * 86400;
+            local var601 = var599 - var600;
+            local var602 = os.date("%x", var601);
+            local var603 = var602 .. "\nSession: 21s";
+            local var604 = "\nJoined: " .. var603;
+            local var605 = DisplayName_24 .. var604;
+            TextLabel_12.Text = var605;
+            local Waited_For_47 = task.wait(1);
+            local var606 = (v_2_Name_ and 14308526); -- 14308526
+            local var607 = (var606 or 13372547);
+            local Parent_23 = v_2_Name_.Parent;
+            local var608 = os.clock();
+            local var609 = var608 - var363;
+            -- 22.092389
+            local DisplayName_25 = v_2.DisplayName;
+            local var610 = os.time();
+            local AccountAge_25 = v_2.AccountAge;
+            local var611 = AccountAge_25 * 86400;
+            local var612 = var610 - var611;
+            local var613 = os.date("%x", var612);
+            local var614 = var613 .. "\nSession: 22s";
+            local var615 = "\nJoined: " .. var614;
+            local var616 = DisplayName_25 .. var615;
+            TextLabel_12.Text = var616;
+            local Waited_For_48 = task.wait(1);
+            local var617 = (v_2_Name_ and 14308526); -- 14308526
+            local var618 = (var617 or 13372547);
+            local Parent_24 = v_2_Name_.Parent;
+            local var619 = os.clock();
+            local var620 = var619 - var363;
+            -- 23.095378
+            local DisplayName_26 = v_2.DisplayName;
+            local var621 = os.time();
+            local AccountAge_26 = v_2.AccountAge;
+            local var622 = AccountAge_26 * 86400;
+            local var623 = var621 - var622;
+            local var624 = os.date("%x", var623);
+            local var625 = var624 .. "\nSession: 23s";
+            local var626 = "\nJoined: " .. var625;
+            local var627 = DisplayName_26 .. var626;
+            TextLabel_12.Text = var627;
+            local Waited_For_49 = task.wait(1);
+            local var628 = (v_2_Name_ and 14308526); -- 14308526
+            local var629 = (var628 or 13372547);
+            local Parent_25 = v_2_Name_.Parent;
+            local var630 = os.clock();
+            local var631 = var630 - var363;
+            -- 24.098183
+            local DisplayName_27 = v_2.DisplayName;
+            local var632 = os.time();
+            local AccountAge_27 = v_2.AccountAge;
+            local var633 = AccountAge_27 * 86400;
+            local var634 = var632 - var633;
+            local var635 = os.date("%x", var634);
+            local var636 = var635 .. "\nSession: 24s";
+            local var637 = "\nJoined: " .. var636;
+            local var638 = DisplayName_27 .. var637;
+            TextLabel_12.Text = var638;
+            local Waited_For_50 = task.wait(1);
+            local var639 = (v_2_Name_ and 14308526); -- 14308526
+            local var640 = (var639 or 13372547);
+            local Parent_26 = v_2_Name_.Parent;
+            local var641 = os.clock();
+            local var642 = var641 - var363;
+            -- 25.100735
+            local DisplayName_28 = v_2.DisplayName;
+            local var643 = os.time();
+            local AccountAge_28 = v_2.AccountAge;
+            local var644 = AccountAge_28 * 86400;
+            local var645 = var643 - var644;
+            local var646 = os.date("%x", var645);
+            local var647 = var646 .. "\nSession: 25s";
+            local var648 = "\nJoined: " .. var647;
+            local var649 = DisplayName_28 .. var648;
+            TextLabel_12.Text = var649;
+            local Waited_For_51 = task.wait(1);
+            local var650 = (v_2_Name_ and 14308526); -- 14308526
+            local var651 = (var650 or 13372547);
+            local Parent_27 = v_2_Name_.Parent;
+            local var652 = os.clock();
+            local var653 = var652 - var363;
+            -- 26.104970
+            local DisplayName_29 = v_2.DisplayName;
+            local var654 = os.time();
+            local AccountAge_29 = v_2.AccountAge;
+            local var655 = AccountAge_29 * 86400;
+            local var656 = var654 - var655;
+            local var657 = os.date("%x", var656);
+            local var658 = var657 .. "\nSession: 26s";
+            local var659 = "\nJoined: " .. var658;
+            local var660 = DisplayName_29 .. var659;
+            TextLabel_12.Text = var660;
+            local Waited_For_52 = task.wait(1);
+            local var661 = (v_2_Name_ and 14308526); -- 14308526
+            local var662 = (var661 or 13372547);
+            local Parent_28 = v_2_Name_.Parent;
+            local var663 = os.clock();
+            local var664 = var663 - var363;
+            -- 27.108673
+            local DisplayName_30 = v_2.DisplayName;
+            local var665 = os.time();
+            local AccountAge_30 = v_2.AccountAge;
+            local var666 = AccountAge_30 * 86400;
+            local var667 = var665 - var666;
+            local var668 = os.date("%x", var667);
+            local var669 = var668 .. "\nSession: 27s";
+            local var670 = "\nJoined: " .. var669;
+            local var671 = DisplayName_30 .. var670;
+            TextLabel_12.Text = var671;
+            local Waited_For_53 = task.wait(1);
+            local var672 = (v_2_Name_ and 14308526); -- 14308526
+            local var673 = (var672 or 13372547);
+            local Parent_29 = v_2_Name_.Parent;
+            local var674 = os.clock();
+            local var675 = var674 - var363;
+            -- 28.112782
+            local DisplayName_31 = v_2.DisplayName;
+            local var676 = os.time();
+            local AccountAge_31 = v_2.AccountAge;
+            local var677 = AccountAge_31 * 86400;
+            local var678 = var676 - var677;
+            local var679 = os.date("%x", var678);
+            local var680 = var679 .. "\nSession: 28s";
+            local var681 = "\nJoined: " .. var680;
+            local var682 = DisplayName_31 .. var681;
+            TextLabel_12.Text = var682;
+            local Waited_For_54 = task.wait(1);
+            local var683 = (v_2_Name_ and 14308526); -- 14308526
+            local var684 = (var683 or 13372547);
+            local Parent_30 = v_2_Name_.Parent;
+            local var685 = os.clock();
+            local var686 = var685 - var363;
+            -- 29.116508
+            local DisplayName_32 = v_2.DisplayName;
+            local var687 = os.time();
+            local AccountAge_32 = v_2.AccountAge;
+            local var688 = AccountAge_32 * 86400;
+            local var689 = var687 - var688;
+            local var690 = os.date("%x", var689);
+            local var691 = var690 .. "\nSession: 29s";
+            local var692 = "\nJoined: " .. var691;
+            local var693 = DisplayName_32 .. var692;
+            TextLabel_12.Text = var693;
+            local Waited_For_55 = task.wait(1);
+            local var694 = (v_2_Name_ and 14308526); -- 14308526
+            local var695 = (var694 or 13372547);
+            local Parent_31 = v_2_Name_.Parent;
+            local var696 = os.clock();
+            local var697 = var696 - var363;
+            -- 30.120227
+            local DisplayName_33 = v_2.DisplayName;
+            local var698 = os.time();
+            local AccountAge_33 = v_2.AccountAge;
+            local var699 = AccountAge_33 * 86400;
+            local var700 = var698 - var699;
+            local var701 = os.date("%x", var700);
+            local var702 = var701 .. "\nSession: 30s";
+            local var703 = "\nJoined: " .. var702;
+            local var704 = DisplayName_33 .. var703;
+            TextLabel_12.Text = var704;
+            local Waited_For_56 = task.wait(1);
+            local var705 = (v_2_Name_ and 14308526); -- 14308526
+            local var706 = (var705 or 13372547);
+            local Parent_32 = v_2_Name_.Parent;
+            local var707 = os.clock();
+            local var708 = var707 - var363;
+            -- 31.123698
+            local DisplayName_34 = v_2.DisplayName;
+            local var709 = os.time();
+            local AccountAge_34 = v_2.AccountAge;
+            local var710 = AccountAge_34 * 86400;
+            local var711 = var709 - var710;
+            local var712 = os.date("%x", var711);
+            local var713 = var712 .. "\nSession: 31s";
+            local var714 = "\nJoined: " .. var713;
+            local var715 = DisplayName_34 .. var714;
+            TextLabel_12.Text = var715;
+            local Waited_For_57 = task.wait(1);
+            local var716 = (v_2_Name_ and 14308526); -- 14308526
+            local var717 = (var716 or 13372547);
+            local Parent_33 = v_2_Name_.Parent;
+            local var718 = os.clock();
+            local var719 = var718 - var363;
+            -- 32.127637
+            local DisplayName_35 = v_2.DisplayName;
+            local var720 = os.time();
+            local AccountAge_35 = v_2.AccountAge;
+            local var721 = AccountAge_35 * 86400;
+            local var722 = var720 - var721;
+            local var723 = os.date("%x", var722);
+            local var724 = var723 .. "\nSession: 32s";
+            local var725 = "\nJoined: " .. var724;
+            local var726 = DisplayName_35 .. var725;
+            TextLabel_12.Text = var726;
+            local Waited_For_58 = task.wait(1);
+            local var727 = (v_2_Name_ and 14308526); -- 14308526
+            local var728 = (var727 or 13372547);
+            local Parent_34 = v_2_Name_.Parent;
+            local var729 = os.clock();
+            local var730 = var729 - var363;
+            -- 33.131626
+            local DisplayName_36 = v_2.DisplayName;
+            local var731 = os.time();
+            local AccountAge_36 = v_2.AccountAge;
+            local var732 = AccountAge_36 * 86400;
+            local var733 = var731 - var732;
+            local var734 = os.date("%x", var733);
+            local var735 = var734 .. "\nSession: 33s";
+            local var736 = "\nJoined: " .. var735;
+            local var737 = DisplayName_36 .. var736;
+            TextLabel_12.Text = var737;
+            local Waited_For_59 = task.wait(1);
+            local var738 = (v_2_Name_ and 14308526); -- 14308526
+            local var739 = (var738 or 13372547);
+            local Parent_35 = v_2_Name_.Parent;
+            local var740 = os.clock();
+            local var741 = var740 - var363;
+            -- 34.135244
+            local DisplayName_37 = v_2.DisplayName;
+            local var742 = os.time();
+            local AccountAge_37 = v_2.AccountAge;
+            local var743 = AccountAge_37 * 86400;
+            local var744 = var742 - var743;
+            local var745 = os.date("%x", var744);
+            local var746 = var745 .. "\nSession: 34s";
+            local var747 = "\nJoined: " .. var746;
+            local var748 = DisplayName_37 .. var747;
+            TextLabel_12.Text = var748;
+            local Waited_For_60 = task.wait(1);
+            local var749 = (v_2_Name_ and 14308526); -- 14308526
+            local var750 = (var749 or 13372547);
+            local Parent_36 = v_2_Name_.Parent;
+            local var751 = os.clock();
+            local var752 = var751 - var363;
+            -- 35.139117
+            local DisplayName_38 = v_2.DisplayName;
+            local var753 = os.time();
+            local AccountAge_38 = v_2.AccountAge;
+            local var754 = AccountAge_38 * 86400;
+            error("[internal]:659: too many operations")
+            error("[internal]:1691: [internal]:659: too many operations")
         end)
+    end
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Player_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Translucent Walls"
+local UICorner_15 = Instance.new("UICorner")
+UICorner_15.CornerRadius = UDim_New(0, 6)
+UICorner_15.Parent = Btn1
+local UIStroke_13 = Instance.new("UIStroke")
+UIStroke_13.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_13.Thickness = 2
+UIStroke_13.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_13.Parent = Btn1
+local UICorner_16 = Instance.new("UICorner")
+UICorner_16.Parent = Btn1
+UICorner_16.CornerRadius = UDim_New(0, 6)
+local Connection_43
+Connection_43 = Btn1.MouseButton1Down:Connect(function() -- args: X_75, Y_78
+    for i_3, v_3 in pairs(workspace:GetDescendants()) do
+        if i_3 then -- ran, expr id 5, has an else.
+            local Part = v_3:IsA("Part")
+        end
+        if not Part then -- didnt run, expr id 6, has an else.
+        else
+            v_3.Transparency = 0.6
+        end
+        v_3.CanCollide = true
+    end
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Player_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Fling"
+local UICorner_17 = Instance.new("UICorner")
+UICorner_17.CornerRadius = UDim_New(0, 6)
+UICorner_17.Parent = Btn1
+local UIStroke_14 = Instance.new("UIStroke")
+UIStroke_14.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_14.Thickness = 2
+UIStroke_14.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_14.Parent = Btn1
+local UICorner_18 = Instance.new("UICorner")
+UICorner_18.Parent = Btn1
+UICorner_18.CornerRadius = UDim_New(0, 6)
+local Connection_44
+Connection_44 = Btn1.MouseButton1Down:Connect(function() -- args: X_76, Y_79
+    game:GetService("Players")
+    local _ = not Welcome
+    -- false
+    getgenv().Welcome = true
+    for i_4, v_4 in next, Players:GetPlayers() do
+        if i_4 then -- ran, expr id 7, has an else.
+            local Character = LocalPlayer.Character
+            if Character then -- ran, expr id 8, has an else.
+                local Humanoid = Character:FindFirstChildOfClass("Humanoid")
+            end
+        end
+        if Humanoid then -- ran, expr id 9, has an else.
+        end
+        local Character_2 = v_4.Character
+        if not Character_2:FindFirstChildOfClass("Humanoid") then -- didnt run, expr id 10, has an else.
+        else
+            local Humanoid_3 = Character_2:FindFirstChildOfClass("Humanoid")
+        end
+        if not Humanoid_3 then -- didnt run, expr id 11, has an else.
+        else
+        end
+        if Humanoid_3.RootPart then -- ran, expr id 12, has an else.
+        end
+        local _ = (Character_2:FindFirstChild("Head") and 13784184); -- 13784184
+        local Accessory = Character_2:FindFirstChildOfClass("Accessory")
+        local var196 = (Accessory and 12254180); -- 12254180
+        local Accessory_2 = Character_2:FindFirstChildOfClass("Accessory")
+        if not Env.Accessoy then -- didnt run, expr id 13, has an else.
+        else
+        end
+        if not Accessory_2:FindFirstChild("Handle") then -- didnt run, expr id 14, has an else.
+        else
+        end
+    end
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Player_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "WalkSpeed"
+local UICorner_19 = Instance.new("UICorner")
+UICorner_19.CornerRadius = UDim_New(0, 6)
+UICorner_19.Parent = Btn1
+local UIStroke_15 = Instance.new("UIStroke")
+UIStroke_15.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_15.Thickness = 2
+UIStroke_15.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_15.Parent = Btn1
+local UICorner_20 = Instance.new("UICorner")
+UICorner_20.Parent = Btn1
+UICorner_20.CornerRadius = UDim_New(0, 6)
+local Connection_45
+Connection_45 = Btn1.MouseButton1Down:Connect(function(X_77, Y_80, p3_0, p4_0, p5_0) -- args: X_78, Y_81
+    local Character_3 = LocalPlayer.Character
+    if not Character_3 then -- didnt run, expr id 15, has an else.
     else
-        character.ChildAdded:Connect(function(child)
-            if child:IsA("Humanoid") then
-                child.Died:Connect(function()
-                    hopToServer()
-                end)
-            end
-        end)
+        local Humanoid_4 = Character_3:FindFirstChild("Humanoid")
     end
-end
- 
--- Setup on current character
-if LocalPlayer.Character then
-    setupDiedListener(LocalPlayer.Character)
-end
- 
--- Setup on future characters
-LocalPlayer.CharacterAdded:Connect(setupDiedListener)
- 
--- Detect if the player is in a game with the specific display name and hop
-task.spawn(function()
-    while true do
-        task.wait(2) -- Check every 2 seconds
-        for _, player in ipairs(Players:GetPlayers()) do
-            if player ~= LocalPlayer and player.DisplayName == "U3RT_SOVIETxKILLA" then
-                hopToServer()
-                return
-            end
-        end
+    local var197 = (Humanoid_4 and 14368004); -- 14368004
+    Humanoid_4.WalkSpeed = 100
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Player_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Gravity"
+local UICorner_21 = Instance.new("UICorner")
+UICorner_21.CornerRadius = UDim_New(0, 6)
+UICorner_21.Parent = Btn1
+local UIStroke_16 = Instance.new("UIStroke")
+UIStroke_16.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_16.Thickness = 2
+UIStroke_16.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_16.Parent = Btn1
+local UICorner_22 = Instance.new("UICorner")
+UICorner_22.Parent = Btn1
+UICorner_22.CornerRadius = UDim_New(0, 6)
+local Connection_46
+Connection_46 = Btn1.MouseButton1Down:Connect(function() -- args: X_79, Y_82
+    local Workspace = game:GetService("Workspace")
+    workspace.Gravity = 20
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Player_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Anti-Afk"
+local UICorner_23 = Instance.new("UICorner")
+UICorner_23.CornerRadius = UDim_New(0, 6)
+UICorner_23.Parent = Btn1
+local UIStroke_17 = Instance.new("UIStroke")
+UIStroke_17.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_17.Thickness = 2
+UIStroke_17.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_17.Parent = Btn1
+local UICorner_24 = Instance.new("UICorner")
+UICorner_24.Parent = Btn1
+UICorner_24.CornerRadius = UDim_New(0, 6)
+local Connection_47
+Connection_47 = LocalPlayer.Idled:Connect(function(Time, p2_0, p3_0, p4_0, p5_0) -- args: Time_2
+end)
+local Connection_48
+Connection_48 = Btn1.MouseButton1Down:Connect(function(X_80, Y_83, p3_0, p4_0, p5_0) -- args: X_81, Y_84
+    Env.AntiAfkEnabled = true
+    local AntiAfkBtn = Env.AntiAfkBtn
+    AntiAfkBtn.Text = "Anti-AFK: ON"
+    AntiAfkBtn.TextColor3 = Color3_FromRGB(0, 255, 255)
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Player_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Rejoin"
+local UICorner_25 = Instance.new("UICorner")
+UICorner_25.CornerRadius = UDim_New(0, 6)
+UICorner_25.Parent = Btn1
+local UIStroke_18 = Instance.new("UIStroke")
+UIStroke_18.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_18.Thickness = 2
+UIStroke_18.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_18.Parent = Btn1
+local UICorner_26 = Instance.new("UICorner")
+UICorner_26.Parent = Btn1
+UICorner_26.CornerRadius = UDim_New(0, 6)
+local Connection_49
+Connection_49 = Btn1.MouseButton1Down:Connect(function(X_82, Y_85, p3_0, p4_0, p5_0) -- args: X_83, Y_86
+    game:GetService("TeleportService")
+    game:GetService("Players")
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Player_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Reset"
+local UICorner_27 = Instance.new("UICorner")
+UICorner_27.CornerRadius = UDim_New(0, 6)
+UICorner_27.Parent = Btn1
+local UIStroke_19 = Instance.new("UIStroke")
+UIStroke_19.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_19.Thickness = 2
+UIStroke_19.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_19.Parent = Btn1
+local UICorner_28 = Instance.new("UICorner")
+UICorner_28.Parent = Btn1
+UICorner_28.CornerRadius = UDim_New(0, 6)
+local Connection_50
+Connection_50 = Btn1.MouseButton1Down:Connect(function(X_84, Y_87, p3_0) -- args: X_85, Y_88
+    local Character_4 = LocalPlayer.Character
+    local _ = (Character_4 and 10936094); -- 10936094
+    local Humanoid_6 = Character_4:FindFirstChild("Humanoid")
+    if Humanoid_6 then -- ran, expr id 16, has an else.
+        Humanoid_6.Health = 0
     end
 end)
- 
--- Healing loop (max health)
-task.spawn(function()
-    while true do
-        task.wait(0.3)
-        local char = LocalPlayer.Character
-        local hum = char and char:FindFirstChildOfClass("Humanoid")
-        if hum then
-            hum.Health = hum.MaxHealth
-        end
-    end
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Player_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Walking Pad"
+local UICorner_29 = Instance.new("UICorner")
+UICorner_29.CornerRadius = UDim_New(0, 6)
+UICorner_29.Parent = Btn1
+local UIStroke_20 = Instance.new("UIStroke")
+UIStroke_20.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_20.Thickness = 2
+UIStroke_20.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_20.Parent = Btn1
+local UICorner_30 = Instance.new("UICorner")
+UICorner_30.Parent = Btn1
+UICorner_30.CornerRadius = UDim_New(0, 6)
+local Connection_51
+Connection_51 = Btn1.MouseButton1Down:Connect(function() -- args: X_86, Y_89
+    local Name_7 = LocalPlayer.Name
+    local Part_2 = Instance.new("Part")
+    Part_2.Parent = workspace
+    Part_2.Locked = true
+    local BrickColor_New = BrickColor.new
+    Part_2.BrickColor = BrickColor_New("Black")
+    Part_2.BrickColor = BrickColor_New(255)
+    local Vector3_New = Vector3.new
+    Part_2.Size = Vector3_New(8, 1.2, 8)
+    Part_2.Anchored = true
+    local CylinderMesh = Instance.new("CylinderMesh")
+    CylinderMesh.Scale = Vector3_New(1, 0.5, 1)
+    CylinderMesh.Parent = Part_2
+    local CFrame_New = CFrame.new
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    Part_2.CFrame = CFrame_New(Players:findFirstChild(Name_7).Character.Torso.CFrame.x, Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4, Players:findFirstChild(Name_7).Character.Torso.CFrame.z)
+    wait()
+    local _ = Players:findFirstChild(Name_7).Character.Torso.CFrame.x
+    local _ = Players:findFirstChild(Name_7).Character.Torso.CFrame.y - 4
+    error("[internal]:659: too many operations")
 end)
- 
--- Bring all (using Durability vs Strength x6.5 rule)
-task.spawn(function()
-    while true do
-        task.wait(0.3)
-        local root = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-        local myDurability = LocalPlayer:FindFirstChild("Durability") and LocalPlayer.Durability.Value
- 
-        if root and myDurability then
-            for _, player in ipairs(Players:GetPlayers()) do
-                if player ~= LocalPlayer 
-                    and not excludedNames[player.DisplayName]
-                    and player.Character 
-                    and player.Character:FindFirstChild("HumanoidRootPart") then
- 
-                    local stats = player:FindFirstChild("leaderstats")
-                    local strength = stats and stats:FindFirstChild("Strength") and stats.Strength.Value
- 
-                    if strength and strength < myDurability * 6.5 then
-                        local targetRoot = player.Character.HumanoidRootPart
-                        targetRoot.CFrame = root.CFrame * CFrame.new(math.random(-5,5), 0, math.random(-5,5))
-                    end
-                end
-            end
-        end
-    end
+local _ = not Fe_Admin_Gui_s_Page:FindFirstChildOfClass("UIListLayout")
+-- false
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Fe_Admin_Gui_s_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Dark Dex"
+local UICorner_31 = Instance.new("UICorner")
+UICorner_31.CornerRadius = UDim_New(0, 6)
+UICorner_31.Parent = Btn1
+local UIStroke_21 = Instance.new("UIStroke")
+UIStroke_21.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_21.Thickness = 2
+UIStroke_21.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_21.Parent = Btn1
+local UICorner_32 = Instance.new("UICorner")
+UICorner_32.Parent = Btn1
+UICorner_32.CornerRadius = UDim_New(0, 6)
+local Connection_52
+Connection_52 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0, p3_0, p4_0)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua"))()
 end)
- 
--- Auto equip the Punch tool every 0.1 seconds
-task.spawn(function()
-    while true do
-        task.wait(0.1)  -- Wait for 0.1 seconds before checking again
- 
-        -- Check if the tool exists in the backpack
-        local Backpack = LocalPlayer:WaitForChild("Backpack")
-        local tool = Backpack:FindFirstChild("Punch")
- 
-        -- If the tool exists and is not equipped, equip it
-        if tool and LocalPlayer.Character then
-            local humanoid = LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
-            if humanoid and tool.Parent ~= LocalPlayer.Character then
-                humanoid:EquipTool(tool)
-            end
-        end
-    end
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Fe_Admin_Gui_s_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Yeet Gui"
+local UICorner_33 = Instance.new("UICorner")
+UICorner_33.CornerRadius = UDim_New(0, 6)
+UICorner_33.Parent = Btn1
+local UIStroke_22 = Instance.new("UIStroke")
+UIStroke_22.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_22.Thickness = 2
+UIStroke_22.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_22.Parent = Btn1
+local UICorner_34 = Instance.new("UICorner")
+UICorner_34.Parent = Btn1
+UICorner_34.CornerRadius = UDim_New(0, 6)
+local Connection_53
+Connection_53 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0, p3_0, p4_0, p5_0)
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-yeet-gui-47961"))()
 end)
- 
- 
--- Auto punch function
-task.spawn(function()
-    local Backpack = LocalPlayer:WaitForChild("Backpack")
-    local tool = Backpack:WaitForChild("Punch")
- 
-    repeat task.wait() until LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid")
-    local humanoid = LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
-    humanoid:EquipTool(tool)
- 
-    while true do
-        task.wait(0.1)
-        if tool and tool.Parent == LocalPlayer.Character then
-            tool:Activate()
-        end
-    end
+local UICorner_35 = Instance.new("UICorner")
+UICorner_35.CornerRadius = UDim_New(0, 6)
+UICorner_35.Parent = Btn1
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Fe_Admin_Gui_s_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Op Finality"
+local UICorner_36 = Instance.new("UICorner")
+UICorner_36.CornerRadius = UDim_New(0, 6)
+UICorner_36.Parent = Btn1
+local UIStroke_23 = Instance.new("UIStroke")
+UIStroke_23.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_23.Thickness = 2
+UIStroke_23.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_23.Parent = Btn1
+local UICorner_37 = Instance.new("UICorner")
+UICorner_37.Parent = Btn1
+UICorner_37.CornerRadius = UDim_New(0, 6)
+local Connection_54
+Connection_54 = Btn1.MouseButton1Click:Connect(function()
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://pastebin.com/raw/cdWKjwj8"))()
 end)
- 
--- Spin while killing (adds spinning effect)
-task.spawn(function()
-    while true do
-        task.wait(0.03)
-        local char = LocalPlayer.Character
-        local root = char and char:FindFirstChild("HumanoidRootPart")
-        if root then
-            root.CFrame = root.CFrame * CFrame.Angles(0, math.rad(15), 0)
-        end
-    end
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Fe_Admin_Gui_s_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Owl Hub"
+local UICorner_38 = Instance.new("UICorner")
+UICorner_38.CornerRadius = UDim_New(0, 6)
+UICorner_38.Parent = Btn1
+local UIStroke_24 = Instance.new("UIStroke")
+UIStroke_24.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_24.Thickness = 2
+UIStroke_24.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_24.Parent = Btn1
+local UICorner_39 = Instance.new("UICorner")
+UICorner_39.Parent = Btn1
+UICorner_39.CornerRadius = UDim_New(0, 6)
+local Connection_55
+Connection_55 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0, p3_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ao-0/owl-hub/main/main.lua"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Fe_Admin_Gui_s_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Infinite Yield"
+local UICorner_40 = Instance.new("UICorner")
+UICorner_40.CornerRadius = UDim_New(0, 6)
+UICorner_40.Parent = Btn1
+local UIStroke_25 = Instance.new("UIStroke")
+UIStroke_25.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_25.Thickness = 2
+UIStroke_25.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_25.Parent = Btn1
+local UICorner_41 = Instance.new("UICorner")
+UICorner_41.Parent = Btn1
+UICorner_41.CornerRadius = UDim_New(0, 6)
+local Connection_56
+Connection_56 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0, p3_0, p4_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Fe_Admin_Gui_s_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Backdoor Finder"
+local UICorner_42 = Instance.new("UICorner")
+UICorner_42.CornerRadius = UDim_New(0, 6)
+UICorner_42.Parent = Btn1
+local UIStroke_26 = Instance.new("UIStroke")
+UIStroke_26.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_26.Thickness = 2
+UIStroke_26.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_26.Parent = Btn1
+local UICorner_43 = Instance.new("UICorner")
+UICorner_43.Parent = Btn1
+UICorner_43.CornerRadius = UDim_New(0, 6)
+local Connection_57
+Connection_57 = Btn1.MouseButton1Click:Connect(function(p1_0)
+    local var251 = game:HttpGet("https://raw.githubusercontent.com/its-LALOL/LALOL-Hub/main/Backdoor-Scanner/script")
+    -- this function was spied, no real content was loaded.
+    loadstring(var251)()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Fe_Admin_Gui_s_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Silent Executor"
+local UICorner_44 = Instance.new("UICorner")
+UICorner_44.CornerRadius = UDim_New(0, 6)
+UICorner_44.Parent = Btn1
+local UIStroke_27 = Instance.new("UIStroke")
+UIStroke_27.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_27.Thickness = 2
+UIStroke_27.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_27.Parent = Btn1
+local UICorner_45 = Instance.new("UICorner")
+UICorner_45.Parent = Btn1
+UICorner_45.CornerRadius = UDim_New(0, 6)
+local Connection_58
+Connection_58 = Btn1.MouseButton1Click:Connect(function()
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://pastebin.com/raw/k4J7QL2D", true))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Fe_Admin_Gui_s_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Fe c00lgui"
+local UICorner_46 = Instance.new("UICorner")
+UICorner_46.CornerRadius = UDim_New(0, 6)
+UICorner_46.Parent = Btn1
+local UIStroke_28 = Instance.new("UIStroke")
+UIStroke_28.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_28.Thickness = 2
+UIStroke_28.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_28.Parent = Btn1
+local UICorner_47 = Instance.new("UICorner")
+UICorner_47.Parent = Btn1
+UICorner_47.CornerRadius = UDim_New(0, 6)
+local Connection_59
+Connection_59 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-c00lgui-Reborn-FE-by-LordMuhammad-36638"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Fe_Admin_Gui_s_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Robox Egor (r15 only)"
+local UICorner_48 = Instance.new("UICorner")
+UICorner_48.CornerRadius = UDim_New(0, 6)
+UICorner_48.Parent = Btn1
+local UIStroke_29 = Instance.new("UIStroke")
+UIStroke_29.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_29.Thickness = 2
+UIStroke_29.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_29.Parent = Btn1
+local UICorner_49 = Instance.new("UICorner")
+UICorner_49.Parent = Btn1
+UICorner_49.CornerRadius = UDim_New(0, 6)
+local Connection_60
+Connection_60 = Btn1.MouseButton1Click:Connect(function(p1_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://pastebin.com/raw/b787QKMQ"))()
+end)
+local _ = not Scripts_Page:FindFirstChildOfClass("UIListLayout")
+-- false
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Scripts_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Kidnapper Van"
+local UICorner_50 = Instance.new("UICorner")
+UICorner_50.CornerRadius = UDim_New(0, 6)
+UICorner_50.Parent = Btn1
+local UIStroke_30 = Instance.new("UIStroke")
+UIStroke_30.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_30.Thickness = 2
+UIStroke_30.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_30.Parent = Btn1
+local UICorner_51 = Instance.new("UICorner")
+UICorner_51.Parent = Btn1
+UICorner_51.CornerRadius = UDim_New(0, 6)
+local Connection_61
+Connection_61 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0, p3_0, p4_0, p5_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-2017-kidnap-van-thingy-41933"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Scripts_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Thomas The Dank Engine"
+local UICorner_52 = Instance.new("UICorner")
+UICorner_52.CornerRadius = UDim_New(0, 6)
+UICorner_52.Parent = Btn1
+local UIStroke_31 = Instance.new("UIStroke")
+UIStroke_31.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_31.Thickness = 2
+UIStroke_31.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_31.Parent = Btn1
+local UICorner_53 = Instance.new("UICorner")
+UICorner_53.Parent = Btn1
+UICorner_53.CornerRadius = UDim_New(0, 6)
+local Connection_62
+Connection_62 = Btn1.MouseButton1Click:Connect(function(p1_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://pastebin.com/raw/BPcn3fZd"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Scripts_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "c00lgui Reborn V0.5 by 007n7"
+local UICorner_54 = Instance.new("UICorner")
+UICorner_54.CornerRadius = UDim_New(0, 6)
+UICorner_54.Parent = Btn1
+local UIStroke_32 = Instance.new("UIStroke")
+UIStroke_32.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_32.Thickness = 2
+UIStroke_32.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_32.Parent = Btn1
+local UICorner_55 = Instance.new("UICorner")
+UICorner_55.Parent = Btn1
+UICorner_55.CornerRadius = UDim_New(0, 6)
+local Connection_63
+Connection_63 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0, p3_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-c00lgui-Reborn-39630"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Scripts_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Vadrifts Hub"
+local UICorner_56 = Instance.new("UICorner")
+UICorner_56.CornerRadius = UDim_New(0, 6)
+UICorner_56.Parent = Btn1
+local UIStroke_33 = Instance.new("UIStroke")
+UIStroke_33.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_33.Thickness = 2
+UIStroke_33.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_33.Parent = Btn1
+local UICorner_57 = Instance.new("UICorner")
+UICorner_57.Parent = Btn1
+UICorner_57.CornerRadius = UDim_New(0, 6)
+local Connection_64
+Connection_64 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0, p3_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/vqmpjay/Vadrifts/refs/heads/main/VadriftsBypasser.lua"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Scripts_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Nexo Hub"
+local UICorner_58 = Instance.new("UICorner")
+UICorner_58.CornerRadius = UDim_New(0, 6)
+UICorner_58.Parent = Btn1
+local UIStroke_34 = Instance.new("UIStroke")
+UIStroke_34.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_34.Thickness = 2
+UIStroke_34.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_34.Parent = Btn1
+local UICorner_59 = Instance.new("UICorner")
+UICorner_59.Parent = Btn1
+UICorner_59.CornerRadius = UDim_New(0, 6)
+local Connection_65
+Connection_65 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0, p3_0, p4_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://api.junkie-development.de/api/v1/luascripts/public/b759443a2145ad4f76963763072b7a12713a655b5e8b28c1fa8106448c38934b/download"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Scripts_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Audio Logger"
+local UICorner_60 = Instance.new("UICorner")
+UICorner_60.CornerRadius = UDim_New(0, 6)
+UICorner_60.Parent = Btn1
+local UIStroke_35 = Instance.new("UIStroke")
+UIStroke_35.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_35.Thickness = 2
+UIStroke_35.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_35.Parent = Btn1
+local UICorner_61 = Instance.new("UICorner")
+UICorner_61.Parent = Btn1
+UICorner_61.CornerRadius = UDim_New(0, 6)
+local Connection_66
+Connection_66 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://pastebin.com/raw/4z9GWRY6"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Scripts_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Banisher"
+local UICorner_62 = Instance.new("UICorner")
+UICorner_62.CornerRadius = UDim_New(0, 6)
+UICorner_62.Parent = Btn1
+local UIStroke_36 = Instance.new("UIStroke")
+UIStroke_36.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_36.Thickness = 2
+UIStroke_36.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_36.Parent = Btn1
+local UICorner_63 = Instance.new("UICorner")
+UICorner_63.Parent = Btn1
+UICorner_63.CornerRadius = UDim_New(0, 6)
+local Connection_67
+Connection_67 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0)
+    local Message = Instance.new("Message")
+    Message.Text = "You need r6 for this so make sure you have r6"
+    Message.Parent = Workspace
+    wait(3)
+    Message:Destroy()
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Banisher-42026"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Scripts_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "iOrb"
+local UICorner_64 = Instance.new("UICorner")
+UICorner_64.CornerRadius = UDim_New(0, 6)
+UICorner_64.Parent = Btn1
+local UIStroke_37 = Instance.new("UIStroke")
+UIStroke_37.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_37.Thickness = 2
+UIStroke_37.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_37.Parent = Btn1
+local UICorner_65 = Instance.new("UICorner")
+UICorner_65.Parent = Btn1
+UICorner_65.CornerRadius = UDim_New(0, 6)
+local Connection_68
+Connection_68 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0, p3_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://pastebin.com/raw/Xx6JTgZK"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Scripts_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Death Note Version 1"
+local UICorner_66 = Instance.new("UICorner")
+UICorner_66.CornerRadius = UDim_New(0, 6)
+UICorner_66.Parent = Btn1
+local UIStroke_38 = Instance.new("UIStroke")
+UIStroke_38.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_38.Thickness = 2
+UIStroke_38.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_38.Parent = Btn1
+local UICorner_67 = Instance.new("UICorner")
+UICorner_67.Parent = Btn1
+UICorner_67.CornerRadius = UDim_New(0, 6)
+local Connection_69
+Connection_69 = Btn1.MouseButton1Click:Connect(function(p1_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://pastebin.com/raw/b4dtZMQU"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Scripts_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Death Note Version 2"
+local UICorner_68 = Instance.new("UICorner")
+UICorner_68.CornerRadius = UDim_New(0, 6)
+UICorner_68.Parent = Btn1
+local UIStroke_39 = Instance.new("UIStroke")
+UIStroke_39.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_39.Thickness = 2
+UIStroke_39.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_39.Parent = Btn1
+local UICorner_69 = Instance.new("UICorner")
+UICorner_69.Parent = Btn1
+UICorner_69.CornerRadius = UDim_New(0, 6)
+local Connection_70
+Connection_70 = Btn1.MouseButton1Click:Connect(function(p1_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://pastebin.com/raw/EN5WhyBY"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Scripts_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "KRware"
+local UICorner_70 = Instance.new("UICorner")
+UICorner_70.CornerRadius = UDim_New(0, 6)
+UICorner_70.Parent = Btn1
+local UIStroke_40 = Instance.new("UIStroke")
+UIStroke_40.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_40.Thickness = 2
+UIStroke_40.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_40.Parent = Btn1
+local UICorner_71 = Instance.new("UICorner")
+UICorner_71.Parent = Btn1
+UICorner_71.CornerRadius = UDim_New(0, 6)
+local Connection_71
+Connection_71 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0, p3_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/KRWareHub/KRWare/refs/heads/main/KRWare%20Hub%20Loader.lua"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Scripts_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "FE Kill All"
+local UICorner_72 = Instance.new("UICorner")
+UICorner_72.CornerRadius = UDim_New(0, 6)
+UICorner_72.Parent = Btn1
+local UIStroke_41 = Instance.new("UIStroke")
+UIStroke_41.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_41.Thickness = 2
+UIStroke_41.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_41.Parent = Btn1
+local UICorner_73 = Instance.new("UICorner")
+UICorner_73.Parent = Btn1
+UICorner_73.CornerRadius = UDim_New(0, 6)
+local Connection_72
+Connection_72 = Btn1.MouseButton1Click:Connect(function(p1_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FE-kill-I-think-80292"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Scripts_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Backdoor Finder"
+local UICorner_74 = Instance.new("UICorner")
+UICorner_74.CornerRadius = UDim_New(0, 6)
+UICorner_74.Parent = Btn1
+local UIStroke_42 = Instance.new("UIStroke")
+UIStroke_42.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_42.Thickness = 2
+UIStroke_42.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_42.Parent = Btn1
+local UICorner_75 = Instance.new("UICorner")
+UICorner_75.Parent = Btn1
+UICorner_75.CornerRadius = UDim_New(0, 6)
+local Connection_73
+Connection_73 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0, p3_0, p4_0, p5_0)
+    game:HttpGet("https://raw.githubusercontent.com/its-LALOL/LALOL-Hub/main/Backdoor-Scanner/script")
+    -- this function was spied, no real content was loaded.
+    loadstring(var251)()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Scripts_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Fe Invisible Gui"
+local UICorner_76 = Instance.new("UICorner")
+UICorner_76.CornerRadius = UDim_New(0, 6)
+UICorner_76.Parent = Btn1
+local UIStroke_43 = Instance.new("UIStroke")
+UIStroke_43.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_43.Thickness = 2
+UIStroke_43.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_43.Parent = Btn1
+local UICorner_77 = Instance.new("UICorner")
+UICorner_77.Parent = Btn1
+UICorner_77.CornerRadius = UDim_New(0, 6)
+local Connection_74
+Connection_74 = Btn1.MouseButton1Click:Connect(function()
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Invisible-script-20557"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Scripts_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "ONYX LIB"
+local UICorner_78 = Instance.new("UICorner")
+UICorner_78.CornerRadius = UDim_New(0, 6)
+UICorner_78.Parent = Btn1
+local UIStroke_44 = Instance.new("UIStroke")
+UIStroke_44.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_44.Thickness = 2
+UIStroke_44.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_44.Parent = Btn1
+local UICorner_79 = Instance.new("UICorner")
+UICorner_79.Parent = Btn1
+UICorner_79.CornerRadius = UDim_New(0, 6)
+local Connection_75
+Connection_75 = Btn1.MouseButton1Click:connect(function(p1_0, p2_0, p3_0, p4_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-ONYX-LIB-75347"))()
+end)
+local _ = not Chat_Page:FindFirstChildOfClass("UIListLayout")
+-- false
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Chat_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "CET CAUGHT IN 4K ULTRA HD"
+local UICorner_80 = Instance.new("UICorner")
+UICorner_80.CornerRadius = UDim_New(0, 6)
+UICorner_80.Parent = Btn1
+local UIStroke_45 = Instance.new("UIStroke")
+UIStroke_45.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_45.Thickness = 2
+UIStroke_45.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_45.Parent = Btn1
+local UICorner_81 = Instance.new("UICorner")
+UICorner_81.Parent = Btn1
+UICorner_81.CornerRadius = UDim_New(0, 6)
+local Connection_76
+Connection_76 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0)
+    local TextChatService = game:GetService("TextChatService")
+    local RBXGeneral = TextChatService.TextChannels.RBXGeneral
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [1]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [2]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [3]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [4]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [5]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [6]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [7]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [8]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [9]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [10]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [11]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [12]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [13]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [14]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [15]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [16]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [17]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [18]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [19]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [20]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [21]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [22]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [23]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [24]")
+    task.wait(2.1)
+    RBXGeneral:SendAsync("CAUGHT IN 4K! AHAHAHAHAHAHA GET REKTED [25]")
+    task.wait(2.1)
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Chat_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Extra Chat Box"
+local UICorner_82 = Instance.new("UICorner")
+UICorner_82.CornerRadius = UDim_New(0, 6)
+UICorner_82.Parent = Btn1
+local UIStroke_46 = Instance.new("UIStroke")
+UIStroke_46.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_46.Thickness = 2
+UIStroke_46.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_46.Parent = Btn1
+local UICorner_83 = Instance.new("UICorner")
+UICorner_83.Parent = Btn1
+UICorner_83.CornerRadius = UDim_New(0, 6)
+local Connection_77
+Connection_77 = Btn1.MouseButton1Click:Connect(function(p1_0)
+    game:GetService("TextChatService")
+    game:GetService("Players")
+    game:GetService("UserInputService")
+    local CustomChatGui = Instance.new("ScreenGui")
+    CustomChatGui.ResetOnSpawn = false
+    CustomChatGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
+    CustomChatGui.Name = "CustomChatGui"
+    local Frame_34 = Instance.new("Frame")
+    Frame_34.Parent = CustomChatGui
+    Frame_34.Position = UDim2_New(0.5, -250, 0.5, -200)
+    Frame_34.Size = UDim2_New(0, 480, 0, 480)
+    Frame_34.BackgroundColor3 = Color3_FromRGB(40, 40, 40)
+    Frame_34.BackgroundTransparency = 0.2
+    Frame_34.Active = true
+    local UICorner_120 = Instance.new("UICorner")
+    UICorner_120.Parent = Frame_34
+    UICorner_120.CornerRadius = UDim_New(0, 10)
+    local MessageLog = Instance.new("ScrollingFrame")
+    MessageLog.Name = "MessageLog"
+    MessageLog.Parent = Frame_34
+    MessageLog.Size = UDim2_New(1, -20, 1, -40)
+    MessageLog.Position = UDim2_New(0, 10, 0, 30)
+    MessageLog.BackgroundTransparency = 1
+    MessageLog.CanvasSize = UDim2_New(0, 0, 0, 0)
+    MessageLog.ScrollBarThickness = 6
+    MessageLog.SelectionGroup = false
+    local UIListLayout_14 = Instance.new("UIListLayout")
+    UIListLayout_14.Parent = MessageLog
+    UIListLayout_14.SortOrder = Enum_SortOrder.LayoutOrder
+    UIListLayout_14.Padding = UDim_New(0, 5)
+    local Connection_99
+    Connection_99 = UIListLayout_14:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function(p1_0, p2_0, p3_0)
+        MessageLog.CanvasSize = UDim2_New(0, 0, 0, 1080)
+        MessageLog.CanvasPosition = Vector2_New(0, 1080)
+    end)
+    local Connection_100
+    Connection_100 = Frame_34.InputBegan:Connect(function(Input_11, p2_0) -- args: Input_12
+        -- false, eq id 10
+        local _ = ((Input_11.UserInputType == Enum_UserInputType.MouseButton1) and 14501123)
+        -- false, eq id 11
+        local _ = ((Input_11.UserInputType == Enum_UserInputType.Touch) and 11868351)
+    end)
+    local Connection_101
+    Connection_101 = Frame_34.InputChanged:Connect(function(Input_13, p2_0, p3_0, p4_0, p5_0) -- args: Input_14
+        local _ = (Input_13.UserInputType == Enum_UserInputType.MouseMovement)
+        -- false, eq id 12
+        local _ = (Input_13.UserInputType == Enum_UserInputType.Touch)
+        -- false, eq id 13
+    end)
+    local Connection_102
+    Connection_102 = UserInputService.InputChanged:connect(function(Input_15, GameProcessedEvent_7) -- args: Input_16, GameProcessedEvent_8
+        -- false, eq id 14
+        local _ = ((Input_15 == nil) and 12271278)
+    end)
+    local Connection_103
+    Connection_103 = TextChatService.MessageReceived:Connect(function(TextChatMessage, p2_0) -- args: TextChatMessage_2
+        local _ = ((TextChatMessage.TextSource and 13124977); -- 13124977 or 15991992)
+        local TextLabel_14 = Instance.new("TextLabel")
+        TextLabel_14.Parent = MessageLog
+        TextLabel_14.Size = UDim2_New(1, 0, 0, 25)
+        TextLabel_14.BackgroundTransparency = 1
+        TextLabel_14.TextColor3 = Color3_New(1, 1, 1)
+        TextLabel_14.TextXAlignment = Enum_TextXAlignment.Left
+        TextLabel_14.Font = Enum_Font.SourceSansBold
+        TextLabel_14.TextSize = 18
+        TextLabel_14.Text = "[" .. TextChatMessage.TextSource.Name .. "]: " .. TextChatMessage.Text
+    end)
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Chat_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Chat Bypass"
+local UICorner_84 = Instance.new("UICorner")
+UICorner_84.CornerRadius = UDim_New(0, 6)
+UICorner_84.Parent = Btn1
+local UIStroke_47 = Instance.new("UIStroke")
+UIStroke_47.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_47.Thickness = 2
+UIStroke_47.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_47.Parent = Btn1
+local UICorner_85 = Instance.new("UICorner")
+UICorner_85.Parent = Btn1
+UICorner_85.CornerRadius = UDim_New(0, 6)
+local Connection_78
+Connection_78 = Btn1.MouseButton1Click:Connect(function()
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://gist.githubusercontent.com/bart3876478326746387/392d9f3a6582fb3a86da2b074ba9a864/raw/fb0d02b60cc38b4d58b7a69288d92c03e1ab2609/chat%2520bypass"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Chat_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Chat Hax"
+local UICorner_86 = Instance.new("UICorner")
+UICorner_86.CornerRadius = UDim_New(0, 6)
+UICorner_86.Parent = Btn1
+local UIStroke_48 = Instance.new("UIStroke")
+UIStroke_48.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_48.Thickness = 2
+UIStroke_48.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_48.Parent = Btn1
+local UICorner_87 = Instance.new("UICorner")
+UICorner_87.Parent = Btn1
+UICorner_87.CornerRadius = UDim_New(0, 6)
+local Connection_79
+Connection_79 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0, p3_0, p4_0, p5_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://pastebin.com/raw/wREpsqW6"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Chat_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Kawaii Chat Bypass"
+local UICorner_88 = Instance.new("UICorner")
+UICorner_88.CornerRadius = UDim_New(0, 6)
+UICorner_88.Parent = Btn1
+local UIStroke_49 = Instance.new("UIStroke")
+UIStroke_49.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_49.Thickness = 2
+UIStroke_49.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_49.Parent = Btn1
+local UICorner_89 = Instance.new("UICorner")
+UICorner_89.Parent = Btn1
+UICorner_89.CornerRadius = UDim_New(0, 6)
+local Connection_80
+Connection_80 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0, p3_0, p4_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/hellohellohell012321/KAWAII-BYPASS/main/kawaii-bypass", true))()
+end)
+local _ = not Trolling_Page:FindFirstChildOfClass("UIListLayout")
+-- false
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Trolling_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "German Salute"
+local UICorner_90 = Instance.new("UICorner")
+UICorner_90.CornerRadius = UDim_New(0, 6)
+UICorner_90.Parent = Btn1
+local UIStroke_50 = Instance.new("UIStroke")
+UIStroke_50.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_50.Thickness = 2
+UIStroke_50.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_50.Parent = Btn1
+local UICorner_91 = Instance.new("UICorner")
+UICorner_91.Parent = Btn1
+UICorner_91.CornerRadius = UDim_New(0, 6)
+local Connection_81
+Connection_81 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0, p3_0, p4_0)
+    local Message_2 = Instance.new("Message")
+    Message_2.Text = "You need r6 for this so make sure you have r6"
+    Message_2.Parent = Workspace
+    wait(3)
+    Message_2:Destroy()
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/YepimSirPwnsAlot/Characters/refs/heads/main/cleetus"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Trolling_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "FE R15 Animation Gui"
+local UICorner_92 = Instance.new("UICorner")
+UICorner_92.CornerRadius = UDim_New(0, 6)
+UICorner_92.Parent = Btn1
+local UIStroke_51 = Instance.new("UIStroke")
+UIStroke_51.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_51.Thickness = 2
+UIStroke_51.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_51.Parent = Btn1
+local UICorner_93 = Instance.new("UICorner")
+UICorner_93.Parent = Btn1
+UICorner_93.CornerRadius = UDim_New(0, 6)
+local Connection_82
+Connection_82 = Btn1.MouseButton1Click:Connect(function()
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Rootleak/roblox/refs/heads/main/main.lua"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Trolling_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "FE R6 Animation Gui"
+local UICorner_94 = Instance.new("UICorner")
+UICorner_94.CornerRadius = UDim_New(0, 6)
+UICorner_94.Parent = Btn1
+local UIStroke_52 = Instance.new("UIStroke")
+UIStroke_52.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_52.Thickness = 2
+UIStroke_52.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_52.Parent = Btn1
+local UICorner_95 = Instance.new("UICorner")
+UICorner_95.Parent = Btn1
+UICorner_95.CornerRadius = UDim_New(0, 6)
+local Connection_83
+Connection_83 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0, p3_0, p4_0, p5_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/IlikeyocutgHAH12/FEEGGEG/refs/heads/main/%5BFE%5D%20Energize%20Animation%20Gui.txt"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Trolling_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "FE Crystal Dance"
+local UICorner_96 = Instance.new("UICorner")
+UICorner_96.CornerRadius = UDim_New(0, 6)
+UICorner_96.Parent = Btn1
+local UIStroke_53 = Instance.new("UIStroke")
+UIStroke_53.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_53.Thickness = 2
+UIStroke_53.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_53.Parent = Btn1
+local UICorner_97 = Instance.new("UICorner")
+UICorner_97.Parent = Btn1
+UICorner_97.CornerRadius = UDim_New(0, 6)
+local Connection_84
+Connection_84 = Btn1.MouseButton1Click:Connect(function(p1_0)
+    local Message_3 = Instance.new("Message")
+    Message_3.Text = "You need r6 for this so make sure you have r6"
+    Message_3.Parent = Workspace
+    wait(3)
+    Message_3:Destroy()
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://pastebin.com/raw/vT1URaRJ"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Trolling_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "Grab Knife 4 (R6)"
+local UICorner_98 = Instance.new("UICorner")
+UICorner_98.CornerRadius = UDim_New(0, 6)
+UICorner_98.Parent = Btn1
+local UIStroke_54 = Instance.new("UIStroke")
+UIStroke_54.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_54.Thickness = 2
+UIStroke_54.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_54.Parent = Btn1
+local UICorner_99 = Instance.new("UICorner")
+UICorner_99.Parent = Btn1
+UICorner_99.CornerRadius = UDim_New(0, 6)
+local Connection_85
+Connection_85 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0, p3_0, p4_0, p5_0)
+    local Message_4 = Instance.new("Message")
+    Message_4.Text = "You need r6 for this so make sure you have r6 and a backdoored game"
+    Message_4.Parent = Workspace
+    wait(3)
+    Message_4:Destroy()
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Grab-knife-v4-42023"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Trolling_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "FE Trolling GUI"
+local UICorner_100 = Instance.new("UICorner")
+UICorner_100.CornerRadius = UDim_New(0, 6)
+UICorner_100.Parent = Btn1
+local UIStroke_55 = Instance.new("UIStroke")
+UIStroke_55.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_55.Thickness = 2
+UIStroke_55.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_55.Parent = Btn1
+local UICorner_101 = Instance.new("UICorner")
+UICorner_101.Parent = Btn1
+UICorner_101.CornerRadius = UDim_New(0, 6)
+local Connection_86
+Connection_86 = Btn1.MouseButton1Click:Connect(function(p1_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"))()
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Trolling_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "King Trolling Gui"
+local UICorner_102 = Instance.new("UICorner")
+UICorner_102.CornerRadius = UDim_New(0, 6)
+UICorner_102.Parent = Btn1
+local UIStroke_56 = Instance.new("UIStroke")
+UIStroke_56.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_56.Thickness = 2
+UIStroke_56.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_56.Parent = Btn1
+local UICorner_103 = Instance.new("UICorner")
+UICorner_103.Parent = Btn1
+UICorner_103.CornerRadius = UDim_New(0, 6)
+local Connection_87
+Connection_87 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0, p3_0)
+    -- this function was spied, no real content was loaded.
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/H20CalibreYT/SystemBroken/main/script"))()
+end)
+-- false
+local _ = (not DM_s_Page:FindFirstChildOfClass("UIListLayout") and 10371819)
+local fwefwfwfwfwfeww = Instance.new("TextLabel")
+fwefwfwfwfwfeww.Name = "fwefwfwfwfwfeww"
+fwefwfwfwfwfeww.Size = UDim2_New(0.95, 0, 0, 38)
+fwefwfwfwfwfeww.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+fwefwfwfwfwfeww.TextColor3 = Color3_FromRGB(0, 255, 255)
+fwefwfwfwfwfeww.Text = "DMs are open for everyone, message\n yepimsirpwnsalot on discord\n Feel free to DM me for sneak peaks or join the server\n and ask me anything too if you want."
+fwefwfwfwfwfeww.BorderSizePixel = 0
+fwefwfwfwfwfeww.Font = Enum_Font.GothamBold
+fwefwfwfwfwfeww.TextSize = 14
+fwefwfwfwfwfeww.Parent = DM_s_Page
+local fwefwfwfwfwfeww = Instance.new("TextLabel")
+fwefwfwfwfwfeww.Name = "fwefwfwfwfwfeww"
+fwefwfwfwfwfeww.Size = UDim2_New(0.95, 0, 0, 38)
+fwefwfwfwfwfeww.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+fwefwfwfwfwfeww.TextColor3 = Color3_FromRGB(0, 255, 255)
+fwefwfwfwfwfeww.Text = "  Wanna Join bro??"
+fwefwfwfwfwfeww.TextXAlignment = Enum_TextXAlignment.Left
+fwefwfwfwfwfeww.Font = Enum_Font.GothamBold
+fwefwfwfwfwfeww.TextSize = 14
+fwefwfwfwfwfeww.Parent = DM_s_Page
+local UICorner_104 = Instance.new("UICorner")
+UICorner_104.CornerRadius = UDim_New(0, 6)
+UICorner_104.Parent = fwefwfwfwfwfeww
+local UIStroke_57 = Instance.new("UIStroke")
+UIStroke_57.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_57.Thickness = 2
+UIStroke_57.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_57.Parent = fwefwfwfwfwfeww
+local DiscordLink = Instance.new("TextButton")
+DiscordLink.Name = "DiscordLink"
+DiscordLink.AnchorPoint = Vector2_New(1, 0.5)
+DiscordLink.Position = UDim2_New(1, -5, 0.5, 0)
+DiscordLink.Size = UDim2_New(0.55, 0, 0, 28)
+DiscordLink.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+DiscordLink.TextColor3 = Color3_FromRGB(0, 255, 255)
+DiscordLink.Text = "https://discord.gg/uj9SMQb5"
+DiscordLink.Font = Enum_Font.GothamBold
+DiscordLink.TextSize = 14
+DiscordLink.Parent = fwefwfwfwfwfeww
+local Connection_88
+Connection_88 = DiscordLink.MouseButton1Down:Connect(function(X_108, Y_111) -- args: X_109, Y_112
+    setclipboard("https://discord.gg/uj9SMQb5")
+end)
+local UICorner_105 = Instance.new("UICorner")
+UICorner_105.CornerRadius = UDim_New(0, 6)
+UICorner_105.Parent = DiscordLink
+local UIStroke_58 = Instance.new("UIStroke")
+UIStroke_58.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_58.Thickness = 2
+UIStroke_58.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_58.Parent = DiscordLink
+local _ = not Find_Games_Page:FindFirstChildOfClass("UIListLayout")
+-- false
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Find_Games_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "  Teleport To MM2"
+local UICorner_106 = Instance.new("UICorner")
+UICorner_106.CornerRadius = UDim_New(0, 6)
+UICorner_106.Parent = Btn1
+local UIStroke_59 = Instance.new("UIStroke")
+UIStroke_59.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_59.Thickness = 2
+UIStroke_59.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_59.Parent = Btn1
+local UICorner_107 = Instance.new("UICorner")
+UICorner_107.Parent = Btn1
+UICorner_107.CornerRadius = UDim_New(0, 6)
+Btn1.TextXAlignment = Enum_TextXAlignment.Left
+local TeleportService = game:GetService("TeleportService")
+local Connection_89
+Connection_89 = Btn1.MouseButton1Click:Connect(function()
+    local Teleport = TeleportService:Teleport(142823291, LocalPlayer)
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Find_Games_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "  Teleport To Steal A Brainrot"
+local UICorner_108 = Instance.new("UICorner")
+UICorner_108.CornerRadius = UDim_New(0, 6)
+UICorner_108.Parent = Btn1
+local UIStroke_60 = Instance.new("UIStroke")
+UIStroke_60.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_60.Thickness = 2
+UIStroke_60.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_60.Parent = Btn1
+local UICorner_109 = Instance.new("UICorner")
+UICorner_109.Parent = Btn1
+UICorner_109.CornerRadius = UDim_New(0, 6)
+Btn1.TextXAlignment = Enum_TextXAlignment.Left
+local Connection_90
+Connection_90 = Btn1.MouseButton1Down:Connect(function(X_110, Y_113, p3_0, p4_0, p5_0) -- args: X_111, Y_114
+    game:GetService("TeleportService")
+    local Connection_104
+    Connection_104 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0)
+        TeleportService:Teleport(109983668079240, LocalPlayer)
+    end)
+end)
+local Btn1 = Instance.new("TextButton")
+Btn1.Name = "Btn1"
+Btn1.Parent = Find_Games_Page
+Btn1.Size = UDim2_New(0.95, 0, 0, 38)
+Btn1.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+Btn1.TextColor3 = Color3_New(0, 255, 255)
+Btn1.Font = Enum_Font.GothamBold
+Btn1.TextSize = 14
+Btn1.Text = "  Teleport To Brookhaven"
+local UICorner_110 = Instance.new("UICorner")
+UICorner_110.CornerRadius = UDim_New(0, 6)
+UICorner_110.Parent = Btn1
+local UIStroke_61 = Instance.new("UIStroke")
+UIStroke_61.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_61.Thickness = 2
+UIStroke_61.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_61.Parent = Btn1
+local UICorner_111 = Instance.new("UICorner")
+UICorner_111.Parent = Btn1
+UICorner_111.CornerRadius = UDim_New(0, 6)
+Btn1.TextXAlignment = Enum_TextXAlignment.Left
+local Connection_91
+Connection_91 = Btn1.MouseButton1Down:Connect(function(X_112, Y_115, p3_0, p4_0, p5_0) -- args: X_113, Y_116
+    game:GetService("TeleportService")
+    local Connection_105
+    Connection_105 = Btn1.MouseButton1Click:Connect(function(p1_0, p2_0, p3_0, p4_0, p5_0)
+        TeleportService:Teleport(4924922222, LocalPlayer)
+    end)
+end)
+game:GetService("HttpService")
+-- false
+local _ = (not Complaints_Page:FindFirstChildOfClass("UIListLayout") and 16313746)
+local ComplaintInput = Instance.new("TextBox")
+ComplaintInput.Name = "ComplaintInput"
+ComplaintInput.Size = UDim2_New(0.95, 0, 0, 100)
+ComplaintInput.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+ComplaintInput.TextColor3 = Color3_New(1, 1, 1)
+ComplaintInput.PlaceholderText = "Type your complaint here..."
+ComplaintInput.PlaceholderColor3 = Color3_FromRGB(100, 100, 100)
+ComplaintInput.TextWrapped = true
+ComplaintInput.ClearTextOnFocus = false
+ComplaintInput.TextXAlignment = Enum_TextXAlignment.Left
+ComplaintInput.TextYAlignment = Enum.TextYAlignment.Top
+ComplaintInput.Font = Enum_Font.Gotham
+ComplaintInput.Text = "Mash Your Complain here..."
+ComplaintInput.TextSize = 14
+ComplaintInput.Parent = Complaints_Page
+local UICorner_112 = Instance.new("UICorner")
+UICorner_112.CornerRadius = UDim_New(0, 6)
+UICorner_112.Parent = ComplaintInput
+local UIPadding = Instance.new("UIPadding")
+UIPadding.PaddingLeft = UDim_New(0, 10)
+UIPadding.PaddingTop = UDim_New(0, 10)
+UIPadding.Parent = ComplaintInput
+local UIStroke_62 = Instance.new("UIStroke")
+UIStroke_62.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_62.Thickness = 2
+UIStroke_62.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_62.Parent = ComplaintInput
+local SubmitBtn = Instance.new("TextButton")
+SubmitBtn.Name = "SubmitBtn"
+SubmitBtn.Parent = Complaints_Page
+SubmitBtn.Size = UDim2_New(0.95, 0, 0, 38)
+SubmitBtn.BackgroundColor3 = Color3_FromRGB(0, 0, 0)
+SubmitBtn.TextColor3 = Color3_New(0, 255, 255)
+SubmitBtn.Font = Enum_Font.GothamBold
+SubmitBtn.TextSize = 14
+SubmitBtn.Text = "SUBMIT COMPLAINT"
+local UICorner_113 = Instance.new("UICorner")
+UICorner_113.CornerRadius = UDim_New(0, 6)
+UICorner_113.Parent = SubmitBtn
+local UIStroke_63 = Instance.new("UIStroke")
+UIStroke_63.Color = Color3_FromRGB(0, 255, 255)
+UIStroke_63.Thickness = 2
+UIStroke_63.ApplyStrokeMode = Enum_ApplyStrokeMode.Border
+UIStroke_63.Parent = SubmitBtn
+local Connection_92
+Connection_92 = SubmitBtn.MouseButton1Click:Connect(function(p1_0)
+    -- false, eq id 7
+    local _ = ((ComplaintInput.Text ~= "") and 15640394)
 end)
