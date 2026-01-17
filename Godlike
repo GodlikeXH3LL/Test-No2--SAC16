@@ -1,177 +1,271 @@
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/memejames/elerium-v2-ui-library/main/Library", true))()
-
-local window = library:AddWindow("TGX PAID SCRIPT", {
-    main_color = Color3.fromRGB(0, 0, 0), -- Color
-    min_size = Vector2.new(470, 470), -- Size of the GUI
-    can_resize = false,
-})
-
--- Main Tab
-local Main = window:AddTab("Locate")
-local folder1 = Main:AddFolder("Items")
-
-folder1:AddSwitch("Locate Shrooms", function(state)
-    shrooms = state
-    if state then
-        -- Educational ESP Script for Roblox Studio
--- Only use in private/local Roblox Studio for learning purposes
+-- Educational ESP System for Roblox Studio
+-- Targets parts named "Red shroom Pile"
+-- For learning purposes only
 
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
+local TweenService = game:GetService("TweenService")
 
-local function createESP(targetPart, color)
-    -- Safety check
-    if not targetPart or not targetPart:IsA("BasePart") then
-        warn("Target part not found or not a valid part")
-        return nil
-    end
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local camera = workspace.CurrentCamera
+
+local espEnabled = true
+local targetName = "Red shroom Pile"
+local espObjects = {} -- Stores ESP UI elements
+
+-- Configuration
+local ESP_COLOR = Color3.fromRGB(255, 50, 50) -- Red color
+local MAX_DISTANCE = 500 -- Max distance to show ESP
+local UPDATE_INTERVAL = 0.1 -- Update every 0.1 seconds
+
+-- Function to calculate screen position
+function worldToScreen(point)
+    local vector, onScreen = camera:WorldToViewportPoint(point)
+    return Vector2.new(vector.X, vector.Y), onScreen, vector.Z
+end
+
+-- Function to create ESP for a part
+function createESP(part)
+    if espObjects[part] then return end
     
-    -- Create the ESP components
-    local espContainer = Instance.new("Folder")
-    espContainer.Name = "ESPFolder_" .. targetPart.Name
+    -- Create container for ESP elements
+    local container = Instance.new("Folder")
+    container.Name = "ESP_" .. part.Name
+    container.Parent = player.PlayerGui
     
-    -- Billboard GUI for text
+    -- Create billboard GUI for distance and name
     local billboard = Instance.new("BillboardGui")
     billboard.Name = "ESPBillboard"
-    billboard.AlwaysOnTop = true
     billboard.Size = UDim2.new(0, 200, 0, 50)
-    billboard.StudsOffset = Vector3.new(0, 2, 0)
-    billboard.Adornee = targetPart
-    billboard.Parent = espContainer
+    billboard.AlwaysOnTop = true
+    billboard.StudsOffset = Vector3.new(0, 3, 0)
+    billboard.Adornee = part
+    billboard.Parent = container
     
-    local textLabel = Instance.new("TextLabel")
-    textLabel.Name = "ESPLabel"
-    textLabel.Size = UDim2.new(1, 0, 1, 0)
-    textLabel.BackgroundTransparency = 1
-    textLabel.Text = "shroom"
-    textLabel.TextColor3 = color
-    textLabel.TextStrokeTransparency = 0.5
-    textLabel.TextSize = 14
-    textLabel.Font = Enum.Font.SourceSansBold
-    textLabel.Parent = billboard
+    -- Name label
+    local nameLabel = Instance.new("TextLabel")
+    nameLabel.Name = "NameLabel"
+    nameLabel.Size = UDim2.new(1, 0, 0.5, 0)
+    nameLabel.Position = UDim2.new(0, 0, 0, 0)
+    nameLabel.BackgroundTransparency = 1
+    nameLabel.Text = part.Name
+    nameLabel.TextColor3 = ESP_COLOR
+    nameLabel.TextSize = 14
+    nameLabel.Font = Enum.Font.GothamBold
+    nameLabel.Parent = billboard
     
-    -- Highlight effect
-    local highlight = Instance.new("Highlight")
-    highlight.Name = "ESPHighlight"
-    highlight.Adornee = targetPart
-    highlight.FillColor = color
-    highlight.FillTransparency = 0.8
-    highlight.OutlineColor = color
-    highlight.OutlineTransparency = 0
-    highlight.Parent = espContainer
+    -- Distance label
+    local distanceLabel = Instance.new("TextLabel")
+    distanceLabel.Name = "DistanceLabel"
+    distanceLabel.Size = UDim2.new(1, 0, 0.5, 0)
+    distanceLabel.Position = UDim2.new(0, 0, 0.5, 0)
+    distanceLabel.BackgroundTransparency = 1
+    distanceLabel.Text = "0 studs"
+    distanceLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    distanceLabel.TextSize = 12
+    distanceLabel.Font = Enum.Font.Gotham
+    distanceLabel.Parent = billboard
     
-    -- Wireframe box (alternative visualization)
-    local boxHandle = Instance.new("BoxHandleAdornment")
-    boxHandle.Name = "ESPBox"
-    boxHandle.Adornee = targetPart
-    boxHandle.AlwaysOnTop = true
-    boxHandle.Size = targetPart.Size + Vector3.new(0.1, 0.1, 0.1)
-    boxHandle.Color3 = color
-    boxHandle.Transparency = 0.7
-    boxHandle.ZIndex = 1
-    boxHandle.Parent = espContainer
+    -- Create outline using a box
+    local outline = Instance.new("BoxHandleAdornment")
+    outline.Name = "ESPOutline"
+    outline.Size = part.Size + Vector3.new(0.1, 0.1, 0.1)
+    outline.Color3 = ESP_COLOR
+    outline.Transparency = 0.7
+    outline.AlwaysOnTop = true
+    outline.Adornee = part
+    outline.ZIndex = 10
+    outline.Parent = container
     
-    -- Line to center of screen (optional)
+    -- Create line connecting to player
     local line = Instance.new("LineHandleAdornment")
     line.Name = "ESPLine"
-    line.Adornee = targetPart
-    line.AlwaysOnTop = true
-    line.Thickness = 2
-    line.Color3 = color
+    line.Color3 = ESP_COLOR
     line.Transparency = 0.5
-    line.Parent = espContainer
+    line.Thickness = 2
+    line.AlwaysOnTop = true
+    line.ZIndex = 5
+    line.Parent = container
     
-    -- Update line position each frame
-    local connection
-    connection = RunService.Heartbeat:Connect(function()
-        if not targetPart or not targetPart.Parent then
-            connection:Disconnect()
-            espContainer:Destroy()
-            return
-        end
-        
-        -- Update line from part to a fixed position (e.g., top of screen)
-        local camera = workspace.CurrentCamera
-        if camera then
-            local partPos = targetPart.Position
-            local lineEnd = camera.CFrame.Position + camera.CFrame.LookVector * 10
-            line.Length = (partPos - lineEnd).Magnitude
-            line.CFrame = CFrame.new(partPos, lineEnd)
-        end
-    end)
-    
-    espContainer.Parent = targetPart
-    return espContainer
+    espObjects[part] = {
+        container = container,
+        billboard = billboard,
+        outline = outline,
+        line = line,
+        nameLabel = nameLabel,
+        distanceLabel = distanceLabel
+    }
 end
 
--- Main function to find and apply ESP to "shroom" part
-local function setupESP()
-    -- Wait for game to load
-    wait(1)
+-- Function to update ESP positions and visibility
+function updateESP()
+    if not espEnabled then return end
     
-    -- Find the part named "shroom" in workspace
-    local targetPart = workspace:FindFirstChild("shroom")
+    local characterRoot = character:FindFirstChild("HumanoidRootPart")
+    if not characterRoot then return end
     
-    if targetPart then
-        print("Found shroom part, creating ESP...")
-        local esp = createESP(targetPart, Color3.new(0, 1, 0)) -- Green color
-        
-        if esp then
-            print("ESP created successfully for educational purposes")
+    -- Find all parts named "Red shroom Pile"
+    for _, part in pairs(workspace:GetDescendants()) do
+        if part:IsA("BasePart") and part.Name == targetName then
+            -- Calculate distance
+            local distance = (characterRoot.Position - part.Position).Magnitude
             
-            -- Cleanup function
-            esp.Destroying:Connect(function()
-                print("ESP cleaned up")
-            end)
-        end
-    else
-        warn("Part named 'shroom' not found in workspace")
-        
-        -- Alternative: Search recursively
-        local foundPart
-        for _, obj in pairs(workspace:GetDescendants()) do
-            if obj.Name == "shroom" and obj:IsA("BasePart") then
-                foundPart = obj
-                break
+            if distance <= MAX_DISTANCE then
+                -- Create ESP if it doesn't exist
+                if not espObjects[part] then
+                    createESP(part)
+                end
+                
+                -- Update ESP elements
+                local esp = espObjects[part]
+                
+                -- Update distance text
+                esp.distanceLabel.Text = string.format("%.0f studs", distance)
+                
+                -- Update line position
+                esp.line.Adornee = part
+                esp.line.Length = (characterRoot.Position - part.Position).Magnitude
+                
+                -- Fade based on distance
+                local alpha = 1 - (distance / MAX_DISTANCE)
+                esp.outline.Transparency = 0.7 * (1 - alpha)
+                esp.line.Transparency = 0.5 * (1 - alpha)
+                
+                -- Make visible
+                esp.container.Enabled = true
+            elseif espObjects[part] then
+                -- Hide if too far
+                espObjects[part].container.Enabled = false
             end
         end
-        
-        if foundPart then
-            print("Found shroom part recursively, creating ESP...")
-            createESP(foundPart, Color3.new(0, 1, 0))
-        else
-            warn("Could not find any part named 'shroom'")
+    end
+end
+
+-- Function to clean up ESP for removed parts
+function cleanupESP()
+    for part, espData in pairs(espObjects) do
+        if not part or not part.Parent or part.Parent == nil then
+            espData.container:Destroy()
+            espObjects[part] = nil
         end
     end
 end
 
--- Toggle function for educational demonstration
-local function toggleESP(on)
-    local targetPart = workspace:FindFirstChild("shroom") or 
-                      workspace:FindFirstChild("shroom", true)
+-- Main ESP loop
+local lastUpdate = 0
+RunService.RenderStepped:Connect(function(deltaTime)
+    lastUpdate = lastUpdate + deltaTime
+    if lastUpdate >= UPDATE_INTERVAL then
+        updateESP()
+        cleanupESP()
+        lastUpdate = 0
+    end
+end)
+
+-- Create PlayerGui if it doesn't exist
+if not player:FindFirstChild("PlayerGui") then
+    local playerGui = Instance.new("PlayerGui")
+    playerGui.Name = "PlayerGui"
+    playerGui.Parent = player
+end
+
+-- Toggle ESP function (for educational UI)
+function toggleESP()
+    espEnabled = not espEnabled
+    print("ESP Enabled:", espEnabled)
     
-    if targetPart then
-        local espFolder = targetPart:FindFirstChild("ESPFolder_shroom")
-        
-        if on and not espFolder then
-            createESP(targetPart, Color3.new(1, 0, 0)) -- Red when toggled on
-            print("ESP toggled ON for educational purposes")
-        elseif not on and espFolder then
-            espFolder:Destroy()
-            print("ESP toggled OFF")
-        end
+    for part, espData in pairs(espObjects) do
+        espData.container.Enabled = espEnabled
     end
 end
 
--- Initialize (comment out if you want manual control)
-setupESP()
+-- Cleanup function
+function cleanupAllESP()
+    for part, espData in pairs(espObjects) do
+        espData.container:Destroy()
+    end
+    espObjects = {}
+    print("All ESP cleaned up")
+end
 
--- For manual testing in Studio, you can call:
--- toggleESP(true)  -- Turn ESP on
--- toggleESP(false) -- Turn ESP off
+-- Connection for character changes
+player.CharacterAdded:Connect(function(newChar)
+    character = newChar
+end)
 
-return {
-    setupESP = setupESP,
-    toggleESP = toggleESP,
-    createESP = createESP
-}
+-- Connection for when player leaves
+Players.PlayerRemoving:Connect(function(leavingPlayer)
+    if leavingPlayer == player then
+        cleanupAllESP()
+    end
+end)
+
+-- Educational UI for controlling ESP
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "ESPControl"
+screenGui.Parent = player.PlayerGui
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 200, 0, 150)
+frame.Position = UDim2.new(0, 10, 0, 10)
+frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+frame.BackgroundTransparency = 0.3
+frame.BorderSizePixel = 0
+frame.Parent = screenGui
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 30)
+title.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+title.Text = "Educational ESP System"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.Font = Enum.Font.GothamBold
+title.TextSize = 14
+title.Parent = frame
+
+local targetLabel = Instance.new("TextLabel")
+targetLabel.Size = UDim2.new(1, 0, 0, 25)
+targetLabel.Position = UDim2.new(0, 0, 0, 35)
+targetLabel.BackgroundTransparency = 1
+targetLabel.Text = "Target: " .. targetName
+targetLabel.TextColor3 = ESP_COLOR
+targetLabel.Font = Enum.Font.Gotham
+targetLabel.TextSize = 12
+targetLabel.Parent = frame
+
+local toggleButton = Instance.new("TextButton")
+toggleButton.Size = UDim2.new(0.8, 0, 0, 30)
+toggleButton.Position = UDim2.new(0.1, 0, 0, 70)
+toggleButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+toggleButton.Text = "Toggle ESP: ON"
+toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleButton.Font = Enum.Font.Gotham
+toggleButton.TextSize = 12
+toggleButton.Parent = frame
+
+toggleButton.MouseButton1Click:Connect(function()
+    toggleESP()
+    toggleButton.Text = "Toggle ESP: " .. (espEnabled and "ON" or "OFF")
+end)
+
+local infoLabel = Instance.new("TextLabel")
+infoLabel.Size = UDim2.new(1, 0, 0, 40)
+infoLabel.Position = UDim2.new(0, 0, 0, 110)
+infoLabel.BackgroundTransparency = 1
+infoLabel.Text = "For educational purposes only\nDo not use in live games"
+infoLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+infoLabel.Font = Enum.Font.Gotham
+infoLabel.TextSize = 10
+infoLabel.TextYAlignment = Enum.TextYAlignment.Top
+infoLabel.Parent = frame
+
+print("Educational ESP system initialized")
+print("Targeting parts named: " .. targetName)
+print("Press the button to toggle ESP")
+
+-- Initial scan for existing parts
+for _, part in pairs(workspace:GetDescendants()) do
+    if part:IsA("BasePart") and part.Name == targetName then
+        createESP(part)
+    end
+end
