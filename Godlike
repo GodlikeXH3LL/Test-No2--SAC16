@@ -1,15 +1,28 @@
-local Main = require(game:GetService("ReplicatedStorage"):WaitForChild("Fluent"))
+local Library = loadstring(game:HttpGet("https://github.com/ActualMasterOogway/Fluent-Renewed/releases/latest/download/Fluent.luau"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/ActualMasterOogway/Fluent-Renewed/master/Addons/SaveManager.luau"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/ActualMasterOogway/Fluent-Renewed/master/Addons/InterfaceManager.luau"))()
 
-local Window = Main:CreateWindow({
-    Title = "Fluent " .. Main.Version,
-    SubTitle = "by dawid",
-    TabWidth = 160,
-    Size = UDim2.fromOffset(580, 460),
+-- Main Window
+local Window = Library:CreateWindow{
+    Title = "MoonHub",
+    SubTitle = "By Godlike",
+    TabWidth = 125,
+    Size = UDim2.fromOffset(972, 820),
+    Resize = true,
+    MinSize = Vector2.new(470, 380),
     Acrylic = true,
-    Theme = "Dark"
-})
+    Theme = "Light",
+    MinimizeKey = Enum.KeyCode.RightControl
+}
 
+-- Tabs Definition
 local Tabs = {
-    Main = Window:AddTab({ Title = "Main", Icon = "box" }),
-    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+    Main = Window:AddTab({ Title = "Main", Icon = "0" }),
+    AutoWeights = Window:AddTab({ Title = "Auto Weights", Icon = "0" }),
+    AutoRebirth = Window:AddTab({ Title = "Auto Rebirth", Icon = "0" }),
+    AutoKill = Window:AddTab({ Title = "Auto Kill", Icon = "0" }),
+    AutoRock = Window:AddTab({ Title = "Auto Rock", Icon = "0" }),
+    FastGlitch = Window:AddTab({ Title = "Fast Glitch", Icon = "0" }),
+    OPTools = Window:AddTab({ Title = "OP FUNCTIONS🔥", Icon = "0" }),
+    Misc = Window:AddTab({ Title = "Misc", Icon = "0" })
 }
