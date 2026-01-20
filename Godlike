@@ -448,3 +448,89 @@ for _, workoutType in ipairs(workoutTypes) do
         end
     })
 end
+
+Tabs.AutoRebirth:Paragraph("Aligned Paragraph", {
+    Title = "This Is The Basic Auto Rebirth",
+    Content = "Will Improve In Future Updates",
+    TitleAlignment = "Middle",
+    ContentAlignment = Enum.TextXAlignment.Center
+})
+
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local LocalPlayer = Players.LocalPlayer
+
+-- RB Class
+local RB = {}
+RB.__index = RB
+
+function RB.new(tab)
+    local self = setmetatable({}, RB)
+    self.on = false
+    self.target = 1
+    self.tab = tab
+    self:ui()
+    return self
+end
+
+function RB:ui()
+    -- TextBox for Target Rebirths
+    self.input = self.tab:AddInput("TargetInput", {
+        Title = "Target Rebirths",
+        PlaceholderText = "Enter target rebirths",
+        Numeric = true, -- Restrict to numbers
+        Callback = function(value)
+            local n = tonumber(value)
+            if n and n >= 1 then
+                self.target = n
+            else
+                self.input:Update({ Value = "" }) -- Clear if invalid
+            end
+        end
+    })
+
+    -- Toggle for Auto Rebirth (Target)
+    self.tab:AddToggle("AutoRebirthTarget", {
+        Title = "Auto Rebirth (Target)",
+        Description = "Auto rebirths until target is reached",
+        Default = false,
+        Callback = function(state)
+            self.on = state
+            if state then
+                self:run()
+            end
+        end
+    })
+end
+
+function RB:run()
+    task.spawn(function()
+        local leaderstats = LocalPlayer:WaitForChild("leaderstats")
+        local rebirths = leaderstats and leaderstats:WaitForChild("Rebirths")
+        local events = ReplicatedStorage:WaitForChild("rEvents")
+        local remote = events and events:WaitForChild("rebirthRemote")
+
+        if not (rebirths and remote) then
+            self.on = false
+            return
+        end
+
+        while self.on do
+            if rebirths.Value >= self.target then
+                self.on = false
+                print("Target rebirths reached! Stopping auto rebirth.")
+                break
+            end
+
+            local success, errorMessage = pcall(function()
+                remote:InvokeServer("rebirthRequest")
+            end)
+
+            if not success then
+                warn("Failed to send rebirth request: " .. tostring(errorMessage))
+            end
+
+            task.wait(1)
+        end
+    end)
+end
