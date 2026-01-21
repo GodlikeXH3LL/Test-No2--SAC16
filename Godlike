@@ -456,81 +456,40 @@ Tabs.AutoRebirth:Paragraph("Aligned Paragraph", {
     ContentAlignment = Enum.TextXAlignment.Center
 })
 
-local Players = game:GetService("Players")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local LocalPlayer = Players.LocalPlayer
+local targetInput = Tabs.AutoRebirth:CreateInput("TargetRebirth", {
+	Title = "Target Rebirth Amount",
+	Description = "Rebirths Till a Certain Point",
+	Default = "1",
+	Placeholder = "Enter amount...",
+	Numeric = true,
+	Finished = true,
+	Callback = function(Value)
+		targetRebirthValue = tonumber(Value) or 1
+		updateStats()
+	end
+})
 
--- RB Class
-local RB = {}
-RB.__index = RB
-
-function RB.new(tab)
-    local self = setmetatable({}, RB)
-    self.on = false
-    self.target = 1
-    self.tab = tab
-    self:ui()
-    return self
-end
-
-function RB:ui()
-    -- TextBox for Target Rebirths
-    self.input = self.tab:AddInput("TargetInput", {
-        Title = "Target Rebirths",
-        PlaceholderText = "Enter target rebirths",
-        Numeric = true, -- Restrict to numbers
-        Callback = function(value)
-            local n = tonumber(value)
-            if n and n >= 1 then
-                self.target = n
-            else
-                self.input:Update({ Value = "" }) -- Clear if invalid
-            end
-        end
-    })
-
-    -- Toggle for Auto Rebirth (Target)
-    self.tab:AddToggle("AutoRebirthTarget", {
-        Title = "Auto Rebirth (Target)",
-        Description = "Auto rebirths until target is reached",
-        Default = false,
-        Callback = function(state)
-            self.on = state
-            if state then
-                self:run()
-            end
-        end
-    })
-end
-
-function RB:run()
-    task.spawn(function()
-        local leaderstats = LocalPlayer:WaitForChild("leaderstats")
-        local rebirths = leaderstats and leaderstats:WaitForChild("Rebirths")
-        local events = ReplicatedStorage:WaitForChild("rEvents")
-        local remote = events and events:WaitForChild("rebirthRemote")
-
-        if not (rebirths and remote) then
-            self.on = false
-            return
-        end
-
-        while self.on do
-            if rebirths.Value >= self.target then
-                self.on = false
-                print("Target rebirths reached! Stopping auto rebirth.")
-                break
-            end
-
-            local success, errorMessage = pcall(function()
-                remote:InvokeServer("rebirthRequest")
-            end)
-
-            if not success then
-                warn("Failed to send rebirth request: " .. tostring(errorMessage))
-            end
-
-            task.wait(1)
-        end
-    end)
-end
+local targetRebirthLoop = nil
+local targetToggle = Tabs.AutoRebirth:CreateToggle("AutoRebirthTarget", {
+	Title = "Auto Rebirth (Target)",
+	Description = "Automatically rebirth until target is reached",
+	Default = false,
+	Callback = function(Value)
+		if Value then
+			targetRebirthLoop = task.spawn(function()
+				while task.wait(0.1) do
+					if game.Players.LocalPlayer.leaderstats.Rebirths.Value >= targetRebirthValue then
+						targetToggle:SetValue(false)
+						break
+					end
+					game:GetService("ReplicatedStorage").rEvents.rebirthRemote:InvokeServer("rebirthRequest")
+				end
+			end)
+		else
+			if targetRebirthLoop then
+				task.cancel(targetRebirthLoop)
+				targetRebirthLoop = nil
+			end
+		end
+	end
+})
